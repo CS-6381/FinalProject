@@ -1,6 +1,6 @@
 # Messaging Systems & Message Queues
 
-## Exprirments
+## Experiments
  - [ ] A
  - [ ] B
  - [ ] C
