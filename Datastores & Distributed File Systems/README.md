@@ -1,6 +1,6 @@
 # Datastores & Distributed File Systems
 
-## Exprirments
+## Experiments
  - [ ] A
  - [ ] B
  - [ ] C
