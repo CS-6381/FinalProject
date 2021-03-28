@@ -1,23 +1,26 @@
-from logger import log_call
+from logger import log
 from time import sleep
 
 msg = ''
 
 
-@log_call
+# add @log to the principle method call.
+
+@log
 def mock_write(m):
     global msg
-    sleep(0.001)  # simulate write time
+    sleep(0.0001)  # simulated write time
     msg = m
 
 
-@log_call
+@log
 def mock_read():
     global msg
-    sleep(0.001)  # simulate read time
-    print(msg)
+    sleep(0.0001)
+    print(msg)  # simulated read time
 
 
 # call WRITE/READ functions
-mock_write("demo string")
-mock_read()
+for i in range(int(1e3)):  # loop 1,000
+    mock_write(f'demo string {i}')
+    mock_read()
