@@ -1,5 +1,5 @@
 # Base Experiment
-The goal of this experiment is to undersdtand when the technology is viable to use. 
+The goal of this experiment is to understand when the technology is viable to use. 
 
 ## Compatibility 
 Here we wish to understand where the tech is easily used
