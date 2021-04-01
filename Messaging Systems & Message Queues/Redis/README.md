@@ -8,9 +8,9 @@ It is written in ANSI C. The development of Redis is sponsored by Redis Labs tod
 
 While Redis is most known for its NoSQL capabilities, it also provides an implementation of the Pub/Sub paradigm. Redis can also be used as a message bus.
 
-[Redis Pub/Sub - Docs](https://redis.io/topics/pubsub)
-[Scaling Pub-Sub with Redis - Redisday Talk](https://www.youtube.com/watch?v=6G22a5Iooqk)
-[Redis Pub/Sub using Python - Tutorial](https://kb.objectrocket.com/redis/basic-redis-usage-example-part-1-exploring-pub-sub-with-redis-python-583)
+- [Redis Pub/Sub - Docs](https://redis.io/topics/pubsub)    
+- [Scaling Pub-Sub with Redis - Redisday Talk](https://www.youtube.com/watch?v=6G22a5Iooqk)
+- [Redis Pub/Sub using Python - Tutorial](https://kb.objectrocket.com/redis/basic-redis-usage-example-part-1-exploring-pub-sub-with-redis-python-583)
 
 ### Basic Information
 - How many individual actors can connect to this system at one time?
