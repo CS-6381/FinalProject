@@ -6,6 +6,12 @@ Here we wish to understand where the tech is easily used
 
 ### Basic Information
 - How many individual actors can connect to this system at one time? 
+- What license does it operate under?
+- How much must be paid to use this technology?
+    - One time fee?
+    - Monthly?
+    - Yearly?
+- Does it have explicit enterprise support? 
 
 ### Operating Systems
 Can it be installed on the below?
