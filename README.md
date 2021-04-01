@@ -18,6 +18,7 @@
 5) Keep the README for your system up-to-date with a checklist of experiments and who preformed them
     1) Add results in the results folder 
 6) Use GitHub Issues for discussions of expiriments and other communication where possible 
+7) Use Markdown for all text files, CSV for all cell based data, and JSON for object data
 
 ``` markdown 
 # NAME OF TECHNOLOGY
