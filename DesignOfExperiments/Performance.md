@@ -248,7 +248,7 @@ Run 3 instances of your producer on three different machines with 8 threads for 
 
 Ensure you run your programs in such a way that the output is not lost. For example: `python main.py > results.csv`.
 
-Run your consumer program with a matching configuration.
+Run your consumer programs with  matching configurations.
 
 Fill this table with the appropriate links:
 
@@ -284,3 +284,46 @@ Calculate the following data using Excel or a custom program by analyzing the da
 | Send Throughput Average | |
 | Send Throughput Standard Deviation | |
 
+## 4 Producers: 25 Threads - 4 Consumers: 25 Threads
+
+Run four instances of your producer on four different machines with 25 threads for 100000 messages, 10000 bytes each. Set the batch size to 10.
+
+Ensure you run your programs in such a way that the output is not lost. For example: `python main.py > results.csv`.
+
+Run your consumer programs with  matching configurations.
+
+Fill this table with the appropriate links:
+
+| File Name | Link |
+| — | — |
+| producer1.csv | |
+| producer2.csv | |
+| producer3.csv | |
+| producer4.csv | |
+| consumer1.csv | |
+| consumer2.csv | |
+| consumer3.csv | |
+| consumer4.csv | |
+| latencies.csv | |
+| throughput.csv| |
+
+Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
+
+| Metric | Value |
+| —— | — |
+| Processing Latency Min | |
+| Processing Latency Max | |
+| Processing Latency Average | |
+| Processing Latency Standard Deviation | |
+| Send Time Min | |
+| Send Time Max | |
+| Send Time Average | |
+| Send Time Standard Deviation | |
+| Processing Throughput Min | |
+| Processing Throughput Max | |
+| Processing Throughput Average | |
+| Processing Throughput Standard Deviation | |
+| Send Throughput Min | |
+| Send Throughput Max | |
+| Send Throughput Average | |
+| Send Throughput Standard Deviation | |
