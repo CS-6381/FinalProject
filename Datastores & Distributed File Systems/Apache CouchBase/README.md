@@ -20,9 +20,6 @@ Here you can also find a desciption of the features Couchbase to compared with o
 NoSQL|Data is stored in key-value object/item format, or JSON Object format. Unlike relational databases, there is no requirement to create a schema|
 Distribution|Automatically distributes data across all servers or virtual machines|
 Mem Cached Protocol Capability|Achieve Data Replication, Durability and Zero Application downtime when adding and removing servers
-NoSQL|Data is stored in key-value object/item format, or JSON Object format. Unlike relational databases, there is no requirement to create a schema|
-Distribution|Automatically distributes data across all servers or virtual machines|
-Mem Cached Protocol Capability|Achieve Data Replication, Durability and Zero Application downtime when adding and removing servers
 Durability|Ensures likelyhood of data-writes surviving unexpected events such as node outages
 Memory-First| operations occur in memory, thus avoiding traditional database disk I/O bottlenecks
 Elastic Scalability|ability to separate different data processing workloads in distinct scalable services. This provides flexibility to applications with changing workloads and requirements
