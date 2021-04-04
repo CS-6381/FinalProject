@@ -118,7 +118,7 @@ This does not account for redundancy/cluster configurations; those should be on 
 These are the configurations your program should be ran in.
 
 | Producer Instances | Producer Threads | Consumer Instances | Consumer Threads | Message Count | Message Size (bytes)  | Batch Size |
-| — | — | — | — | — | — | — |
+| —-- | —-- | —-- | —-- | —-- | —-- | --— |
 | 1 | 1 | 1 | 1 | 1000 | 1000 | 0 |
 | 1 | 1 | 1 | 5 | 1000 | 1000 | 0 |
 | 1 | 5 | 1 | 1 | 1000 | 1000 | 0 |
@@ -139,7 +139,7 @@ Run your consumer program with a matching configuration.
 Fill this table with the appropriate links:
 
 | File Name | Link |
-| — | — |
+| —-- | --— |
 | producer1.csv | |
 | consumer1.csv | |
 | latencies.csv | |
