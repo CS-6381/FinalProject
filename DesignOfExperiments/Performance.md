@@ -75,6 +75,14 @@ Link to your program's usage here:
 
 [Replace me](Replace me)
 
+### Data Processor
+
+Write a program that accepts a list of producer csv files and a list of consumer csv files. It should output 2 CSV's that marry up the matching ID's of messages and contains calculated results.
+
+The first csv should contain the following durations:
+* Processing latency - total duration in milliseconds from the time the message is sent to the time the message is received
+* Send time - total duration in milliseconds from the time the message is sent to the time the message arrives at the broker/queue/system (this is likely the ACK received time)
+
 ## Hardware Configuration
 
 Each test should be ran using Ubuntu 18.04 chameleon cloud VM's with 8 CPU and 32 GB of RAM. If these hardware specs aren't attainable, use the nearest available and document the configuration.
@@ -89,4 +97,8 @@ This does not account for redundancy/cluster configurations; those should be on 
 
 Run your producer for 1000 messages, 1000 bytes each. Do not enable batching.
 
-Ensure you run your program in such a way that the output is not lost. For example: `python main.py > results.csv`
+Ensure you run your program in such a way that the output is not lost. For example: `python main.py > results.csv`.
+
+Run your consumer program with a matching configuration.
+
+Place a link 
