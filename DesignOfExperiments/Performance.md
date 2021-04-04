@@ -130,5 +130,25 @@ Fill this table with the appropriate links:
 | producer1.csv | |
 | consumer1.csv | |
 | latencies.csv | |
-| throughput.csv | |
+| throughput.csv| |
 
+Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
+
+| Metric | Value |
+| --- | --- |
+| Processing Latency Min | |
+| Processing Latency Max | |
+| Processing Latency Average | |
+| Processing Latency Standard Deviation | |
+| Send Time Min | |
+| Send Time Max | |
+| Send Time Average | |
+| Send Time Standard Deviation | |
+| Processing Throughput Min | |
+| Processing Throughput Max | |
+| Processing Throughput Average | |
+| Processing Throughput Standard Deviation | |
+| Send Throughput Min | |
+| Send Throughput Max | |
+| Send Throughput Average | |
+| Send Throughput Standard Deviation | |
