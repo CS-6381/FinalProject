@@ -33,7 +33,7 @@ Ex output:
 
 The message ID’s need to be unique so it may be a good idea to use a unique ID prefix per publisher (or publisher thread).
 
-**Note:**: The reason we are using standard out is to prevent using file operations that could slow down the overall performance.
+**Note:** The reason we are using standard out is to prevent using file operations that could slow down the overall performance.
 
 The program should terminate once all messages are sent and all acknowledgements are received.
 
@@ -117,14 +117,16 @@ This does not account for redundancy/cluster configurations; those should be on 
 
 These are the configurations your program should be ran in.
 
-| Producer Instances | Producer Threads | Consumer Instances | Consumer Threads | Message Count | Message Size (bytes) | Batch Size |
-| --- | --- | --- | --- | --- | --- | --- |
+| Producer Instances | Producer Threads | Consumer Instances | Consumer Threads | Message Count | Message Size (bytes)  | Batch Size |
+| — | — | — | — | — | — | — |
 | 1 | 1 | 1 | 1 | 1000 | 1000 | 0 |
 | 1 | 1 | 1 | 5 | 1000 | 1000 | 0 |
 | 1 | 5 | 1 | 1 | 1000 | 1000 | 0 |
 | 3 | 8 | 3 | 8 | 10000 | 5000 | 5 |
 | 4 | 25 | 4 | 25 | 100000 | 10000 | 10 |
 
+
+These tests are described in detail below and have placeholders for results.
 
 ## 1 Producer - 1 Consumer
 
@@ -146,7 +148,7 @@ Fill this table with the appropriate links:
 Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
 
 | Metric | Value |
-| — | — |
+| —— | — |
 | Processing Latency Min | |
 | Processing Latency Max | |
 | Processing Latency Average | |
@@ -163,4 +165,43 @@ Calculate the following data using Excel or a custom program by analyzing the da
 | Send Throughput Max | |
 | Send Throughput Average | |
 | Send Throughput Standard Deviation | |
+
+## 1 Producer - 1 Consumer: 5 Threads
+
+Run your producer for 1000 messages, 1000 bytes each. Do not enable batching.
+
+Ensure you run your program in such a way that the output is not lost. For example: `python main.py > results.csv`.
+
+Run your consumer program with a matching configuration except it should run with 5 worker threads.
+
+Fill this table with the appropriate links:
+
+| File Name | Link |
+| — | — |
+| producer1.csv | |
+| consumer1.csv | |
+| latencies.csv | |
+| throughput.csv| |
+
+Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
+
+| Metric | Value |
+| —— | — |
+| Processing Latency Min | |
+| Processing Latency Max | |
+| Processing Latency Average | |
+| Processing Latency Standard Deviation | |
+| Send Time Min | |
+| Send Time Max | |
+| Send Time Average | |
+| Send Time Standard Deviation | |
+| Processing Throughput Min | |
+| Processing Throughput Max | |
+| Processing Throughput Average | |
+| Processing Throughput Standard Deviation | |
+| Send Throughput Min | |
+| Send Throughput Max | |
+| Send Throughput Average | |
+| Send Throughput Standard Deviation | |
+
 
