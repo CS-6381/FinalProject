@@ -83,6 +83,26 @@ The first csv should contain the following durations:
 * Processing latency - total duration in milliseconds from the time the message is sent to the time the message is received
 * Send time - total duration in milliseconds from the time the message is sent to the time the message arrives at the broker/queue/system (this is likely the ACK received time)
 
+Ex:
+
+```
+1,15,8
+2,8,4
+...
+```
+
+The above output indicates that message 1 took 15ms to be fully processed and 8ms to be sent to the broker.
+
+The second csv should output the number of messages sent in each second of the experiment and the number of messages received in each second of the experiment. This is the throughput.
+
+```
+1,15,30
+2,8,16
+...
+```
+
+The above output indicates that the end to end throughput in second 1 was 15 and the send to broker throughput in second 1 was 16.
+
 ## Hardware Configuration
 
 Each test should be ran using Ubuntu 18.04 chameleon cloud VM's with 8 CPU and 32 GB of RAM. If these hardware specs aren't attainable, use the nearest available and document the configuration.
