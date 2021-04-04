@@ -103,6 +103,8 @@ The second csv should output the number of messages sent in each second of the e
 
 The above output indicates that the end to end throughput in second 1 was 15 and the send to broker throughput in second 1 was 16.
 
+**Note**: If this program is written properly, it could be used by all experimenters across technologies.
+
 ## Hardware Configuration
 
 Each test should be ran using Ubuntu 18.04 chameleon cloud VM's with 8 CPU and 32 GB of RAM. If these hardware specs aren't attainable, use the nearest available and document the configuration.
@@ -121,4 +123,12 @@ Ensure you run your program in such a way that the output is not lost. For examp
 
 Run your consumer program with a matching configuration.
 
-Place a link 
+Fill this table with the appropriate links:
+
+| File Name | Link |
+| --- | --- |
+| producer1.csv | |
+| consumer1.csv | |
+| latencies.csv | |
+| throughput.csv | |
+
