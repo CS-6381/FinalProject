@@ -16,10 +16,10 @@ The program should accept parameters to adjust:
   * 0 means batching turned off
 4) The topic/queue name to publish to
 5) The endpoint and port (if applicable) to connect to
-6) For MQ's that run under multiple operating modes, accept a mode parameter that is a number
-  * 1 = mode 1, 2 = mode 2, etc
-  * An example of this would be RabbitMQ which can use "at most once" and "at least once" delivery by choosing whether or not to use acknowledgements. [Reference](https://www.rabbitmq.com/reliability.html)
-7) The number of messages to produce (per worker thread)
+6) The number of messages to produce (per worker thread)
+
+For MQ's that run under multiple operating modes, run under the mode that is most reliable.
+An example of this would be RabbitMQ which can use "at most once" and "at least once" delivery by choosing whether or not to use acknowledgements. [Reference](https://www.rabbitmq.com/reliability.html). You should choose "at least once".
 
 For data collection, the program should output (to standard output) a CSV of message ID's, the time they were sent, and the acknowledge (ACK) response was received (if applicable).
 
@@ -31,7 +31,11 @@ Ex output:
 ...
 ```
 
+The message ID's need to be unique so it may be a good idea to use a unique ID prefix per publisher (or publisher thread).
+
 **Note:**: The reason we are using standard out is to prevent using file operations that could slow down the overall performance.
+
+The program should terminate once all messages are sent and all acknowledgements are received.
 
 Link to your program's usage here:
 
@@ -48,10 +52,12 @@ The program should accept parameters to adjust:
   * 0 means batching turned off
 3) The topic/queue name to consume from
 4) The endpoint and port (if applicable) to connect to
-5) For MQ's that run under multiple operating modes, accept a mode parameter that is a number
-  * 1 = mode 1, 2 = mode 2, etc
-  * An example of this would be RabbitMQ which can use "at most once" and "at least once" delivery by choosing whether or not to use acknowledgements. [Reference](https://www.rabbitmq.com/reliability.html)
-6) The number of messages to consume
+5) The number of messages to consume
+
+For MQ's that run under multiple operating modes, run under the mode that is most reliable.
+An example of this would be RabbitMQ which can use "at most once" and "at least once" delivery by choosing whether or not to use acknowledgements. [Reference](https://www.rabbitmq.com/reliability.html). You should choose "at least once".
+
+The consumer doesn't have to do anything with the message; only retrieve it.
 
 The program should terminate once all messages are consumed.
 
@@ -82,3 +88,5 @@ This does not account for redundancy/cluster configurations; those should be on 
 ## 1 Producer - 1 Consumer
 
 Run your producer for 1000 messages, 1000 bytes each. Do not enable batching.
+
+Ensure you run your program in such a way that the output is not lost. For example: `python main.py > results.csv`
