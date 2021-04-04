@@ -204,4 +204,43 @@ Calculate the following data using Excel or a custom program by analyzing the da
 | Send Throughput Average | |
 | Send Throughput Standard Deviation | |
 
+## 1 Producer: 5 Threads - 1 Consumer: 1 Thread
+
+Run your producer with 5 threads for 1000 messages, 1000 bytes each. Do not enable batching.
+
+Ensure you run your program in such a way that the output is not lost. For example: `python main.py > results.csv`.
+
+Run your consumer program with a matching configuration except it should run with 1 worker thread.
+
+Fill this table with the appropriate links:
+
+| File Name | Link |
+| — | — |
+| producer1.csv | |
+| consumer1.csv | |
+| latencies.csv | |
+| throughput.csv| |
+
+Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
+
+| Metric | Value |
+| —— | — |
+| Processing Latency Min | |
+| Processing Latency Max | |
+| Processing Latency Average | |
+| Processing Latency Standard Deviation | |
+| Send Time Min | |
+| Send Time Max | |
+| Send Time Average | |
+| Send Time Standard Deviation | |
+| Processing Throughput Min | |
+| Processing Throughput Max | |
+| Processing Throughput Average | |
+| Processing Throughput Standard Deviation | |
+| Send Throughput Min | |
+| Send Throughput Max | |
+| Send Throughput Average | |
+| Send Throughput Standard Deviation | |
+
+
 
