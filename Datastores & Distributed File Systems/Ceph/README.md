@@ -4,11 +4,11 @@ The goal of this experiment is to understand when the technology is viable to us
 ## Compatibility 
 Here we wish to understand where the tech is easily used
 
-Ceph support Object-storage, Block-storage, and File-System storage. It can also deploy all of these in the same cluster. This makes its highly dynamic compared to other datastores. Below are descriptions and examples of each. 
+Ceph is a unified storage system supporting Object-storage, Block-storage, and File-System storage. It can also deploy all of these in the same cluster. This makes it highly dynamic compared to other datastores. RADOS is the underlying storage layer for the object, block, and file storage. RADOS is distributed, elastic, and reliable with replication and erasure coding. Below are descriptions and examples of the types of storage built on RADOS. 
 
 |Type of storage|Description|Possible Use-Case|
 |--|--|--|
-Object|Used for storing raw data. Good for storing large blob-like data files.|Video data
+Object|Used for storing raw data. Good for storing large blob-like data files. Swift and S3-compatible APIs.|Video data
 Block|Good for data that needs to be quickly retrieved and manipulated.|RDB, Raid Volumes
 File-system storage|Distributed file system interface with POSIX semantics. Can be used on top of Object or Block storage. Good for data that needs to be easily accessible across nodes on the network.|Web content files.
 
@@ -30,6 +30,8 @@ POSIX file system semantics support|Makes for easy and standardized data retriev
     - Open-Source: There is an open-sourced version that you can manually manage, and won't cost anything.
     - Subscription: You can also purchase and subscription for a cluster managed by RedHat. One quote online for a premium subscription was $82,864.99 for one year of service and Read Hat Support, with 25 physical nodes and 512 TB of storage.
 - Does it have explicit enterprise support? Not explicitly called enterprise, but essentially the Red Hat Ceph Storage subscriptions are the equivalent.
+- What does it favor with regards to the CAP Theorem? Ceph favors consistency. 
+- Does service need to be interrupted for scaling or upgrades? No, hardware can be removed or added while Ceph is online. 
 
 ### Operating Systems
 Can it be installed on the below?
@@ -62,6 +64,9 @@ Embedded (Eiger, Aruix, etc.)||
 
 ### Hardware Needs 
 Create this table for all OS and CPU combinations tested 
+- Commodity hardware is sufficient.
+- Ceph is write intensive. 
+- Ceph File System is CPU intensive. 
 
 #### EX: OS_A on CPU_B
 ||CPU|RAM|Hard Disk Memory|
