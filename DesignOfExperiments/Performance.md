@@ -33,6 +33,10 @@ Ex output:
 
 **Note:**: The reason we are using standard out is to prevent using file operations that could slow down the overall performance.
 
+Link to your program's usage here:
+
+[Replace me](Replace me)
+
 ### Consumer Program
 
 Design a **python** program utilizing your assigned MQ technology that consumes as many messages per second as possible (For example: `while true: consumeMessage()`)
@@ -61,11 +65,20 @@ Ex output:
 ...
 ```
 
+Link to your program's usage here:
+
+[Replace me](Replace me)
+
 ## Hardware Configuration
 
-Each test should be ran using Ubuntu 18.08 chameleon cloud VM's with 8 CPU and 32 GB of RAM. If these hardware specs aren't attainable, use the nearest available and document the configuration.
+Each test should be ran using Ubuntu 18.04 chameleon cloud VM's with 8 CPU and 32 GB of RAM. If these hardware specs aren't attainable, use the nearest available and document the configuration.
 
 Each instance of a program should run on its own machine. For example, if the experiment calls for 2 instances of the producer program and 2 instances of the consumer program, there should be four machines total running one program each.
 
+This does not account for redundancy/cluster configurations; those should be on separate machines as well.
+
 # Experiment Configurations
 
+## 1 Producer - 1 Consumer
+
+Run your producer for 1000 messages, 1000 bytes each. Do not enable batching.
