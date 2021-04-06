@@ -70,3 +70,5 @@ Go||
 Ruby||
 Powershell||
 Perl||
+Rust||
+Elixr||
