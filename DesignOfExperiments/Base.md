@@ -4,6 +4,9 @@ The goal of this experiment is to understand when the technology is viable to us
 ## Compatibility 
 Here we wish to understand where the tech is easily used
 
+### Qualitative 
+Add all qualitative data here
+
 ### Basic Information
 - How many individual actors can connect to this system at one time? 
 - What license does it operate under?
@@ -44,6 +47,7 @@ Embedded (Eiger, Aruix, etc.)||
 Create this table for all OS and CPU combinations tested 
 
 #### EX: OS_A on CPU_B
+<--MAP THIS TO THE EXPIRIMENTS COMPLETED FOR YOUR TECHNOLOGY-->
 ||CPU|RAM|Hard Disk Memory|
 |--|--|--|--|
 |Idle||||
