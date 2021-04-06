@@ -21,5 +21,5 @@ These metrics are inspired by Zhuangwei Kang's presentation he shared with us. F
 | Communication Patterns | |
 | Abstraction Layer | |
 | Up-front Complexity | |
-Large Implementations | |
+| Large Implementations | |
 
