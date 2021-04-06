@@ -5,7 +5,10 @@ The goal of this experiment is to understand when the technology is viable to us
 Here we wish to understand where the tech is easily used
 
 ### Qualitative 
-Add all qualitative data here
+
+For MQ experiments, see [Base MQ experiment](./Base-MQ.md)
+
+For data stores, TBD.
 
 ### Basic Information
 - How many individual actors can connect to this system at one time? 
