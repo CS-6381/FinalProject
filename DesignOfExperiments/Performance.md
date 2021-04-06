@@ -39,7 +39,7 @@ Link to your program’s usage here:
 
 ### Consumer Program
 
-Design a **python** program utilizing your assigned MQ technology that consumes as many messages per second as possible (For example: `while true: consume_essage()`)
+Design a **python** program utilizing your assigned MQ technology that consumes as many messages per second as possible (For example: `while true: consume_message()`)
 
 For MQ’s that run under multiple operating modes, run under the mode that is most reliable.
 An example of this would be RabbitMQ which can use “at most once” and “at least once” delivery by choosing whether or not to use acknowledgements. [Reference](https://www.rabbitmq.com/reliability.html). You should choose “at least once”.
@@ -154,7 +154,7 @@ Calculate the following data using Excel or a custom program by analyzing the da
 | Send Throughput Average | |
 | Send Throughput Standard Deviation | |
 
-## 1 Producer VM - 1 ConsumerVM: 5 Instances
+## 1 Producer VM - 1 Consumer VM: 5 Instances
 
 Run one instance of your producer program on one VM.
 
