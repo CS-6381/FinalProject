@@ -47,7 +47,7 @@ Embedded (Eiger, Aruix, etc.)||
 Create this table for all OS and CPU combinations tested 
 
 #### EX: OS_A on CPU_B
-<--MAP THIS TO THE EXPIRIMENTS COMPLETED FOR YOUR TECHNOLOGY-->
+<--MAP THIS TO THE EXPERIMENTS COMPLETED FOR YOUR TECHNOLOGY-->
 ||CPU|RAM|Hard Disk Memory|
 |--|--|--|--|
 |Idle||||
