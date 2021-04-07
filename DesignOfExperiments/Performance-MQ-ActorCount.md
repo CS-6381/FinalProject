@@ -1,6 +1,8 @@
-# Performance Experiment
+# Performance Experiment - MQ - Actor Count
 
-The goal of this experiment is to benchmark how this technology performs when hardware resources are plentiful.
+The goal of this experiment is to benchmark how this technology performs when hardware resources are plentiful and the number of actors (publishers and subscribers) in the system varies.
+
+Contact [@jmbeach](https://github.com/jmbeach) or [@laynemoseley](https://github.com/laynemoseley) for clarifications.
 
 ## Preliminary Steps
 
