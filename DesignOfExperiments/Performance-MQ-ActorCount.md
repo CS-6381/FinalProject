@@ -66,7 +66,7 @@ Link to your program’s usage here:
 
 ### Data Processor
 
-The experiment designers will provide a program that accepts a list of producer csv files and a list of consumer csv files. It should output 2 CSV’s that marry up the matching ID’s of messages and contains calculated results.
+The experiment designers will provide a program that accepts a list of producer csv files and a list of consumer csv files. It should output 2 CSV’s that marry up the matching ID’s of messages and contain calculated results.
 
 The first csv should contain the following durations:
 * Processing latency - total duration in milliseconds from the time the message is sent to the time the message is received
@@ -200,7 +200,7 @@ Run five producer program instances on one VM.
 
 Ensure you run your programs in such a way that the output is not lost. For example: `python main.py > results.csv`.
 
-Run one instance of the producer program on one VM.
+Run one instance of the consumer program on one VM.
 
 Fill this table with the appropriate links:
 
