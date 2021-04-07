@@ -4,7 +4,7 @@ CS 6381
 
 Link: https://aws.amazon.com/sns/
 
-##Technology Overview
+## Technology Overview
 Amazon Web Service's answer to a pub/sub messaging system.
 
 "Amazon Simple Notification Service (Amazon SNS) is a fully managed messaging service for both application-to-application (A2A)."
