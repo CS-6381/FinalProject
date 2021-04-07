@@ -40,7 +40,31 @@ Replication|Provides high avilability for reading and writing data through [Intr
         - Open Source Version: Free
 - Does it have explicit enterprise support? 
     - [Couchbase](https://www.couchbase.com/support-policy/enterprise-software) provides enterprise support.  
-  
+- Uses in industry:
+    - Caching
+    - Mobile data management 
+    - Session management
+    - Mainframe offload
+    - User profile store
+    - Source-of-truth data stores
+    - Operational dashboards
+    - Device management
+    - Mobile wallet
+    - Pricing
+    - Product catalog
+    - Omnichannel
+    - Personalization
+    - Shopping cart
+    - Recommendations
+    https://www.couchbase.com/customers
+- Key Features:
+    - N1QL
+    - In-memory database
+    - Cross datacenter replication
+    - Multi-dimensional scaling  
+    - Analytics  
+    https://www.couchbase.com/customers
+    
 # Operating Systems
 |Operating System|Yes/No|Link to steps|Average Install Time| Number of Manual Steps to Install|
 |--|--|--|--|--|
