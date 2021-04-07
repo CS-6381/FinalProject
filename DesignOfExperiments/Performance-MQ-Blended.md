@@ -1,6 +1,6 @@
 # Performance Experiment - MQ - Actor Count and Message Size Blend
 
-The goal of this experiment is to benchmark how this technology performs when hardware resources are plentiful and the number of actors (publishers and subscribers) in the system varies.
+The goal of this experiment is to benchmark how this technology performs when hardware resources are plentiful, the number of actors (publishers and subscribers) in the system varies, and the size of the message varies.
 
 Contact [@jmbeach](https://github.com/jmbeach) or [@laynemoseley](https://github.com/laynemoseley) for clarifications.
 
@@ -58,11 +58,12 @@ Link to your program’s usage here:
 
 ### Data Processor
 
-The experiment designers will provide a program that accepts a list of producer csv files and a list of consumer csv files. It should output 2 CSV’s that marry up the matching ID’s of messages and contains calculated results.
+The experiment designers will provide a program that accepts a list of producer csv files and a list of consumer csv files. It should output 2 CSV’s that marry up the matching ID’s of messages and contain calculated results.
 
 The first csv should contain the following durations:
-* Processing latency - total duration in milliseconds from the time the message is sent to the time the message is received
-* Send time - total duration in milliseconds from the time the message is sent to the time the message arrives at the broker/queue/system (this is likely the ACK received time)
+
+- Processing latency - total duration in milliseconds from the time the message is sent to the time the message is received
+- Send time - total duration in milliseconds from the time the message is sent to the time the message arrives at the broker/queue/system (this is likely the ACK received time)
 
 Ex:
 
@@ -97,12 +98,12 @@ These are the configurations your program should be ran in.
 Refer to [MessageSize](./MQ-MessageSize.md) for the content of the messages to be sent.
 
 | Producer Machines | Producer Instances | Consumer Machines | Consumer Instances | Message Size |
-| --- | --- | --- | --- | --- |
-| 1 | 1 | 1 | 1 | tiny |
-| 1 | 1 | 1 | 5 | small |
-| 1 | 5 | 1 | 1 | medium |
-| 3 | 8 | 3 | 8 | large |
-| 4 | 25 | 4 | 25 | x-large |
+| ----------------- | ------------------ | ----------------- | ------------------ | ------------ |
+| 1                 | 1                  | 1                 | 1                  | tiny         |
+| 1                 | 1                  | 1                 | 5                  | small        |
+| 1                 | 5                  | 1                 | 1                  | medium       |
+| 3                 | 8                  | 3                 | 8                  | large        |
+| 4                 | 25                 | 4                 | 25                 | x-large      |
 
 If possible, implement these configurations with redundancy enabled and document the configuration.
 
@@ -112,9 +113,9 @@ These tests are described in detail below and have placeholders for results.
 
 Place the redundancy implementation details here.
 
-## 1 Producer - 1 Consumer - tiny message size
+## 1 Producer - 1 Consumer - Tiny Message Size
 
-Run one instance of your producer program on one VM.
+Run one instance of your producer program on one VM. Configure your producer to always send the [tiny](./messages/tiny.txt) message.
 
 Ensure you run your programs in such a way that the output is not lost. For example: `python main.py > results.csv`.
 
@@ -122,37 +123,37 @@ Run your consumer program with a matching configuration.
 
 Fill this table with the appropriate links:
 
-| File Name | Link |
-| --- | --- |
-| producer1.csv | |
-| consumer1.csv | |
-| latencies.csv | |
-| throughput.csv| |
+| File Name      | Link |
+| -------------- | ---- |
+| producer1.csv  |      |
+| consumer1.csv  |      |
+| latencies.csv  |      |
+| throughput.csv |      |
 
 Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
 
-| Metric | Value |
-| --- | --- |
-| Processing Latency Min | |
-| Processing Latency Max | |
-| Processing Latency Average | |
-| Processing Latency Standard Deviation | |
-| Send Time Min | |
-| Send Time Max | |
-| Send Time Average | |
-| Send Time Standard Deviation | |
-| Processing Throughput Min | |
-| Processing Throughput Max | |
-| Processing Throughput Average | |
-| Processing Throughput Standard Deviation | |
-| Send Throughput Min | |
-| Send Throughput Max | |
-| Send Throughput Average | |
-| Send Throughput Standard Deviation | |
+| Metric                                   | Value |
+| ---------------------------------------- | ----- |
+| Processing Latency Min                   |       |
+| Processing Latency Max                   |       |
+| Processing Latency Average               |       |
+| Processing Latency Standard Deviation    |       |
+| Send Time Min                            |       |
+| Send Time Max                            |       |
+| Send Time Average                        |       |
+| Send Time Standard Deviation             |       |
+| Processing Throughput Min                |       |
+| Processing Throughput Max                |       |
+| Processing Throughput Average            |       |
+| Processing Throughput Standard Deviation |       |
+| Send Throughput Min                      |       |
+| Send Throughput Max                      |       |
+| Send Throughput Average                  |       |
+| Send Throughput Standard Deviation       |       |
 
-## 1 Producer VM - 1 Consumer VM: 5 Instances - small message size
+## 1 Producer VM - 1 Consumer VM: 5 Instances - Small Message Size
 
-Run one instance of your producer program on one VM.
+Run one instance of your producer program on one VM. Configure your producer to always send the [small](./messages/small.txt) message.
 
 Ensure you run your programs in such a way that the output is not lost. For example: `python main.py > results.csv`.
 
@@ -160,75 +161,75 @@ Run five consumer program instances on one VM.
 
 Fill this table with the appropriate links:
 
-| File Name | Link |
-| --- | --- |
-| producer1.csv | |
-| consumer1.csv | |
-| latencies.csv | |
-| throughput.csv| |
+| File Name      | Link |
+| -------------- | ---- |
+| producer1.csv  |      |
+| consumer1.csv  |      |
+| latencies.csv  |      |
+| throughput.csv |      |
 
 Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
 
-| Metric | Value |
-| --- | --- |
-| Processing Latency Min | |
-| Processing Latency Max | |
-| Processing Latency Average | |
-| Processing Latency Standard Deviation | |
-| Send Time Min | |
-| Send Time Max | |
-| Send Time Average | |
-| Send Time Standard Deviation | |
-| Processing Throughput Min | |
-| Processing Throughput Max | |
-| Processing Throughput Average | |
-| Processing Throughput Standard Deviation | |
-| Send Throughput Min | |
-| Send Throughput Max | |
-| Send Throughput Average | |
-| Send Throughput Standard Deviation | |
+| Metric                                   | Value |
+| ---------------------------------------- | ----- |
+| Processing Latency Min                   |       |
+| Processing Latency Max                   |       |
+| Processing Latency Average               |       |
+| Processing Latency Standard Deviation    |       |
+| Send Time Min                            |       |
+| Send Time Max                            |       |
+| Send Time Average                        |       |
+| Send Time Standard Deviation             |       |
+| Processing Throughput Min                |       |
+| Processing Throughput Max                |       |
+| Processing Throughput Average            |       |
+| Processing Throughput Standard Deviation |       |
+| Send Throughput Min                      |       |
+| Send Throughput Max                      |       |
+| Send Throughput Average                  |       |
+| Send Throughput Standard Deviation       |       |
 
-## 1 Producer VM: 5 Instances - 1 Consumer VM: 1 Instance - medium message size
+## 1 Producer VM: 5 Instances - 1 Consumer VM: 1 Instance - Medium Message Size
 
-Run five producer program instances on one VM.
+Run five producer program instances on one VM. Configure the producers to always send the [medium](./messages/medium.txt) message.
 
 Ensure you run your programs in such a way that the output is not lost. For example: `python main.py > results.csv`.
 
-Run one instance of the producer program on one VM.
+Run one instance of the consumer program on one VM.
 
 Fill this table with the appropriate links:
 
-| File Name | Link |
-| --- | --- |
-| producer1.csv | |
-| consumer1.csv | |
-| latencies.csv | |
-| throughput.csv| |
+| File Name      | Link |
+| -------------- | ---- |
+| producer1.csv  |      |
+| consumer1.csv  |      |
+| latencies.csv  |      |
+| throughput.csv |      |
 
 Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
 
-| Metric | Value |
-| --- | --- |
-| Processing Latency Min | |
-| Processing Latency Max | |
-| Processing Latency Average | |
-| Processing Latency Standard Deviation | |
-| Send Time Min | |
-| Send Time Max | |
-| Send Time Average | |
-| Send Time Standard Deviation | |
-| Processing Throughput Min | |
-| Processing Throughput Max | |
-| Processing Throughput Average | |
-| Processing Throughput Standard Deviation | |
-| Send Throughput Min | |
-| Send Throughput Max | |
-| Send Throughput Average | |
-| Send Throughput Standard Deviation | |
+| Metric                                   | Value |
+| ---------------------------------------- | ----- |
+| Processing Latency Min                   |       |
+| Processing Latency Max                   |       |
+| Processing Latency Average               |       |
+| Processing Latency Standard Deviation    |       |
+| Send Time Min                            |       |
+| Send Time Max                            |       |
+| Send Time Average                        |       |
+| Send Time Standard Deviation             |       |
+| Processing Throughput Min                |       |
+| Processing Throughput Max                |       |
+| Processing Throughput Average            |       |
+| Processing Throughput Standard Deviation |       |
+| Send Throughput Min                      |       |
+| Send Throughput Max                      |       |
+| Send Throughput Average                  |       |
+| Send Throughput Standard Deviation       |       |
 
-## 3 Producer VM's: 8 Instances - 3 Consumers VM's: 8 Instances - large message size
+## 3 Producer VM's: 8 Instances - 3 Consumers VM's: 8 Instances - Large Message Size
 
-Run eight instances of your producer on three different machines (24 instances total).
+Run eight instances of your producer on three different machines (24 instances total). Configure your producers to always send the [large](./messages/large.txt) message.
 
 Ensure you run your programs in such a way that the output is not lost. For example: `python main.py > results.csv`.
 
@@ -236,41 +237,41 @@ Run eight instances of your consumer program on three different machines as well
 
 Fill this table with the appropriate links:
 
-| File Name | Link |
-| --- | --- |
-| producer1.csv | |
-| producer2.csv | |
-| producer3.csv | |
-| consumer1.csv | |
-| consumer2.csv | |
-| consumer3.csv | |
-| latencies.csv | |
-| throughput.csv| |
+| File Name      | Link |
+| -------------- | ---- |
+| producer1.csv  |      |
+| producer2.csv  |      |
+| producer3.csv  |      |
+| consumer1.csv  |      |
+| consumer2.csv  |      |
+| consumer3.csv  |      |
+| latencies.csv  |      |
+| throughput.csv |      |
 
 Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
 
-| Metric | Value |
-| --- | --- |
-| Processing Latency Min | |
-| Processing Latency Max | |
-| Processing Latency Average | |
-| Processing Latency Standard Deviation | |
-| Send Time Min | |
-| Send Time Max | |
-| Send Time Average | |
-| Send Time Standard Deviation | |
-| Processing Throughput Min | |
-| Processing Throughput Max | |
-| Processing Throughput Average | |
-| Processing Throughput Standard Deviation | |
-| Send Throughput Min | |
-| Send Throughput Max | |
-| Send Throughput Average | |
-| Send Throughput Standard Deviation | |
+| Metric                                   | Value |
+| ---------------------------------------- | ----- |
+| Processing Latency Min                   |       |
+| Processing Latency Max                   |       |
+| Processing Latency Average               |       |
+| Processing Latency Standard Deviation    |       |
+| Send Time Min                            |       |
+| Send Time Max                            |       |
+| Send Time Average                        |       |
+| Send Time Standard Deviation             |       |
+| Processing Throughput Min                |       |
+| Processing Throughput Max                |       |
+| Processing Throughput Average            |       |
+| Processing Throughput Standard Deviation |       |
+| Send Throughput Min                      |       |
+| Send Throughput Max                      |       |
+| Send Throughput Average                  |       |
+| Send Throughput Standard Deviation       |       |
 
-## 4 Producer VM's: 25 Threads - 4 Consumer VM's: 25 Threads - x-large message size
+## 4 Producer VM's: 25 Threads - 4 Consumer VM's: 25 Threads - X-Large Message Size
 
-Run 25 instances of the producer program on four different VM's (100 instances total).
+Run 25 instances of the producer program on four different VM's (100 instances total). Configure your producers to always send the [x-large](./messages/xlarge.txt) message.
 
 Ensure you run your programs in such a way that the output is not lost. For example: `python main.py > results.csv`.
 
@@ -278,36 +279,36 @@ Run 25 instances of the consumer program on four different VM's (100 instances t
 
 Fill this table with the appropriate links:
 
-| File Name | Link |
-| --- | --- |
-| producer1.csv | |
-| producer2.csv | |
-| producer3.csv | |
-| producer4.csv | |
-| consumer1.csv | |
-| consumer2.csv | |
-| consumer3.csv | |
-| consumer4.csv | |
-| latencies.csv | |
-| throughput.csv| |
+| File Name      | Link |
+| -------------- | ---- |
+| producer1.csv  |      |
+| producer2.csv  |      |
+| producer3.csv  |      |
+| producer4.csv  |      |
+| consumer1.csv  |      |
+| consumer2.csv  |      |
+| consumer3.csv  |      |
+| consumer4.csv  |      |
+| latencies.csv  |      |
+| throughput.csv |      |
 
 Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
 
-| Metric | Value |
-| --- | --- |
-| Processing Latency Min | |
-| Processing Latency Max | |
-| Processing Latency Average | |
-| Processing Latency Standard Deviation | |
-| Send Time Min | |
-| Send Time Max | |
-| Send Time Average | |
-| Send Time Standard Deviation | |
-| Processing Throughput Min | |
-| Processing Throughput Max | |
-| Processing Throughput Average | |
-| Processing Throughput Standard Deviation | |
-| Send Throughput Min | |
-| Send Throughput Max | |
-| Send Throughput Average | |
-| Send Throughput Standard Deviation | |
+| Metric                                   | Value |
+| ---------------------------------------- | ----- |
+| Processing Latency Min                   |       |
+| Processing Latency Max                   |       |
+| Processing Latency Average               |       |
+| Processing Latency Standard Deviation    |       |
+| Send Time Min                            |       |
+| Send Time Max                            |       |
+| Send Time Average                        |       |
+| Send Time Standard Deviation             |       |
+| Processing Throughput Min                |       |
+| Processing Throughput Max                |       |
+| Processing Throughput Average            |       |
+| Processing Throughput Standard Deviation |       |
+| Send Throughput Min                      |       |
+| Send Throughput Max                      |       |
+| Send Throughput Average                  |       |
+| Send Throughput Standard Deviation       |       |

@@ -1,6 +1,6 @@
 # Performance Experiment - MQ - Message Size
 
-The goal of this experiment is to benchmark how this technology performs when hardware resources are plentiful and the number of actors (publishers and subscribers) in the system varies.
+The goal of this experiment is to benchmark how this technology performs when hardware resources are plentiful and the size of messages varies.
 
 Contact [@jmbeach](https://github.com/jmbeach) or [@laynemoseley](https://github.com/laynemoseley) for clarifications.
 
@@ -62,11 +62,12 @@ Link to your program’s usage here:
 
 ### Data Processor
 
-The experiment designers will provide a program that accepts a list of producer csv files and a list of consumer csv files. It should output 2 CSV’s that marry up the matching ID’s of messages and contains calculated results.
+The experiment designers will provide a program that accepts a list of producer csv files and a list of consumer csv files. It should output 2 CSV’s that marry up the matching ID’s of messages and contain calculated results.
 
 The first csv should contain the following durations:
-* Processing latency - total duration in milliseconds from the time the message is sent to the time the message is received
-* Send time - total duration in milliseconds from the time the message is sent to the time the message arrives at the broker/queue/system (this is likely the ACK received time)
+
+- Processing latency - total duration in milliseconds from the time the message is sent to the time the message is received
+- Send time - total duration in milliseconds from the time the message is sent to the time the message arrives at the broker/queue/system (this is likely the ACK received time)
 
 Ex:
 
@@ -99,12 +100,12 @@ Each test should be ran using Ubuntu 18.04 chameleon cloud VM’s with 8 CPU and
 These are the configurations your program should be ran in.
 
 | Producer Machines | Producer Instances | Consumer Machines | Consumer Instances | Message Size |
-| --- | --- | --- | --- | --- |
-| 1 | 1 | 1 | 1 | tiny |
-| 1 | 1 | 1 | 1 | small |
-| 1 | 1 | 1 | 1 | medium |
-| 1 | 1 | 1 | 1 | large |
-| 1 | 1 | 1 | 1 | x-large |
+| ----------------- | ------------------ | ----------------- | ------------------ | ------------ |
+| 1                 | 1                  | 1                 | 1                  | tiny         |
+| 1                 | 1                  | 1                 | 1                  | small        |
+| 1                 | 1                  | 1                 | 1                  | medium       |
+| 1                 | 1                  | 1                 | 1                  | large        |
+| 1                 | 1                  | 1                 | 1                  | x-large      |
 
 If possible, implement these configurations with redundancy enabled and document the configuration.
 
@@ -112,9 +113,9 @@ If possible, implement these configurations with redundancy enabled and document
 
 Place the redundancy implementation details here.
 
-## 1 Producer - 1 Consumer
+## 1 Producer - 1 Consumer - Tiny Message Size
 
-Run one instance of your producer program on one VM. The test should then be repeated for each message size, with a total of 5 test runs.
+Run one instance of your producer program on one VM. Configure the producer to always send the [tiny](./messages/tiny.txt) message.
 
 Ensure you run your programs in such a way that the output is not lost. For example: `python main.py > results.csv`.
 
@@ -122,35 +123,35 @@ Run your consumer program with a matching configuration.
 
 Fill this table with the appropriate links:
 
-| File Name | Link |
-| --- | --- |
-| producer1.csv | |
-| consumer1.csv | |
-| latencies.csv | |
-| throughput.csv| |
+| File Name      | Link |
+| -------------- | ---- |
+| producer1.csv  |      |
+| consumer1.csv  |      |
+| latencies.csv  |      |
+| throughput.csv |      |
 
 Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
 
-| Metric | Value |
-| --- | --- |
-| Processing Latency Min | |
-| Processing Latency Max | |
-| Processing Latency Average | |
-| Processing Latency Standard Deviation | |
-| Send Time Min | |
-| Send Time Max | |
-| Send Time Average | |
-| Send Time Standard Deviation | |
-| Processing Throughput Min | |
-| Processing Throughput Max | |
-| Processing Throughput Average | |
-| Processing Throughput Standard Deviation | |
-| Send Throughput Min | |
-| Send Throughput Max | |
-| Send Throughput Average | |
-| Send Throughput Standard Deviation | |
+| Metric                                   | Value |
+| ---------------------------------------- | ----- |
+| Processing Latency Min                   |       |
+| Processing Latency Max                   |       |
+| Processing Latency Average               |       |
+| Processing Latency Standard Deviation    |       |
+| Send Time Min                            |       |
+| Send Time Max                            |       |
+| Send Time Average                        |       |
+| Send Time Standard Deviation             |       |
+| Processing Throughput Min                |       |
+| Processing Throughput Max                |       |
+| Processing Throughput Average            |       |
+| Processing Throughput Standard Deviation |       |
+| Send Throughput Min                      |       |
+| Send Throughput Max                      |       |
+| Send Throughput Average                  |       |
+| Send Throughput Standard Deviation       |       |
 
-## 1 Producer - 1 Consumer - Medium Message Size
+## 1 Producer - 1 Consumer - Small Message Size
 
 Run one instance of your producer program on one VM. Configure the producer to always send the [small](./messages/small.txt) message.
 
@@ -160,33 +161,33 @@ Run your consumer program with a matching configuration.
 
 Fill this table with the appropriate links:
 
-| File Name | Link |
-| --- | --- |
-| producer1.csv | |
-| consumer1.csv | |
-| latencies.csv | |
-| throughput.csv| |
+| File Name      | Link |
+| -------------- | ---- |
+| producer1.csv  |      |
+| consumer1.csv  |      |
+| latencies.csv  |      |
+| throughput.csv |      |
 
 Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
 
-| Metric | Value |
-| --- | --- |
-| Processing Latency Min | |
-| Processing Latency Max | |
-| Processing Latency Average | |
-| Processing Latency Standard Deviation | |
-| Send Time Min | |
-| Send Time Max | |
-| Send Time Average | |
-| Send Time Standard Deviation | |
-| Processing Throughput Min | |
-| Processing Throughput Max | |
-| Processing Throughput Average | |
-| Processing Throughput Standard Deviation | |
-| Send Throughput Min | |
-| Send Throughput Max | |
-| Send Throughput Average | |
-| Send Throughput Standard Deviation | |
+| Metric                                   | Value |
+| ---------------------------------------- | ----- |
+| Processing Latency Min                   |       |
+| Processing Latency Max                   |       |
+| Processing Latency Average               |       |
+| Processing Latency Standard Deviation    |       |
+| Send Time Min                            |       |
+| Send Time Max                            |       |
+| Send Time Average                        |       |
+| Send Time Standard Deviation             |       |
+| Processing Throughput Min                |       |
+| Processing Throughput Max                |       |
+| Processing Throughput Average            |       |
+| Processing Throughput Standard Deviation |       |
+| Send Throughput Min                      |       |
+| Send Throughput Max                      |       |
+| Send Throughput Average                  |       |
+| Send Throughput Standard Deviation       |       |
 
 ## 1 Producer - 1 Consumer - Medium Message Size
 
@@ -198,33 +199,33 @@ Run your consumer program with a matching configuration.
 
 Fill this table with the appropriate links:
 
-| File Name | Link |
-| --- | --- |
-| producer1.csv | |
-| consumer1.csv | |
-| latencies.csv | |
-| throughput.csv| |
+| File Name      | Link |
+| -------------- | ---- |
+| producer1.csv  |      |
+| consumer1.csv  |      |
+| latencies.csv  |      |
+| throughput.csv |      |
 
 Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
 
-| Metric | Value |
-| --- | --- |
-| Processing Latency Min | |
-| Processing Latency Max | |
-| Processing Latency Average | |
-| Processing Latency Standard Deviation | |
-| Send Time Min | |
-| Send Time Max | |
-| Send Time Average | |
-| Send Time Standard Deviation | |
-| Processing Throughput Min | |
-| Processing Throughput Max | |
-| Processing Throughput Average | |
-| Processing Throughput Standard Deviation | |
-| Send Throughput Min | |
-| Send Throughput Max | |
-| Send Throughput Average | |
-| Send Throughput Standard Deviation | |
+| Metric                                   | Value |
+| ---------------------------------------- | ----- |
+| Processing Latency Min                   |       |
+| Processing Latency Max                   |       |
+| Processing Latency Average               |       |
+| Processing Latency Standard Deviation    |       |
+| Send Time Min                            |       |
+| Send Time Max                            |       |
+| Send Time Average                        |       |
+| Send Time Standard Deviation             |       |
+| Processing Throughput Min                |       |
+| Processing Throughput Max                |       |
+| Processing Throughput Average            |       |
+| Processing Throughput Standard Deviation |       |
+| Send Throughput Min                      |       |
+| Send Throughput Max                      |       |
+| Send Throughput Average                  |       |
+| Send Throughput Standard Deviation       |       |
 
 ## 1 Producer - 1 Consumer - Large Message Size
 
@@ -236,33 +237,33 @@ Run your consumer program with a matching configuration.
 
 Fill this table with the appropriate links:
 
-| File Name | Link |
-| --- | --- |
-| producer1.csv | |
-| consumer1.csv | |
-| latencies.csv | |
-| throughput.csv| |
+| File Name      | Link |
+| -------------- | ---- |
+| producer1.csv  |      |
+| consumer1.csv  |      |
+| latencies.csv  |      |
+| throughput.csv |      |
 
 Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
 
-| Metric | Value |
-| --- | --- |
-| Processing Latency Min | |
-| Processing Latency Max | |
-| Processing Latency Average | |
-| Processing Latency Standard Deviation | |
-| Send Time Min | |
-| Send Time Max | |
-| Send Time Average | |
-| Send Time Standard Deviation | |
-| Processing Throughput Min | |
-| Processing Throughput Max | |
-| Processing Throughput Average | |
-| Processing Throughput Standard Deviation | |
-| Send Throughput Min | |
-| Send Throughput Max | |
-| Send Throughput Average | |
-| Send Throughput Standard Deviation | |
+| Metric                                   | Value |
+| ---------------------------------------- | ----- |
+| Processing Latency Min                   |       |
+| Processing Latency Max                   |       |
+| Processing Latency Average               |       |
+| Processing Latency Standard Deviation    |       |
+| Send Time Min                            |       |
+| Send Time Max                            |       |
+| Send Time Average                        |       |
+| Send Time Standard Deviation             |       |
+| Processing Throughput Min                |       |
+| Processing Throughput Max                |       |
+| Processing Throughput Average            |       |
+| Processing Throughput Standard Deviation |       |
+| Send Throughput Min                      |       |
+| Send Throughput Max                      |       |
+| Send Throughput Average                  |       |
+| Send Throughput Standard Deviation       |       |
 
 ## 1 Producer - 1 Consumer - X-Large Message Size
 
@@ -274,30 +275,30 @@ Run your consumer program with a matching configuration.
 
 Fill this table with the appropriate links:
 
-| File Name | Link |
-| --- | --- |
-| producer1.csv | |
-| consumer1.csv | |
-| latencies.csv | |
-| throughput.csv| |
+| File Name      | Link |
+| -------------- | ---- |
+| producer1.csv  |      |
+| consumer1.csv  |      |
+| latencies.csv  |      |
+| throughput.csv |      |
 
 Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
 
-| Metric | Value |
-| --- | --- |
-| Processing Latency Min | |
-| Processing Latency Max | |
-| Processing Latency Average | |
-| Processing Latency Standard Deviation | |
-| Send Time Min | |
-| Send Time Max | |
-| Send Time Average | |
-| Send Time Standard Deviation | |
-| Processing Throughput Min | |
-| Processing Throughput Max | |
-| Processing Throughput Average | |
-| Processing Throughput Standard Deviation | |
-| Send Throughput Min | |
-| Send Throughput Max | |
-| Send Throughput Average | |
-| Send Throughput Standard Deviation | |
+| Metric                                   | Value |
+| ---------------------------------------- | ----- |
+| Processing Latency Min                   |       |
+| Processing Latency Max                   |       |
+| Processing Latency Average               |       |
+| Processing Latency Standard Deviation    |       |
+| Send Time Min                            |       |
+| Send Time Max                            |       |
+| Send Time Average                        |       |
+| Send Time Standard Deviation             |       |
+| Processing Throughput Min                |       |
+| Processing Throughput Max                |       |
+| Processing Throughput Average            |       |
+| Processing Throughput Standard Deviation |       |
+| Send Throughput Min                      |       |
+| Send Throughput Max                      |       |
+| Send Throughput Average                  |       |
+| Send Throughput Standard Deviation       |       |
