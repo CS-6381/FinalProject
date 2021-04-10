@@ -144,6 +144,8 @@ Fill this table with the appropriate links:
 
 Calculated using a [custom program](./1prod1vm1cons1vm/run1/metrics.csv) by analyzing the data in latencies.csv and throughput.csv
 
+*Note: The send throughput accomodated all 1000 messages within 1 second. The below deviation is for each tenth of a second.*
+
 | Metric | Value |
 | --- | --- |
 | Processing Latency Min | |
