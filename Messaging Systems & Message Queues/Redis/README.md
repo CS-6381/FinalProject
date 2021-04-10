@@ -33,8 +33,8 @@ Can it be installed on the below?
 
 |Operating System|Yes/No|Link to steps|Average Install Time| Number of Manual Steps to Install|
 |--|--|--|--|--|
-Ububtu 18.04|Yes|||
-Ububtu 20.04|Yes|[link](https://linuxize.com/post/how-to-install-and-configure-redis-on-ubuntu-20-04/)|15min manually|6
+Ububtu 18.04|Yes|(same as 20.04)|15 min| yes
+Ububtu 20.04|Yes|[link](https://linuxize.com/post/how-to-install-and-configure-redis-on-ubuntu-20-04/)|15 min manually|6
 Windows 7|Yes|||
 Windows 10|Yes|||
 Mac|Yes|||

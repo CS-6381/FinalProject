@@ -1,6 +1,6 @@
-# Performance Experiment - MQ - Actor Count
+# Performance Experiment - Redis - Actor Count
 
-The goal of this experiment is to benchmark how this technology performs when hardware resources are plentiful and the number of actors (publishers and subscribers) in the system varies.
+The goal of this experiment is to benchmark how Redis performs when hardware resources are plentiful and the number of actors (publishers and subscribers) in the system varies.
 
 Contact [@thesammiller](https://github.com/thesammiller) 
 
@@ -10,16 +10,15 @@ Contact [@thesammiller](https://github.com/thesammiller)
 
 Design a **python** program utilizing your assigned MQ technology that produces as many messages per second as possible (For example: `while true: produce_message()`)
 
-For MQ’s that run under multiple operating modes, run under the mode that is most reliable.
-An example of this would be RabbitMQ which can use “at most once” and “at least once” delivery by choosing whether or not to use acknowledgements. [Reference](https://www.rabbitmq.com/reliability.html). You should choose “at least once”.
+Redis has a pub-sub system that provides no guarantees of reliable or acknowledge signals.
 
-For data collection, the program should output (to standard output) a CSV of message ID’s, the time they were sent, and the time the acknowledge (ACK) response was received (if applicable).
+For data collection, the program outputs (to standard output) a CSV of message ID’s and the time they were sent. Additionally, there are some identifying information such as topic, role and uuid.
 
 Ex output:
 
 ```
-1,1617516000,1617516005
-2,1617516010,1617516015
+message,publisher,<uuid>1,1617516000,1617516005
+message,publisher,<uuid>2,1617516010,1617516015
 ...
 ```
 
@@ -29,42 +28,39 @@ Each message from the producer should be the exact same. A byte UTF-8 string of 
 
 This is a quote from [Sun Tzu's Art of War](https://www.gutenberg.org/files/132/132-h/132-h.htm#:~:text=There%20are%20not%20more%20than%20five%20musical%20notes) and it's a fun, small, public-domain message that will ensure that everyone is using a message of the exact same size (149 bytes).
 
-The message ID’s need to be unique so it may be a good idea to use a unique ID prefix per publisher.
+The message ID’s need to be unique so a unique ID prefix is provided per publisher by Python's built in UUID library.
 
 **Note:** The reason we are using standard out is to prevent using file operations that could slow down the overall performance.
 
-The program should send 1,000 messages and then terminate once all messages are sent and all acknowledgements are received.
+The program sends 1,000 messages and then terminate once all messages are sent and all acknowledgements are received.
 
-Link to your program’s usage here:
+Link to program’s usage here:
 
-[publisher.py](../../scripts/PerformanceMQActorSize/publisher.py)
-[redisapi/redisclients.py](../../scripts/PerformanceMQActorSize/redisapi/redisclients.py)
+[publisher.py](../../scripts/PerformanceMQActorSize/publisher.py)    
+[redisapi/redisclients.py](../../scripts/PerformanceMQActorSize/redisapi/redisclients.py)    
 
 ### Consumer Program
 
 Design a **python** program utilizing your assigned MQ technology that consumes as many messages per second as possible (For example: `while true: consume_message()`)
 
-For MQ’s that run under multiple operating modes, run under the mode that is most reliable.
-An example of this would be RabbitMQ which can use “at most once” and “at least once” delivery by choosing whether or not to use acknowledgements. [Reference](https://www.rabbitmq.com/reliability.html). You should choose “at least once”.
-
 The consumer doesn’t have to do anything with the message; only retrieve it.
 
 The program should terminate once all messages are consumed.
 
-For data collection, the program should output (to standard output) a CSV of message ID’s, the time they were received, and the time they were acknowledged (if applicable).
+For data collection, the program outputs (to standard output) a CSV of message ID’s and the time they were received.
 
 Ex output:
 
 ```
-1,1617516000,1617516005
-2,1617516010,1617516015
+message,subscriber,<uuid>,1,1617516000,1617516005
+message,subscriber,<uuid>,2,1617516010,1617516015
 ...
 ```
 
-Link to your program’s usage here:
+Link to program’s usage here:
 
-[subscriber.py](../../scripts/PerformanceMQActorSize/subscriber.py)
-[redisapi/redisclients.py](../../scripts/PerformanceMQActorSize/redisapi/redisclients.py)
+[subscriber.py](../../scripts/PerformanceMQActorSize/subscriber.py)    
+[redisapi/redisclients.py](../../scripts/PerformanceMQActorSize/redisapi/redisclients.py)    
 
 ### Data Processor
 
@@ -94,7 +90,8 @@ The second csv should output the number of messages sent in each second of the e
 
 The above output indicates that the end to end throughput in second 1 was 15 and the send to broker throughput in second 1 was 16.
 
-[latency.py]([publisher.py](../../scripts/latency.py)
+[latency.py](../../scripts/latency.py)
+[throughput.py](../../scripts/throughput.py)
 
 ## Hardware Configuration
 
@@ -144,26 +141,38 @@ Fill this table with the appropriate links:
 
 Calculated using a [custom program](./1prod1vm1cons1vm/run1/metrics.csv) by analyzing the data in latencies.csv and throughput.csv
 
-*Note: The send throughput accomodated all 1000 messages within 1 second. The below deviation is for each tenth of a second.*
+*Note: The send throughput accomodated all 1000 messages within 1 second. The throughput file is parsed into tenths of seconds to have meaningful data. For consistency, we will use a second below.*
+
 
 | Metric | Value |
 | --- | --- |
-| Processing Latency Min | |
-| Processing Latency Max | |
-| Processing Latency Average | |
-| Processing Latency Standard Deviation | |
-| Send Time Min |0.0090198517 |
-| Send Time Max |0.0093400478 |
-| Send Time Average |0.0091877985032 |
-| Send Time Standard Deviation |5.543421864913035e-05 |
-| Processing Throughput Min | |
-| Processing Throughput Max | |
-| Processing Throughput Average | |
-| Processing Throughput Standard Deviation | |
-| Send Throughput Min |44 |
-| Send Throughput Max |134 |
-| Send Throughput Average |111.11111111111111 |
-| Send Throughput Standard Deviation |28.091121570900494 |
+| Processing Latency Min |0.0090198517 |
+| Processing Latency Max |0.0093400478 |
+| Processing Latency Average | 0.0091877985032|
+| Processing Latency Standard Deviation |0.000055434219 |
+| Send Time Min |n/a |
+| Send Time Max |n/a |
+| Send Time Average |n/a |
+| Send Time Standard Deviation |n/a |
+| Processing Throughput Min |1000 |
+| Processing Throughput Max |1000|
+| Processing Throughput Average |1000|
+| Processing Throughput Standard Deviation |0|
+| Send Throughput Min |n/a |
+| Send Throughput Max |n/a |
+| Send Throughput Average |n/a |
+| Send Throughput Standard Deviation |n/a |
+
+
+Processing at the 1/10th second level:
+
+| Metric | Value |
+| --- | --- |
+| Processing Throughput Min |44 |
+| Processing Throughput Max |134|
+| Processing Throughput Average |111.11111111111111|
+| Processing Throughput Standard Deviation |28.091121570900494|
+
 
 
 ## 1 Producer VM - 1 Consumer VM: 5 Instances
