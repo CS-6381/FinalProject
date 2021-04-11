@@ -5,7 +5,7 @@ The goal of this experiment is to understand when the technology is viable to us
 Here we wish to understand where the tech is easily used
 
 ### Couchbase
-Couchbase is an open source, distributed, NoSQL document-oriented engagement database, optimized for interactive applications. 
+Couchbase is an open source, distributed, NoSQL document-oriented engagement database, optimized for interactive applications. Couchbase is meant to help developers build quickly, scale big, and save more.
 
 |Type of storage|Description|Possible Use-Case|
 |--|--|--|
