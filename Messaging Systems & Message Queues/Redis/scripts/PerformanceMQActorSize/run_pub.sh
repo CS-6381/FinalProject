@@ -1,2 +1,2 @@
 #!/bin/sh
-./publisher.py > ../pub_out.txt
+./publisher.py $1 > ../pub_out_$2.txt

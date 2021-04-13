@@ -1,3 +1,3 @@
 #!/bin/sh
 
-./subscriber.py >> ../sub_out.txt
+./subscriber.py $1 > ../sub_out_$2.txt

@@ -16,10 +16,12 @@ messages = [
 
 
 def main():
+    hostname = sys.argv[1] if len(sys.argv) > 1 else 'localhost'
+
     loops = 1000
     file = messages[0]
         
-    publisher = RedisPublisher()
+    publisher = RedisPublisher(hostname=hostname)
 
     filename = MESSAGE_DIR + file + MESSAGE_SUFFIX
     

@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 
+import sys 
+
 from redisapi.redisclients import RedisSubscriber
 
-HOSTNAME="129.114.25.240"
 
 def main():
+    hostname = sys.argv[1] if len(sys.argv) > 1 else 'localhost'
     loops = 1000
-    sub = RedisSubscriber(hostname=HOSTNAME)
+    sub = RedisSubscriber(hostname=hostname)
     run(sub, loops)
     
 def run(sub, loops):
