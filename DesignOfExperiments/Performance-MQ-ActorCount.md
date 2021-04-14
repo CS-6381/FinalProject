@@ -41,12 +41,23 @@ Link to your program’s usage here:
 
 If your MQ does not support some sort of acknowledgement protocol that will ensure that the program does not advance until the message is fully received by the consumer, then you will need to do the following:
 
-* Include an ID with the message
+* Include the producer's ID with the message
+    * How this ID is generated is up to you
 * Upon receiving the message in the consumer, manually implement your own response back to the producer.
     * This can either be a direct response over the network to your program 
-    * *OR*, you can make your producer also be a consumer and have it listen for a message back with the same ID
+    * *OR*, you can make your producer also be a consumer and have it listen for messages with its ID
 
-These extra steps will help us compare all of the technologies with less variance.
+To include the ID with the message without adding a lot of processing overhead to your consumer, simply prefix the message with the ID followed by a colon.
+
+Example:
+
+```
+192.168.1.100_PRODUCER1:There are not more than five primary colors (blue, yellow, red, white, and black), yet in combination they produce more hues than can ever been seen.
+```
+
+Then in the consumer, use an efficient algorithm to read the ID from the message. It doesn't need to read anything past the colon. The ID is only used to route the response back to the producer (either by broker or other means).
+
+These extra steps will help us compare all of the technologies with less variance between them.
 
 ### Consumer Program
 
