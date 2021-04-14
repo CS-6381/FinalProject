@@ -78,9 +78,8 @@ Link to your program’s usage here:
 
 The experiment **designers** will provide a program that accepts a list of producer csv files and a list of consumer csv files. It should output 2 CSV’s that contain calculated results.
 
-The first csv should contain the following durations:
+The first csv should contain the following duration:
 * Processing latency - total duration in milliseconds from the time the message is sent to the time the message is received
-* Send time - total duration in milliseconds from the time the message is sent to the time the message arrives at the broker/queue/system (this is likely the ACK received time)
 
 Ex:
 
@@ -136,11 +135,13 @@ Ensure you run your programs in such a way that the output is not lost. For exam
 
 Run your consumer program with a matching configuration.
 
+Generate `latencies.csv` and `throughput.csv` using the program provided by the experiment designers team.
+
 Fill this table with the appropriate links:
 
 | File Name | Link |
 | --- | --- |
-| producer1_1.csv | |
+| producer.csv | |
 | latencies.csv | |
 | throughput.csv| |
 
