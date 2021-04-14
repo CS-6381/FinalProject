@@ -1,5 +1,5 @@
 
-##CAP analysis:
+## CAP analysis:
 
 
 The aim is to conduct an experiment which measures the Consistency/Availability for a given datastore in clusters.
