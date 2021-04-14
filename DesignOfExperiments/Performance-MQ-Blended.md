@@ -13,15 +13,19 @@ Design a **python** program utilizing your assigned MQ technology that produces 
 For MQ’s that run under multiple operating modes, run under the mode that is most reliable.
 An example of this would be RabbitMQ which can use “at most once” and “at least once” delivery by choosing whether or not to use acknowledgements. [Reference](https://www.rabbitmq.com/reliability.html). You should choose “at least once”.
 
-For data collection, the program should output (to standard output) a CSV of message ID’s, the time they were sent, and the time the acknowledge (ACK) response was received (if applicable).
+For data collection, the program should output (to standard output) a CSV of message send timestamps, and a timestamp of when the acknowledge (ACK) response was received (if your MQ does not support delivery gaurantees, you will need to take some extra measures. See "Notes for MQ's Without ACK" below).
 
 Ex output:
 
 ```
-1,1617516000,1617516005
-2,1617516010,1617516015
+1617516000,1617516005
+1617516010,1617516015
 ...
 ```
+
+### Message Size
+
+This test is similar to the Actor Count test, with one exception. We will run this test in 5 different modes with varying message size.
 
 **Note:** The reason we are using standard out is to prevent using file operations that could slow down the overall performance.
 
@@ -31,6 +35,28 @@ Link to your program’s usage here:
 
 [Replace me](Replace me)
 
+#### Notes For MQ's Without ACK
+
+If your MQ does not support some sort of acknowledgement protocol that will ensure that the program does not advance until the message is fully received by the consumer, then you will need to do the following:
+
+* Include the producer's ID with the message
+    * How this ID is generated is up to you
+* Upon receiving the message in the consumer, manually implement your own response back to the producer.
+    * This can either be a direct response over the network to your program 
+    * *OR*, you can make your producer also be a consumer and have it listen for messages with its ID
+
+To include the ID with the message without adding a lot of processing overhead to your consumer, simply prefix the message with the ID followed by a colon.
+
+Example:
+
+```
+192.168.1.100_PRODUCER1:There are not more than five primary colors (blue, yellow, red, white, and black), yet in combination they produce more hues than can ever been seen.
+```
+
+Then in the consumer, use an efficient algorithm to read the ID from the message. It doesn't need to read anything past the colon. The ID is only used to route the response back to the producer (either by broker or other means).
+
+These extra steps will help us compare all of the technologies with less variance between them.
+
 ### Consumer Program
 
 Design a **python** program utilizing your assigned MQ technology that consumes as many messages per second as possible (For example: `while true: consume_message()`)
@@ -38,19 +64,9 @@ Design a **python** program utilizing your assigned MQ technology that consumes 
 For MQ’s that run under multiple operating modes, run under the mode that is most reliable.
 An example of this would be RabbitMQ which can use “at most once” and “at least once” delivery by choosing whether or not to use acknowledgements. [Reference](https://www.rabbitmq.com/reliability.html). You should choose “at least once”.
 
-The consumer doesn’t have to do anything with the message; only retrieve it.
+The consumer doesn’t have to do anything with the message; only retrieve it. It also doesn't have to output anything.
 
 The program should terminate once all messages are consumed.
-
-For data collection, the program should output (to standard output) a CSV of message ID’s, the time they were received, and the time they were acknowledged (if applicable).
-
-Ex output:
-
-```
-1,1617516000,1617516005
-2,1617516010,1617516015
-...
-```
 
 Link to your program’s usage here:
 
@@ -58,34 +74,32 @@ Link to your program’s usage here:
 
 ### Data Processor
 
-The experiment designers will provide a program that accepts a list of producer csv files and a list of consumer csv files. It should output 2 CSV’s that marry up the matching ID’s of messages and contain calculated results.
+The experiment **designers** will provide a program that accepts a list of producer csv files and a list of consumer csv files. It should output 2 CSV’s that contain calculated results.
 
-The first csv should contain the following durations:
-
-- Processing latency - total duration in milliseconds from the time the message is sent to the time the message is received
-- Send time - total duration in milliseconds from the time the message is sent to the time the message arrives at the broker/queue/system (this is likely the ACK received time)
+The first csv should contain the following duration:
+* Processing latency - total duration in milliseconds from the time the message is sent to the time the message is received
 
 Ex:
 
 ```
-1,15,8
-2,8,4
+15
+8
 ...
 ```
 
-The above output indicates that message 1 took 15ms to be fully processed and 8ms to be sent to the broker.
+The above output indicates that message 1 took 15ms to be fully processed. The second line indicates that message 2 took 8ms to be fully processed
 
 The second csv should output the number of messages sent in each second of the experiment and the number of messages received in each second of the experiment. This is the throughput.
 
 ```
-1,15,30
-2,8,16
+9
+7
 ...
 ```
 
-The above output indicates that the end to end throughput in second 1 was 15 and the send to broker throughput in second 1 was 16.
+The above output indicates that the end to end throughput in second 1 was 9 messages per second. The second line indicates that in second 2, the throughput was 7 messages per second.
 
-Link to program pending.
+**Link to program pending.**
 
 ## Hardware Configuration
 
@@ -121,12 +135,13 @@ Ensure you run your programs in such a way that the output is not lost. For exam
 
 Run your consumer program with a matching configuration.
 
+Generate `latencies.csv` and `throughput.csv` using the program provided by the experiment designers team.
+
 Fill this table with the appropriate links:
 
 | File Name      | Link |
 | -------------- | ---- |
-| producer1.csv  |      |
-| consumer1.csv  |      |
+| producer.csv  |      |
 | latencies.csv  |      |
 | throughput.csv |      |
 
@@ -138,18 +153,10 @@ Calculate the following data using Excel or a custom program by analyzing the da
 | Processing Latency Max                   |       |
 | Processing Latency Average               |       |
 | Processing Latency Standard Deviation    |       |
-| Send Time Min                            |       |
-| Send Time Max                            |       |
-| Send Time Average                        |       |
-| Send Time Standard Deviation             |       |
 | Processing Throughput Min                |       |
 | Processing Throughput Max                |       |
 | Processing Throughput Average            |       |
 | Processing Throughput Standard Deviation |       |
-| Send Throughput Min                      |       |
-| Send Throughput Max                      |       |
-| Send Throughput Average                  |       |
-| Send Throughput Standard Deviation       |       |
 
 ## 1 Producer VM - 1 Consumer VM: 5 Instances - Small Message Size
 
@@ -159,12 +166,13 @@ Ensure you run your programs in such a way that the output is not lost. For exam
 
 Run five consumer program instances on one VM.
 
+Generate `latencies.csv` and `throughput.csv` using the program provided by the experiment designers team.
+
 Fill this table with the appropriate links:
 
 | File Name      | Link |
 | -------------- | ---- |
-| producer1.csv  |      |
-| consumer1.csv  |      |
+| producer.csv   |      |
 | latencies.csv  |      |
 | throughput.csv |      |
 
@@ -176,18 +184,10 @@ Calculate the following data using Excel or a custom program by analyzing the da
 | Processing Latency Max                   |       |
 | Processing Latency Average               |       |
 | Processing Latency Standard Deviation    |       |
-| Send Time Min                            |       |
-| Send Time Max                            |       |
-| Send Time Average                        |       |
-| Send Time Standard Deviation             |       |
 | Processing Throughput Min                |       |
 | Processing Throughput Max                |       |
 | Processing Throughput Average            |       |
 | Processing Throughput Standard Deviation |       |
-| Send Throughput Min                      |       |
-| Send Throughput Max                      |       |
-| Send Throughput Average                  |       |
-| Send Throughput Standard Deviation       |       |
 
 ## 1 Producer VM: 5 Instances - 1 Consumer VM: 1 Instance - Medium Message Size
 
@@ -197,12 +197,13 @@ Ensure you run your programs in such a way that the output is not lost. For exam
 
 Run one instance of the consumer program on one VM.
 
-Fill this table with the appropriate links:
+Generate `latencies.csv` and `throughput.csv` using the program provided by the experiment designers team.
+
+Fill this table with the appropriate links (The producer CSV folder should have five CSVs in it):
 
 | File Name      | Link |
 | -------------- | ---- |
-| producer1.csv  |      |
-| consumer1.csv  |      |
+| producer CSV folder  |      |
 | latencies.csv  |      |
 | throughput.csv |      |
 
@@ -214,18 +215,10 @@ Calculate the following data using Excel or a custom program by analyzing the da
 | Processing Latency Max                   |       |
 | Processing Latency Average               |       |
 | Processing Latency Standard Deviation    |       |
-| Send Time Min                            |       |
-| Send Time Max                            |       |
-| Send Time Average                        |       |
-| Send Time Standard Deviation             |       |
 | Processing Throughput Min                |       |
 | Processing Throughput Max                |       |
 | Processing Throughput Average            |       |
 | Processing Throughput Standard Deviation |       |
-| Send Throughput Min                      |       |
-| Send Throughput Max                      |       |
-| Send Throughput Average                  |       |
-| Send Throughput Standard Deviation       |       |
 
 ## 3 Producer VM's: 8 Instances - 3 Consumers VM's: 8 Instances - Large Message Size
 
@@ -235,16 +228,13 @@ Ensure you run your programs in such a way that the output is not lost. For exam
 
 Run eight instances of your consumer program on three different machines as well.
 
-Fill this table with the appropriate links:
+Generate `latencies.csv` and `throughput.csv` using the program provided by the experiment designers team.
+
+Fill this table with the appropriate links (the producer CSV folder should have 24 CSVs in it):
 
 | File Name      | Link |
 | -------------- | ---- |
-| producer1.csv  |      |
-| producer2.csv  |      |
-| producer3.csv  |      |
-| consumer1.csv  |      |
-| consumer2.csv  |      |
-| consumer3.csv  |      |
+| producer CSV folder  |      |
 | latencies.csv  |      |
 | throughput.csv |      |
 
@@ -256,20 +246,12 @@ Calculate the following data using Excel or a custom program by analyzing the da
 | Processing Latency Max                   |       |
 | Processing Latency Average               |       |
 | Processing Latency Standard Deviation    |       |
-| Send Time Min                            |       |
-| Send Time Max                            |       |
-| Send Time Average                        |       |
-| Send Time Standard Deviation             |       |
 | Processing Throughput Min                |       |
 | Processing Throughput Max                |       |
 | Processing Throughput Average            |       |
 | Processing Throughput Standard Deviation |       |
-| Send Throughput Min                      |       |
-| Send Throughput Max                      |       |
-| Send Throughput Average                  |       |
-| Send Throughput Standard Deviation       |       |
 
-## 4 Producer VM's: 25 Threads - 4 Consumer VM's: 25 Threads - X-Large Message Size
+## 4 Producer VM's: 25 Intances - 4 Consumer VM's: 25 Intances - X-Large Message Size
 
 Run 25 instances of the producer program on four different VM's (100 instances total). Configure your producers to always send the [x-large](./messages/xlarge.txt) message.
 
@@ -277,18 +259,11 @@ Ensure you run your programs in such a way that the output is not lost. For exam
 
 Run 25 instances of the consumer program on four different VM's (100 instances total).
 
-Fill this table with the appropriate links:
+Fill this table with the appropriate links (the producer CSV folder should have 100 CSVs in it):
 
 | File Name      | Link |
 | -------------- | ---- |
-| producer1.csv  |      |
-| producer2.csv  |      |
-| producer3.csv  |      |
-| producer4.csv  |      |
-| consumer1.csv  |      |
-| consumer2.csv  |      |
-| consumer3.csv  |      |
-| consumer4.csv  |      |
+| producer CSV folder.csv  |      |
 | latencies.csv  |      |
 | throughput.csv |      |
 
@@ -300,15 +275,7 @@ Calculate the following data using Excel or a custom program by analyzing the da
 | Processing Latency Max                   |       |
 | Processing Latency Average               |       |
 | Processing Latency Standard Deviation    |       |
-| Send Time Min                            |       |
-| Send Time Max                            |       |
-| Send Time Average                        |       |
-| Send Time Standard Deviation             |       |
 | Processing Throughput Min                |       |
 | Processing Throughput Max                |       |
 | Processing Throughput Average            |       |
 | Processing Throughput Standard Deviation |       |
-| Send Throughput Min                      |       |
-| Send Throughput Max                      |       |
-| Send Throughput Average                  |       |
-| Send Throughput Standard Deviation       |       |

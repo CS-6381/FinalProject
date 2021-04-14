@@ -193,7 +193,7 @@ Ensure you run your programs in such a way that the output is not lost. For exam
 
 Run your consumer program with a matching configuration.
 
-Generate `latencies.csv` and `throughput.csv` using the program provided by the experiment designers team.
+
 
 Fill this table with the appropriate links:
 

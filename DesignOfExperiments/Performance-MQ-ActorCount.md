@@ -251,7 +251,7 @@ Calculate the following data using Excel or a custom program by analyzing the da
 | Processing Throughput Average | |
 | Processing Throughput Standard Deviation | |
 
-## 4 Producer VM's: 25 Threads - 4 Consumer VM's: 25 Threads
+## 4 Producer VM's: 25 Instances - 4 Consumer VM's: 25 Instances
 
 Run 25 instances of the producer program on four different VM's (100 instances total).
 
