@@ -17,14 +17,14 @@ class RedisPublisher:
 
     def __init__(self, hostname='localhost', topic='message'):
         self.r = redis.Redis(host=hostname, port=REDIS_PORT, db=0)
-	self.p = self.r.pubsub()
+        self.p = self.r.pubsub()
         self.topic = topic
         self.message_id = 0
         self.uuid = str(uuid.uuid4())
         self.role = 'publisher'
         #self.csv_line = "{topic},{role},{uuid},{message_id},{time}"
-	self.send_times = []
-	self.recv_times = []
+        self.send_times = []
+        self.recv_times = []
         self.p.subscribe(self.uuid)
         self.notify_thread = threading.Thread(target=notify_loop)
         
@@ -53,7 +53,7 @@ class RedisPublisher:
 
     def publish(self, message):
         mId = "{}".format(self.uuid)
-	data_string = id+":"+message
+        data_string = id+":"+message
         self.r.publish(self.topic, data_string)
         self.send_time.append(time.time())
         
@@ -76,8 +76,8 @@ class RedisSubscriber:
                 data = self.p.get_message()['data']
                 data_decoded = codecs.decode(data, "utf-8")
                 #data_json = json.loads(data_decoded)
-		mId, message = data.split(":")
-		self.r.publish(mId, "ok")
+                mId, message = data.split(":")
+                self.r.publish(mId, "ok")
                 return None
             except:
                 pass
