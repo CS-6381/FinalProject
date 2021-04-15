@@ -34,6 +34,8 @@ def run(publisher, data, loops):
     count = 0
     for i in range(loops):
         publisher.publish(data)
-        
+
+    publisher.done()
+
 if __name__ == '__main__':
     main()

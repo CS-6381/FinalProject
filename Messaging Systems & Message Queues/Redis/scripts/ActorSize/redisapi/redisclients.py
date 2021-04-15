@@ -25,39 +25,39 @@ class RedisPublisher:
         #self.csv_line = "{topic},{role},{uuid},{message_id},{time}"
         self.send_times = []
         self.recv_times = []
+        self.notify_threads = []
         self.p.subscribe(self.uuid)
-        self.notify_thread = threading.Thread(target=self.notify_loop)
-        self.notify_thread.start()
-
-    def notify_loop(self):
-        for i in range(1000+1):
-            self.notify()
+        
+    def done(self):
+        #for t in self.notify_threads:
+        #    t.join()
         for x, y in zip(self.send_times, self.recv_times):
             print("{},{}".format(x, y))
 
     def notify(self):
         data = None
-        while not data:
+        if not data:
             try:
                 data = self.p.get_message()['data']
+                print(data)
                 data_decoded = codecs.decode(data, "utf-8")
                 #data_json = json.loads(data_decoded)
-                mId, message = data.split(":")
-                if mId != self.uuid:
-                    print("Something's wrong... id does not match uuid")
-                else:
-                    self.recv_times.append(time.time())
+                print("got it")
+                self.recv_times.append(time.time())
                 return None
             except:
-                pass
+                time.sleep(.01)
+                self.notify()
         
 
     def publish(self, message):
-        mId = "{}".format(self.uuid)
+        self.notify_threads.append(threading.Thread(target=self.notify))
+        self.notify_threads[-1].start()
+        mId = self.uuid
         data_string = mId+":"+message
         self.r.publish(self.topic, data_string)
         self.send_times.append(time.time())
-        
+        self.notify_threads[-1].join() 
 
 
 class RedisSubscriber:
