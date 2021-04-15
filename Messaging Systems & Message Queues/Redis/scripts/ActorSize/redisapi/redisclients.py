@@ -28,6 +28,9 @@ class RedisPublisher:
         self.p.subscribe(self.uuid)
         
     def done(self):
+        # there could be an issue where len(y) > len(x)
+        # we can trim off the first y value and pull all others earlier. 
+        # not sure why this is happening, but could be related to that data value 1
         for x, y in zip(self.send_times, self.recv_times):
             print("{},{}".format(x, y))
 
@@ -36,11 +39,12 @@ class RedisPublisher:
         for message in self.p.listen():
             if message.get("type") == "message":
                 data = message.get("data")
-                #print(data)
-                data_decoded = codecs.decode(data, "utf-8")
-                #print("got it")
-                self.recv_times.append(time.time())
-                return None
+                # other possible fix for time weirdness -- adjust to filter out noise
+                if data != 1:
+                    data_decoded = codecs.decode(data, "utf-8")
+                    #print("got it")
+                    self.recv_times.append(time.time())
+                    return None
 
         
 
