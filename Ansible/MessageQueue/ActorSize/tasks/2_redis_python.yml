@@ -1,0 +1,21 @@
+---
+
+  - name: Redis Python - Install Library
+    shell: pip3 install redis
+
+  - name: Redis Python - Install Pandas
+    shell: pip3 install pandas
+
+  - name: Clone Git Files - Final Project fork
+    ansible.builtin.git:
+      repo: https://github.com/thesammiller/FinalProject
+      dest: ~/project/FinalProject
+      force: yes
+
+  - name: Clone Git Files - Final Project official
+    ansible.builtin.git:
+      repo: https://github.com/CS-6381/FinalProject
+      dest: ~/official/FinalProject
+      force: yes
+    
+...

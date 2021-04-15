@@ -1,0 +1,79 @@
+#
+# CS-6381 Final Project
+# Author: Sam Miller
+# Created: Spring 2021
+# Modified: Spring 2021
+#
+# Master Playbook for Chameleon Cloud Experiments (ActorSize)
+# 
+# Process:
+#   - Setup VMs
+#   - Install Redis
+#   - Install and Run Consumer
+#   - Install and Run Producer
+#
+#####################################################
+### Play 1: Launch Chameleon Cloud
+#
+#####################################################
+- name: "Play 1: Launch Chameleon Cloud"
+  hosts: MyLocalVMs
+  remote_user: vagrant
+  vars_files:
+    - vars_files/chameleon_setup.yml
+
+  tasks:
+  - name: Install openstacksdk
+    apt: name=python3-openstacksdk state=latest
+    become: yes
+
+  - include_tasks: tasks/0_cloud_start_redis.yml
+  - include_tasks: tasks/0_cloud_start_producer1.yml
+  - include_tasks: tasks/0_cloud_start_consumer1.yml
+
+  - name: Wait a minute for server to start up...
+    pause:
+      minutes: 1
+
+##################################################
+### Play 2: Install Redis
+#
+####################################################
+- name: "Play 2: Install Redis"
+  hosts: Redis
+  remote_user: cc
+  collections:
+    openstack.cloud
+
+  gather_facts: yes
+  
+  tasks:
+  - include_tasks: tasks/1_redis_install.yml
+  
+###################################################
+### Play 3: Consumer Install and Run
+#
+##################################################
+- name: "Play 3: Consumers"
+  hosts: Consumers
+  remote_user: cc
+  gather_facts: yes
+
+  tasks:
+  - include_tasks: tasks/2_redis_python.yml
+  - include_tasks: tasks/3_redis_consumer.yml
+
+###################################################
+### Play 4: Consumer Install and Run
+#
+##################################################
+- name: "Play 4: Producers"
+  hosts: Producers
+  remote_user: cc
+  gather_facts: yes
+
+  tasks:
+  - include_tasks: tasks/2_redis_python.yml
+  - include_tasks: tasks/3_redis_producer.yml
+
+...

@@ -1,0 +1,73 @@
+---
+#
+# EECS 4287/5287: Principles of Cloud Computing
+# Author: Aniruddha Gokhale
+# Created: Fall 2020
+#
+  - name: Start a cloud server
+    openstack.cloud.server:
+        state: present
+        cloud: chameleon   # this is the nickname from our clouds.yaml file
+        name: redis-vm1     
+        image: CC-Ubuntu20.04
+        key_name: redis-chameleon
+        timeout: 200
+        flavor: m1.xlarge
+        security_groups: "default"
+        network: sharednet1
+        auto_ip: yes
+    register: redis_vm1_params
+
+  - name: Add redis-vm1 to temporary inventory
+    add_host:
+      name: redis-vm1
+      groups: MyChameleonVMs
+      ansible_host: "{{ redis_vm1_params.openstack.accessIPv4 }}"
+      ansible_connection: ssh
+      ansible_ssh_private_key_file: /home/vagrant/.ssh/redis-chameleon.pem
+      ansible_user: cc
+
+  - name: Add redis-vm1 to MyProducers
+    add_host:
+      name: redis-vm1
+      groups: MyProducers
+      ansible_host: "{{ redis_vm1_params.openstack.accessIPv4 }}"
+      ansible_connection: ssh
+      ansible_ssh_private_key_file: /home/vagrant/.ssh/redis-chameleon.pem
+      ansible_user: cc
+
+  - name: Start second cloud
+    openstack.cloud.server:
+        state: present
+        cloud: chameleon
+        name: redis-vm2
+        image: CC-Ubuntu20.04
+        key_name: redis-chameleon
+        timeout: 200
+        flavor: m1.xlarge
+        security_groups: "default"
+        network: sharednet1
+        auto_ip: yes
+    register: redis_vm2_params    
+
+  - name: Add redis-vm2 to temporary inventory
+    add_host:
+      name: redis-vm2
+      groups: MyChameleonVMs
+      ansible_host: "{{ redis_vm2_params.openstack.accessIPv4 }}"
+      ansible_connection: ssh
+      ansible_ssh_private_key_file: /home/vagrant/.ssh/redis-chameleon.pem
+      ansible_user: cc
+
+  - name: Add redis-vm2 to MyConsumers
+    add_host:
+      name: redis-vm2
+      groups: MyConsumersDB
+      ansible_host: "{{ redis_vm2_params.openstack.accessIPv4 }}"
+      ansible_connection: ssh
+      ansible_ssh_private_key_file: /home/vagrant/.ssh/redis-chameleon.pem
+      ansible_user: cc
+
+
+... 
+
