@@ -1,7 +1,7 @@
 # How to start the data on a tech
-1) Copy the Base.md as your README/md for your tech
-    1) Add to the Base.md from the Base-DataStore or Base-MQ as applicable
-2) Fill out yout README
+1) Copy the [Base.md](Base.md) as your README/md for your tech
+    1) Add to the Base.md from the [Base-DataStore](Base-DataStore.md) or [Base-MQ](Base-MQ.md) as applicable
+2) Fill out your README
 3) Copy all of the appropriate experiments
     1) Data Stores
         - [CAP-DataStore.md](CAP-DataStore.md)
