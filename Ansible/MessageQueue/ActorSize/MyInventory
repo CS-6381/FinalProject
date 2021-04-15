@@ -1,0 +1,21 @@
+[MyLocalVMs]
+127.0.0.1  ansible_connection=local
+
+[Category]
+127.0.0.1 ansible_connect=local
+
+
+# Please do not reuse these IP addresses
+[MyChameleonVMs]
+#129.114.25.240 ansible_connection=ssh ansible_user=cc ansible_ssh_private_key_file=~/.ssh/redis-test.pem host_key_checking=false
+#129.114.27.239 ansible_connection=ssh ansible_user=cc ansible_ssh_private_key_file=~/.ssh/redis-test.pem host_key_checking=false 
+#129.114.27.100 ansible_connection=ssh ansible_user=cc ansible_ssh_private_key_file=~/.ssh/redis-test.pem host_key_checking=false
+
+[Redis]
+129.114.25.240 ansible_connection=ssh ansible_user=cc ansible_ssh_private_key_file=~/.ssh/redis-test.pem host_key_checking=false
+
+[Producers]
+129.114.27.239 ansible_connection=ssh ansible_user=cc ansible_ssh_private_key_file=~/.ssh/redis-test.pem host_key_checking=false
+
+[Consumers]
+129.114.27.100 ansible_connection=ssh ansible_user=cc ansible_ssh_private_key_file=~/.ssh/redis-test.pem host_key_checking=false

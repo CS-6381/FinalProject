@@ -1,0 +1,49 @@
+---
+
+  - name: create Producer VM on Chameleon
+    #ignore_errors: yes
+    openstack.cloud.server:
+      state: present
+      auth:
+       auth_url: https://kvm.tacc.chameleoncloud.org:5000/v3
+       username: mills19
+       project_name: CH-822922
+       project_domain_name: chameleon
+      region_name: "KVM@TACC"
+      name: redis-consumer-1
+      image: CC-Ubuntu18.04
+      key_name: redis-test
+      timeout: 100
+      flavor: m1.xlarge
+      floating_ips:
+        - 129.114.27.100
+      nics:
+        - net-id: 50073c73-5817-49c3-8e3a-69b8c357e158
+      security_groups:
+       - default
+       - caac1b6b-5a1a-4ddd-a1b5-aa81412d8792
+
+  - name: Add VM1 to inventory
+    add_host:
+      hostname: redis-consumer-1
+      groups: MyChameleonVMs
+      ansible_host: 129.114.27.100
+      ansible_connection: ssh
+      ansible_user: cc
+      ansible_ssh_private_key_file: ~/.ssh/redis-test.pem
+      ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
+
+  - name: Add VM1 to inventory
+    add_host:
+      hostname: redis-consumer-1
+      groups: Consumers
+      ansible_host: 129.114.27.100
+      ansible_connection: ssh
+      ansible_user: cc
+      ansible_ssh_private_key_file: ~/.ssh/redis-test.pem
+      ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
+
+
+
+... 
+

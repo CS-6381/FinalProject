@@ -1,0 +1,33 @@
+---
+  - name: Set Redis address
+    set_fact:
+      redis_host: "{{hostvars['127.0.0.1']['groups']['Redis'][0]}}"
+
+  - name: Print Redis address
+    set_fact:
+      redis_ipv4: "{{ hostvars[redis_host]['ansible_facts']['default_ipv4']['address'] }}"
+
+  - name: Store Time
+    shell: "python3 -c 'import time; print(round(time.time()))'"
+    register: time_output
+
+
+  - name: Set Time Fact
+    set_fact:
+      time_fact: "{{ time_output.stdout }}"
+
+  - name: Create a directory if it does not exist
+    ansible.builtin.file:
+      path: "/home/cc/project/FinalProject/{{time_fact}}/"
+      state: directory
+      mode: '0755'
+
+
+  - name: Redis Producer - Run Producer
+    shell: "/home/cc/project/FinalProject/'Messaging Systems & Message Queues'/Redis/scripts/ActorSize/publisher.py {{redis_ipv4}} hello </dev/null > /home/cc/project/FinalProject/{{time_fact}}/publisher.csv 2>&1 &" 
+    async: 36000
+    poll: 0
+
+
+
+...
