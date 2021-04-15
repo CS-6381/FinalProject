@@ -27,7 +27,8 @@ class RedisPublisher:
         self.recv_times = []
         self.p.subscribe(self.uuid)
         self.notify_thread = threading.Thread(target=self.notify_loop)
-        
+        self.notify_thread.start()
+
     def notify_loop(self):
         for i in range(1000+1):
             self.notify()
