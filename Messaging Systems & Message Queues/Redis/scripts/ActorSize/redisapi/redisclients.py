@@ -53,7 +53,7 @@ class RedisPublisher:
 
     def publish(self, message):
         mId = "{}".format(self.uuid)
-        data_string = id+":"+message
+        data_string = mId+":"+message
         self.r.publish(self.topic, data_string)
         self.send_time.append(time.time())
         
