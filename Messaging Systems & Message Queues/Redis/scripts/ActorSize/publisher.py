@@ -6,7 +6,7 @@ from redisapi.redisclients import RedisPublisher
 
 
 
-MESSAGE_DIR="/home/cc/official/FinalProject/DesignOfExperiments/messages/"
+MESSAGE_DIR="/home/vagrant/official/FinalProject/DesignOfExperiments/messages/"
 MESSAGE_SUFFIX = ".txt"
 
 messages = [
