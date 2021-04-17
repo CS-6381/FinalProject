@@ -14,9 +14,11 @@ messages = [ "tiny", "small", "medium", "large", "xlarge" ]
 
 
 def main():
+    print("Starting...")
     hostname = sys.argv[1] if len(sys.argv) > 1 else 'localhost'
     file = sys.argv[2] if len(sys.argv) > 2 else 'small'
     loops = 1000 
+    print("File:\t{}".format(file))
         
     publisher = RedisPublisher(hostname=hostname)
 
