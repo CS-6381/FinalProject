@@ -3,7 +3,7 @@
 import sys
 import time
 
-from activemqapi.activemqclients import ActiveMQPublisher
+from activemqapi.activemqpublisher import ActiveMQPublisher
 
 
 
@@ -35,7 +35,7 @@ def run(publisher, data, loops):
     count = 0
     for i in range(loops):
         publisher.publish(data)
-        time.sleep(1)
+        #time.sleep(1)
         
     publisher.done()
 

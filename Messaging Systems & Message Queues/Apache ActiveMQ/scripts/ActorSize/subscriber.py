@@ -2,7 +2,7 @@
 
 import sys 
 
-from activemqapi.activemqclients import ActiveMQSubscriber
+from activemqapi.activemqsubscriber import ActiveMQSubscriber
 
 
 def main():
