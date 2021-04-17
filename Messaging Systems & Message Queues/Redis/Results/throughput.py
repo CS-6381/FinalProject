@@ -1,5 +1,5 @@
 from collections import Counter
-
+import sys
 import pandas as pd
 
 
@@ -12,14 +12,14 @@ def main():
 
     columns = ['sent', 'recv']
     pub = pd.read_csv(pub_file, names=columns)
-    recv = sub['recv']
+    recv = pub['recv']
     
-    rounded = recv.apply(lambda x: '%.1f' % x)
+    rounded = recv.apply(lambda x: '%.0f' % x)
     #pd.options.display.float_format = '{:.5f}'.format
     times = rounded.values.tolist()
     times_count = Counter(times)
     low = min(times_count)
-    times_dict = {"%.1f" % (float(t)-float(low)):times_count[t] for t in times_count}
+    times_dict = {"%.0f" % (float(t)-float(low)):times_count[t] for t in times_count}
     
     through = pd.DataFrame.from_dict(times_dict, orient="index", columns=['messages'])
     

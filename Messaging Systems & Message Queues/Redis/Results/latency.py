@@ -11,7 +11,7 @@ def main():
     columns = ['sent', 'recv']
     pub = pd.read_csv(pub_file, names=columns)
     sent = pub['sent'].round(5)
-    recv = sub['recv'].round(5)
+    recv = pub['recv'].round(5)
     
 
     difference = recv-sent
