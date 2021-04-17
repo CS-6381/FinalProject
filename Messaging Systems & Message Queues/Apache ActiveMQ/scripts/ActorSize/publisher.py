@@ -7,7 +7,7 @@ from activemqapi.activemqpublisher import ActiveMQPublisher
 
 
 
-MESSAGE_DIR="/home/vagrant/official/FinalProject/DesignOfExperiments/messages/"
+MESSAGE_DIR="/home/cc/official/FinalProject/DesignOfExperiments/messages/"
 MESSAGE_SUFFIX = ".txt"
 
 messages = [

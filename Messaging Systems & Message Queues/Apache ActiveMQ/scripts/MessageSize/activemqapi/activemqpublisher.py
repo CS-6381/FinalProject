@@ -62,7 +62,7 @@ class ActiveMQPublisher:
     def on_message(self, headers, message):
         self.lock = 0
         self.recv_times.append(time.time())
-        print("message received")
+
         
             
 

@@ -2,7 +2,7 @@
 
 import sys
 
-from redisapi.redisclients import RedisPublisher
+from activemqapi.activemqpublisher import ActiveMQPublisher
 
 
 
@@ -18,7 +18,7 @@ def main():
     file = sys.argv[2] if len(sys.argv) > 2 else 'small'
     loops = 1000 
         
-    publisher = RedisPublisher(hostname=hostname)
+    publisher = ActiveMQPublisher(hostname=hostname)
 
     filename = MESSAGE_DIR + file + MESSAGE_SUFFIX
     

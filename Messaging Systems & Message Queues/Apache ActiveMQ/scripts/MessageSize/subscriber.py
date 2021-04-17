@@ -2,13 +2,13 @@
 
 import sys 
 
-from redisapi.redisclients import RedisSubscriber
+from activemqapi.activemqsubscriber import ActiveMQSubscriber
 
 
 def main():
     hostname = sys.argv[1] if len(sys.argv) > 1 else 'localhost'
     loops = 1000
-    sub = RedisSubscriber(hostname=hostname)
+    sub = ActiveMQSubscriber(hostname=hostname)
     run(sub, loops)
     
 def run(sub, loops):

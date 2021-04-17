@@ -21,32 +21,6 @@ destination = sys.argv[1:2] or ["/topic/event"]
 destination = destination[0]
 
 
-class ActiveMQPublisher:
-
-    def __init__(self, hostname='localhost', topic='message'):
-        self.conn = stomp.Connection(host_and_ports=[(host, port)])
-        self.conn.start()
-        self.conn.connect(login=user, passcode=password)
-        self.topic = '/topic/' + topic
-        self.message_id = 0
-        self.uuid = str(uuid.uuid4())
-        self.role = 'publisher'
-        self.send_times = []
-        self.recv_times = []
-
-    def publish(self, message):
-        mId = self.uuid
-        data_string = mId+":"+message
-        self.conn.send(body=data_string, destination=self.topic,
-                       persistent='false')
-        self.send_times.append(time.time())
-
-    def done(self):
-        self.conn.send(body="SHUTDOWN", destination=destination,
-                       persistent='false')
-        self.conn.disconnect()
-
-
 class ActiveMQSubscriber:
 
     def __init__(self, hostname='localhost', topic='message'):
@@ -62,17 +36,22 @@ class ActiveMQSubscriber:
         self.conn.subscribe(destination=self.topic, id=1, ack='auto')
 
     def notify(self):
-        while 1:
-            time.sleep(1)
+        while self.count < 1000:
+            pass
 
     def on_message(self, headers, message):
-        print(message)
+        #print(message)
+        mId, message = message.split(":")
+        data_string = 'ok'
+        self.conn.send(body=data_string, destination='/topic/'+mId,
+                       persistent='false')
+
         #self.conn.ack(headers['ack'])
         if message == "SHUTDOWN":
 
             diff = time.time() - self.start
             print("Received %s in %f seconds" % (self.count, diff))
-            conn.disconnect()
+            self.conn.disconnect()
             sys.exit(0)
 
         else:
