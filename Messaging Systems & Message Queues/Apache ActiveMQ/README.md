@@ -4,7 +4,7 @@ Apache ActiveMQ is an open source message broker written in Java together with a
 *Note: There is another project called Artemis which also goes by ActiveMQ Artemis. This is a different project, based off the code donated by HornetQ. Both Artemis and ActiveMQ use JMS, but they are diffferent code bases. Artemis is planned to be a successor for ActiveMQ, but that migration is still in progress.* [See details here.](https://www.redpill-linpro.com/techblog/2020/10/06/activemq-artemis-getting-started.html)
 
 ## Compatibility 
-ActiveMQ utilizes the STOMP transport protocol, which makes it highly available to a variety of programming languages, including Python.
+ActiveMQ utilizes the STOMP transport protocol, which makes it highly available to a variety of programming languages, including Python. Unlike other programs like Kafka and RabbitMQ, the design decisions were focused on ActiveMQ scaling out in availability and multi-tenancy as opposed to scaling up in performance.
 
 - [Python with ActiveMQ](https://ameyanekar.medium.com/create-an-activemq-client-using-python-c532b6f91074)
 - [JMS - Publish Subscribe Examples using ActiveMQ and Maven](https://codenotfound.com/jms-publish-subscribe-messaging-example-activemq-maven.html)
@@ -28,7 +28,7 @@ Can it be installed on the below?
 
 |Operating System|Yes/No|Link to steps|Average Install Time| Number of Manual Steps to Install|
 |--|--|--|--|--|
-Ububtu 18.04|Yes|[link](https://activemq.apache.org/version-5-getting-started.html)||
+Ububtu 18.04|Yes|[link](https://www.alibabacloud.com/blog/how-to-install-apache-activemq-on-ecs-ubuntu-18-04_595709)|10|
 Ububtu 20.04|Yes|[link](https://activemq.apache.org/version-5-getting-started.html)||
 Windows 7|Yes|[link](https://activemq.apache.org/version-5-getting-started.html)||
 Windows 10|Yes|[link](https://activemq.apache.org/version-5-getting-started.html)||
