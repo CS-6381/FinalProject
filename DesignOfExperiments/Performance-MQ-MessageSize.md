@@ -121,7 +121,7 @@ These are the configurations your program should be ran in. Although it is not s
 
 If possible, implement these configurations with redundancy enabled and document the configuration.
 
-## Redundancy implementation Details
+## Redundancy Implementation Details
 
 Place the redundancy implementation details here.
 

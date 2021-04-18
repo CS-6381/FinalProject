@@ -125,7 +125,7 @@ If possible, implement these configurations with redundancy enabled and document
 
 These tests are described in detail below and have placeholders for results.
 
-## Redundancy implementation Details
+## Redundancy Implementation Details
 
 Place the redundancy implementation details here.
 
