@@ -1,3 +1,4 @@
+MongoDB is a NOSQL document database program that makes developement easy because of its scalability and flexibility.
 |  | MongoDB |
 | ------- | ---- |
 |**Website(s)**| 1. Location for all documentation https://docs.mongodb.com/manual/ <br/> 2. Download link https://www.mongodb.com/try/download/community
