@@ -109,7 +109,7 @@ Each test should be ran using Ubuntu 20.04 (CC-Ubuntu20.04) chameleon cloud VMâ€
 
 # Experiment Configurations
 
-These are the configurations your program should be ran in.
+These are the configurations your program should be ran in. Although it is not shown, there should be a separate machine instance for the broker.
 
 Refer to [MessageSize](./MQ-MessageSize.md) for the content of the messages to be sent.
 
