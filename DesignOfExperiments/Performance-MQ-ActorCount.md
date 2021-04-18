@@ -105,7 +105,7 @@ The above output indicates that the end to end throughput in second 1 was 9 mess
 
 ## Hardware Configuration
 
-Each test should be ran using Ubuntu 18.04 chameleon cloud VM’s with 8 CPU and 32 GB of RAM. If these hardware specs aren’t attainable, use the nearest available and document the configuration.
+Each test should be ran using Ubuntu 20.04 (CC-Ubuntu20.04) chameleon cloud VM’s with 8 CPU and 16 GB of RAM (m1.xlarge). If these hardware specs aren’t attainable, use the nearest available and document the configuration.
 
 # Experiment Configurations
 
