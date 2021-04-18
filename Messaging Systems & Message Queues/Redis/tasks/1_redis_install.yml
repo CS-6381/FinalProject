@@ -1,0 +1,52 @@
+---
+
+- name: "Play 1: Perform fact gathering on all VMs"
+  hosts: MyLocalVMs          # specified in the MyInventory file
+  remote_user:  cc      # note that the user is ubuntu for
+                             # vagrant-created VM else use the
+                             # appropriate user name
+
+  gather_facts: yes          # We ask Ansible to collect all facts
+
+
+  tasks:
+  - name: Install Redis - apt-get install redis-server
+    apt: name={{ item }} state=latest update_cache=yes
+    loop: [ 'redis-server']
+    become: yes
+
+  - name: Install Redis - Check Status
+    command: sudo systemctl status redis-server
+    become: yes
+
+  - name: Config Redis - Remote Access
+    become: yes
+    lineinfile:
+      dest: /etc/redis/redis.conf
+      regexp: "bind 0.0.0.0 ::1"
+      line: "#bind 0.0.0.0 ::1"
+      state: present
+
+  - name: Config Redis - Remote Access
+    become: yes
+    lineinfile:
+      dest: /etc/redis/redis.conf
+      regexp: "bind 127.0.0.1 ::1"
+      line: "bind 0.0.0.0 ::1"
+      state: present
+
+
+  - name: Install Redis - Restart Service
+    shell: systemctl restart redis-server
+    become: yes
+
+  - name: Install Redis - Check Port
+    shell: ss -an | grep 6379
+
+  - name: Install Redis - configure firewall
+    shell: ufw allow proto tcp from 0.0.0.0/24 to any port 6379
+    become: yes
+
+
+    
+...

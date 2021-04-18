@@ -1,6 +1,9 @@
 # Base Experiment
 The goal of this experiment is to understand when the technology is viable to use. 
 
+## Expiriment Hardware Configuration
+Each test should be ran using Ubuntu 20.04 chameleon cloud VM’s with 8 CPU and 32 GB of RAM. If these hardware specs aren’t attainable, use the nearest available and document the configuration. Please also use internal IP addresses for all communication to simulate a more consistent network topology with less traffic. 
+
 ## Compatibility 
 Here we wish to understand where the tech is easily used
 
