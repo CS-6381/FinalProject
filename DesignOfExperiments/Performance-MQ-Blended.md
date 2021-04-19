@@ -113,11 +113,12 @@ Refer to [MessageSize](./MQ-MessageSize.md) for the content of the messages to b
 
 | Producer Machines | Producer Instances | Consumer Machines | Consumer Instances | Message Size |
 | ----------------- | ------------------ | ----------------- | ------------------ | ------------ |
-| 1                 | 1                  | 1                 | 1                  | tiny         |
-| 1                 | 1                  | 1                 | 5                  | small        |
-| 1                 | 5                  | 1                 | 1                  | medium       |
-| 3                 | 8                  | 3                 | 8                  | large        |
-| 4                 | 25                 | 4                 | 25                 | x-large      |
+| 3 | 8 | 3 | 8 | medium |
+| 3 | 8 | 3 | 8 | large |
+| 3 | 8 | 3 | 8 | x-large |
+| 4 | 25 | 4 | 25 | medium |
+| 4 | 25 | 4 | 25 | large |
+| 4 | 25 | 4 | 25 | x-large |
 
 If possible, implement these configurations with redundancy enabled and document the configuration.
 
@@ -127,48 +128,17 @@ These tests are described in detail below and have placeholders for results.
 
 Place the redundancy implementation details here.
 
-## 1 Producer - 1 Consumer - Tiny Message Size
+## 3 Producer VMs: 8 Instances - 3 Consumer VMs: 8 Instances - Medium Message Size
 
-Run one instance of your producer program on one VM. Configure your producer to always send the [tiny](./messages/tiny.txt) message.
-
-Ensure you run your programs in such a way that the output is not lost. For example: `python main.py > results.csv`.
-
-Run your consumer program with a matching configuration.
-
-Generate `latencies.csv` and `throughput.csv` using the program provided by the experiment designers team.
-
-Fill this table with the appropriate links:
-
-| File Name      | Link |
-| -------------- | ---- |
-| producer.csv  |      |
-| latencies.csv  |      |
-| throughput.csv |      |
-
-Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
-
-| Metric                                   | Value |
-| ---------------------------------------- | ----- |
-| Processing Latency Min                   |       |
-| Processing Latency Max                   |       |
-| Processing Latency Average               |       |
-| Processing Latency Standard Deviation    |       |
-| Processing Throughput Min                |       |
-| Processing Throughput Max                |       |
-| Processing Throughput Average            |       |
-| Processing Throughput Standard Deviation |       |
-
-## 1 Producer VM - 1 Consumer VM: 5 Instances - Small Message Size
-
-Run one instance of your producer program on one VM. Configure your producer to always send the [small](./messages/small.txt) message.
+Run eight instances of your producer program on three VMs (24 instances total). Configure your producer to always send the [medium](./messages/medium.txt) message.
 
 Ensure you run your programs in such a way that the output is not lost. For example: `python main.py > results.csv`.
 
-Run five consumer program instances on one VM.
+Run eight consumer program instances on three VM's.
 
 Generate `latencies.csv` and `throughput.csv` using the program provided by the experiment designers team.
 
-Fill this table with the appropriate links:
+Fill this table with the appropriate links (The producer CSV folder should have 24 CSVs in it):
 
 | File Name      | Link |
 | -------------- | ---- |
@@ -189,17 +159,17 @@ Calculate the following data using Excel or a custom program by analyzing the da
 | Processing Throughput Average            |       |
 | Processing Throughput Standard Deviation |       |
 
-## 1 Producer VM: 5 Instances - 1 Consumer VM: 1 Instance - Medium Message Size
+## 3 Producer VMs: 8 Instances - 3 Consumer VMs: 8 Instances - Large Message Size
 
-Run five producer program instances on one VM. Configure the producers to always send the [medium](./messages/medium.txt) message.
+Run eight instances of your producer program on three VMs (24 instances total). Configure your producer to always send the [large](./messages/large.txt) message.
 
 Ensure you run your programs in such a way that the output is not lost. For example: `python main.py > results.csv`.
 
-Run one instance of the consumer program on one VM.
+Run eight consumer program instances on three VM's.
 
 Generate `latencies.csv` and `throughput.csv` using the program provided by the experiment designers team.
 
-Fill this table with the appropriate links (The producer CSV folder should have five CSVs in it):
+Fill this table with the appropriate links (The producer CSV folder should have 24 CSVs in it):
 
 | File Name      | Link |
 | -------------- | ---- |
@@ -220,9 +190,9 @@ Calculate the following data using Excel or a custom program by analyzing the da
 | Processing Throughput Average            |       |
 | Processing Throughput Standard Deviation |       |
 
-## 3 Producer VM's: 8 Instances - 3 Consumers VM's: 8 Instances - Large Message Size
+## 3 Producer VM's: 8 Instances - 3 Consumers VM's: 8 Instances - X-Large Message Size
 
-Run eight instances of your producer on three different machines (24 instances total). Configure your producers to always send the [large](./messages/large.txt) message.
+Run eight instances of your producer on three different machines (24 instances total). Configure your producers to always send the [x-large](./messages/xlarge.txt) message.
 
 Ensure you run your programs in such a way that the output is not lost. For example: `python main.py > results.csv`.
 
@@ -231,6 +201,65 @@ Run eight instances of your consumer program on three different machines as well
 Generate `latencies.csv` and `throughput.csv` using the program provided by the experiment designers team.
 
 Fill this table with the appropriate links (the producer CSV folder should have 24 CSVs in it):
+
+| File Name      | Link |
+| -------------- | ---- |
+| producer CSV folder  |      |
+| latencies.csv  |      |
+| throughput.csv |      |
+
+Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
+
+| Metric                                   | Value |
+| ---------------------------------------- | ----- |
+| Processing Latency Min                   |       |
+| Processing Latency Max                   |       |
+| Processing Latency Average               |       |
+| Processing Latency Standard Deviation    |       |
+| Processing Throughput Min                |       |
+| Processing Throughput Max                |       |
+| Processing Throughput Average            |       |
+| Processing Throughput Standard Deviation |       |
+
+## 4 Producer VM's: 25 Intances - 4 Consumer VM's: 25 Intances - Medium Message Size
+
+Run 25 instances of the producer program on four different VM's (100 instances total). Configure your producers to always send the [medium](./messages/medium.txt) message.
+
+Ensure you run your programs in such a way that the output is not lost. For example: `python main.py > results.csv`.
+
+Run 25 instances of the consumer program on four different VM's (100 instances total).
+
+Fill this table with the appropriate links (the producer CSV folder should have 100 CSVs in it):
+
+| File Name      | Link |
+| -------------- | ---- |
+| producer CSV folder  |      |
+| latencies.csv  |      |
+| throughput.csv |      |
+
+Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
+
+| Metric                                   | Value |
+| ---------------------------------------- | ----- |
+| Processing Latency Min                   |       |
+| Processing Latency Max                   |       |
+| Processing Latency Average               |       |
+| Processing Latency Standard Deviation    |       |
+| Processing Throughput Min                |       |
+| Processing Throughput Max                |       |
+| Processing Throughput Average            |       |
+| Processing Throughput Standard Deviation |       |
+
+
+## 4 Producer VM's: 25 Intances - 4 Consumer VM's: 25 Intances - Large Message Size
+
+Run 25 instances of the producer program on four different VM's (100 instances total). Configure your producers to always send the [large](./messages/large.txt) message.
+
+Ensure you run your programs in such a way that the output is not lost. For example: `python main.py > results.csv`.
+
+Run 25 instances of the consumer program on four different VM's (100 instances total).
+
+Fill this table with the appropriate links (the producer CSV folder should have 100 CSVs in it):
 
 | File Name      | Link |
 | -------------- | ---- |
@@ -263,7 +292,7 @@ Fill this table with the appropriate links (the producer CSV folder should have 
 
 | File Name      | Link |
 | -------------- | ---- |
-| producer CSV folder.csv  |      |
+| producer CSV folder  |      |
 | latencies.csv  |      |
 | throughput.csv |      |
 
