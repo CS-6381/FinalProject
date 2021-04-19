@@ -1,0 +1,21 @@
+---
+
+#  - name: Get facts of the VM   
+#    debug:                      
+#       var: ansible_facts       
+                                
+  - name: Save Facts to File
+    copy: 
+      content: "{{ ansible_facts }}" 
+      dest: ~/ansible_facts.json
+      backup: yes      
+                             
+  - name: Save Hostvars to File
+    copy:
+      content: "{{ hostvars }} "
+      dest: ~/hostvars.json
+      backup: yes
+
+
+...
+

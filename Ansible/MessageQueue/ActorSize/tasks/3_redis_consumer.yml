@@ -1,0 +1,17 @@
+---
+
+  - name: Set Redis address
+    set_fact:
+      redis_host: "{{hostvars['127.0.0.1']['groups']['Redis'][0]}}"
+  
+  - name: Print Redis address
+    set_fact:
+      redis_ipv4: "{{ hostvars[redis_host]['ansible_facts']['default_ipv4']['address'] }}"
+
+  - name: Redis Consumer - Run Consumer
+    shell: "nohup python3 /home/cc/project/FinalProject/'Messaging Systems & Message Queues'/Redis/scripts/ActorSize/subscriber.py {{ redis_ipv4 }} </dev/null > ~/sub_out.txt 2>&1 &" 
+    async: 36000
+    poll: 0
+
+    
+...

@@ -1,0 +1,525 @@
+---
+
+  - name: Install required system packages
+    become: yes
+    apt: name={{ item }} state=latest update_cache=yes
+    loop: [ 'tzdata', 'libbz2-dev', 'libsqlite3-dev', 'openssl', 'ca-certificates', 'locales']
+
+  - name: Install Python - add source
+    command: sed -i 's/^# deb-src/deb-src/' /etc/apt/sources.list
+    become: yes
+
+  - name: Install Python - required system packages
+    become: yes
+    apt: name={{ item }} state=latest update_cache=yes
+    loop: [ 'build-essential', 'apache2-dev', 'checkinstall', 'curl', 'zlib1g-dev', 'libssl-dev']
+
+  - name: Install Python - create home Python directory
+    ansible.builtin.file:
+      path: /home/{{bc_user}}/python
+      state: directory
+      mode: '0755'
+    become: yes
+
+  - name: Install Python - curl source
+    get_url: 
+      url: https://www.python.org/ftp/python/3.6.6/Python-3.6.6.tar.xz
+      dest: /home/vagrant
+
+  - name: Install Python - unzip source
+    unarchive: 
+      src: /home/{{bc_user}}/Python-3.6.6.tar.xz
+      dest: /home/{{bc_user}}/python
+      remote_src: yes
+    become: yes
+
+  - name: Install Python - remove source
+    command: rm -v /home/{{bc_user}}/Python-3.6.6.tar.xz
+ 
+  - name: Install Python - create /opt/python directory
+    ansible.builtin.file:
+      path: /opt/python
+      state: directory
+      mode: '0755'
+    become: yes
+
+  - name: Install Python - copy to /opt dir
+    command: cp -r /home/{{bc_user}}/python /opt
+    become: yes
+
+  - name: Install Python - change ownership
+    command: chown -R {{bc_user}}:{{bc_user}} /opt/python
+    become: yes
+
+
+  - name: Install Python - configure 
+    shell: "{{ item }}"
+    args:
+      chdir: /opt/python/Python-3.6.6/ 
+    with_items:
+      - ./configure --prefix=/opt/python --enable-ipv6 --enable-shared --with-ensurepip=upgrade -with-ssl
+      - make -j8 install    
+     
+  - name: Install Python - pip
+    command: /opt/python/bin/python3 -m pip install -U pip
+
+  - name: Install Python - ld.so.conf.d
+    shell: " {{ item }} "
+    with_items:
+      - echo /opt/python/lib > /etc/ld.so.conf.d/python.conf
+      - ldconfig
+      - exit
+    become: yes
+
+  - name: Install Python - adjust PATH
+    lineinfile:
+      dest: ~/.profile
+      line: export PATH=/opt/python/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+  - name: Install Python - symbolic link
+    shell: ln -s python3 python
+    become: yes
+    args:
+      chdir: /opt/python/bin
+
+  - name: Install Rust
+    shell: " {{ item }} "
+    args:
+      chdir: /home/vagrant
+    with_items:
+      - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rust.sh
+      - sh rust.sh -y 
+
+  - name: Install virtualenv
+    shell: pip install virtualenvwrapper
+
+
+...
+---
+
+  - name: Install Mod-WSGI - Create Directories
+    ansible.builtin.file:
+      path: /dpkg
+      state: directory
+      mode: '0755'
+    become: yes
+
+  - name: Install Mod-WSGI - Download Source
+    shell: apt-get source libapache2-mod-wsgi-py3
+    args: 
+      chdir: /dpkg
+    become: yes
+
+  - name: Install Mod-WSGI - Configure
+    shell: "{{ item }}"
+    args:
+      chdir: /dpkg/mod-wsgi-4.5.17
+    with_items:
+      - ./configure --with-python=/opt/python/bin/python3
+      - make -j8 install 
+    become: yes
+
+  - name: Install Mod-WSGI - Create Directories
+    ansible.builtin.file:
+      path: /opt/python/mod-wsgi
+      state: directory
+      mode: '0755'
+    become: yes
+
+  - name: Install Mod-WSGI - Copy Library Object
+    command: cp /usr/lib/apache2/modules/mod_wsgi.so /opt/python/mod-wsgi
+    become: yes
+
+  - name: Install Python - change ownership
+    command: chown -R {{bc_user}}:{{bc_user}} /dpkg
+    become: yes
+     
+  - name: Install Mod-WSGI - Python Install
+    shell: /opt/python/bin/python3 setup.py install
+    args:
+      chdir: /dpkg/mod-wsgi-4.5.17
+    become: yes
+
+  - name: Install Python - lib to ld.so.conf.d
+    command: echo "/opt/python/lib" > /etc/ld.so.conf.d/python.conf
+    become: yes
+
+
+...
+---
+#
+# Blender Cloud - Flamenco Server Installation
+# Author: Sam Miller
+# Created: Spring 2021
+# Modified: Spring 2021
+#
+
+
+  - name: Install Git Files - Create /data
+    ansible.builtin.file:
+      path: /data
+      state: directory
+      mode: '0755'
+    become: yes
+
+  - name: Install Git Files - Create /data
+    ansible.builtin.file:
+      path: /data/git
+      state: directory
+      mode: '0755'
+    become: yes
+
+  - name: Change Ownership of /data
+    command: chown -R {{bc_user}}:{{bc_user}} /data
+    become: yes
+
+  - name: Clone Git Files - pillar-python-sdk.git
+    ansible.builtin.git:
+      repo: git://git.blender.org/pillar-python-sdk.git
+      dest: /data/git/pillar-python-sdk
+    
+  - name: Clone	Git Files - pillar.git
+    ansible.builtin.git:
+      repo: git://git.blender.org/pillar.git
+      dest: /data/git/pillar
+
+  - name: Clone	Git Files - attract.git
+    ansible.builtin.git:
+      repo: git://git.blender.org/attract.git
+      dest: /data/git/attract
+
+  - name: Clone Git Files - flamenco.git
+    ansible.builtin.git:
+      repo: git://git.blender.org/flamenco.git
+      dest: /data/git/flamenco
+
+  - name: Clone Git Files - pillar-svnman.git
+    ansible.builtin.git:
+      repo: git://git.blender.org/pillar-svnman.git
+      dest: /data/git/pillar-svnman
+
+  - name: Clone Git Files - blender-cloud.git
+    ansible.builtin.git:
+      repo: git://git.blender.org/blender-cloud.git
+      dest: /data/git/blender-cloud
+
+  - name: Install Poetry - pip3 wheel poetry
+    command: pip3 install wheel poetry==1.0
+
+  - name: Install Wheelhouse - Create Directories
+    ansible.builtin.file:
+      path: /data/wheelhouse
+      state: directory
+      mode: '0755'
+    become: yes
+
+  - name: Install Poetry - poetry install
+    shell: export CRYPTOGRAPHY_DONT_BUILD_RUST=1; /opt/python/bin/poetry install --no-dev
+    args:
+      chdir: /data/git/blender-cloud
+    
+  - name: Install Wheelhouse - Create requirements.txt
+    shell: poetry run pip3 freeze | grep -v '\(pillar\)\|\(^-[ef] \)' > /data/requirements.txt
+    args:
+      chdir: /data/git/blender-cloud
+
+
+  - name: Install Wheelhouse - pip3 wheel 
+    shell: pip3 wheel --wheel-dir=/data/wheelhouse -r requirements.txt
+    args:
+      chdir: /data
+    become: yes
+    
+
+
+...---
+#
+# Blender Cloud - Flamenco Server Installation
+# Author: Sam Miller
+# Created: Spring 2021
+# Modified: Spring 2021
+#
+
+  - name: Install Apache - apt packages
+    become: yes
+    apt: name={{ item }} state=latest update_cache=yes
+    loop: [ 'apache2', 'libapache2-mod-xsendfile', 'libjpeg8', 'libtiff5', 'ffmpeg', 'rsyslog', 'logrotate']
+
+  - name: Copy Apache Files - remoteip.conf
+    shell: cp docker/4_run/apache/remoteip.conf /etc/apache2/mods-available
+    args:
+      chdir: /data/git/blender-cloud
+    become: yes
+
+  - name: Copy Apache Files - wsgi-py36
+    shell: cp docker/4_run/apache/wsgi-py36.* /etc/apache2/mods-available/
+    args:
+      chdir: /data/git/blender-cloud
+    become: yes
+
+  - name: a2enmod
+    shell: a2enmod remoteip && a2enmod rewrite && a2enmod wsgi-py36
+    become: yes
+
+  - name: Copy Apache Files - apache2.conf
+    shell: cp docker/4_run/apache/apache2.conf /etc/apache2/apache2.conf
+    args:
+      chdir: /data/git/blender-cloud
+    become: yes
+
+  - name: Copy Apache Files - 000-default.conf
+    shell: cp docker/4_run/apache/000-default.conf /etc/apache2/000-default.conf
+    args:
+      chdir: /data/git/blender-cloud
+    become: yes
+
+  - name: Copy Apache Files - logrotate.conf
+    shell: cp docker/4_run/apache/logrotate.conf /etc/logrotate.d/apache2
+    args:
+      chdir: /data/git/blender-cloud
+    become: yes
+
+
+...---
+#
+# Blender Cloud - Flamenco Server Installation
+# Author: Sam Miller
+# Created: Spring 2021
+# Modified: Spring 2021
+#
+
+  - name: Install Gulp - npm
+    apt: name=npm state=latest
+    become: yes
+    ignore_errors: yes
+
+  - name: Install Gulp - nodejs from nodesource
+    shell: "{{ item }}"
+    with_items:
+      - sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+      - sudo apt -y install nodejs make gcc g++   
+    become: yes
+
+  - name: Install Gulp - gulp pillar
+    shell: "{{ item }}"
+    args:
+     chdir: /data/git/pillar
+    with_items:
+      - ./gulp
+      - npm install
+
+  - name: config local - make Blender-Cloud templates
+    shell: ./gulp
+    args: 
+      chdir: /data/git/blender-cloud
+
+  - name: Config Local - copy Flamenco templates
+    shell: ./gulp
+    args:
+      chdir: /data/git/flamenco
+
+  - name: Config Local - copy Pillar-Svnman templates
+    shell: ./gulp
+    args:
+      chdir: /data/git/pillar-svnman
+
+  - name: Config Local - copy Pillar templates
+    shell: ./gulp
+    args:
+      chdir: /data/git/pillar
+
+
+#  - name: Install Gulp - virtualenvwrapper
+#    shell: pip3 install virtualenvwrapper
+
+#  - name: Install Pillar Depencies
+#    shell: pip3 install email_validator
+
+  - name: Pip install dependencies
+    shell: pip3 install {{item}}
+    loop: ['virtualenvwrapper', 'email_validator']    
+
+    
+
+
+
+
+...---
+
+  - name: Install aptitude using apt
+    become: yes
+    apt: 
+      name=aptitude state=latest update_cache=yes force_apt_get=yes
+
+  - name: Install required system packages
+    become: yes
+    apt: name={{ item }} state=latest update_cache=yes
+    loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
+
+  - name: Add Docker GPG apt Key
+    become: yes
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+
+  - name: Add Docker Repository
+    become: yes
+    apt_repository:
+      repo: deb https://download.docker.com/linux/ubuntu bionic stable
+      state: present
+
+  - name: Install Docker - Update apt and install docker-ce
+    become: yes
+    apt: update_cache=yes name=docker-ce state=latest
+
+  - name: Add user to docker group with sudo
+    shell: sudo usermod -aG docker vagrant
+
+  - name: Reset connection so groups take effect
+    meta: reset_connection
+
+  - name: Restart Docker
+    shell: sudo systemctl restart docker
+
+  - name: Launch Docker - create storage directory
+    file:
+      path: /data/storage
+      state: directory
+
+  - name: Launch Docker - change storage owner
+    command: chown -R vagrant:vagrant /data/storage
+    become: yes 
+
+  - name: Launch Docker - mongo
+    command: docker run -d -v /data/db:/data/db -p 27017:27017 --name mongo mongo
+
+  - name: Launch Docker - redis
+    command: docker run -d -p 6379:6379 --name redis redis
+
+  - name: Launch Docker - rabbitmq
+    command: docker run -d -p 5672:5672 --name rabbit rabbitmq
+
+  - name: Launch Docker - Add names to /etc/hosts
+    become: yes
+    lineinfile:
+      path: /etc/hosts
+      line: "127.0.0.1 localhost id.local {{bc_server_name}} elastic kibana mongodb mongo redis rabbit"
+
+...---
+
+  - name: Config Local - create config-local.py
+    shell: cp config_local.example.py config_local.py
+    args:
+      chdir: /data/git/blender-cloud
+
+  - name: Config Local - create config directory
+    file:
+      path: /data/config
+      state: directory
+
+
+  - name: Config Local - create JWT keys
+    shell: "{{ item }}"
+    args:
+      chdir: /data/git/
+    with_items:
+      - openssl ecparam -genkey -name prime256v1 -noout -out es256-private.pem
+      - openssl ec -in es256-private.pem -pubout -out es256-public.pem
+      - mv *.pem /data/config
+
+
+  - name: Config Local - JWT Private Key
+    lineinfile:
+      path: /data/git/blender-cloud/config_local.py
+      line: "FLAMENCO_JWT_PRIVATE_KEY_PATH='/data/config/es256-private.pem'"
+
+  - name: Config Local - JWT Public Key
+    lineinfile:
+      path: /data/git/blender-cloud/config_local.py
+      line: "FLAMENCO_JWT_PUBLIC_KEYS_PATH='/data/config/es256-public.pem'"
+
+  - name: Config Local - replace 5001
+    lineinfile:
+      dest: /data/git/blender-cloud/config_local.py
+      state: present
+      regexp: SERVER_NAME = 'cloud.local:5001'
+      line: SERVER_NAME = '{{ bc_server_name }}:{{ bc_server_port }}'
+
+  - name: Config Local - replace SECRET KEY
+    lineinfile:
+      dest: /data/git/blender-cloud/config_local.py
+      regexp: SECRET_KEY = '##DEFINE##'
+      line: SECRET_KEY = '{{ bc_secret }}'
+      state: present
+
+  - name: Config Local - replace 5001 in runserver.py
+    lineinfile:
+      dest: /data/git/blender-cloud/runserver.py
+      regexp: app.run
+      line: "    app.run('::0', {{ bc_server_port }}, debug=True)"
+      state: present
+
+  - name: Config Local - replace OAUTH CREDENTIALS ID 
+    lineinfile:
+      dest: /data/git/blender-cloud/config_local.py
+      regexp: "'id'"
+      line: "        'id': '{{ bc_oauth_blender_id }}',"
+      state: present
+
+
+  - name: Config Local - replace OAUTH CREDENTIALS secret
+    lineinfile:
+      dest: /data/git/blender-cloud/config_local.py
+      regexp: "secret"
+      line: "        'secret': '{{ bc_secret }}'"
+      state: present
+
+  - name: Config Local - initial setup
+    shell: poetry run ./manage.py setup setup_db {{ bc_webmaster_email }}
+    args:
+      chdir: /data/git/blender-cloud
+    register: poetry_output
+
+  # Take the output from setting up the server
+  # We need to save it to parse it for the project ID
+  - set_fact:
+      main_project_id: "{{ poetry_output.stdout_lines[-1] }}"
+
+  # Parse the output from setup so that we can get the project ID
+  - name: Get Project ID
+    shell: python3 -c "PROJECT_ID_INDEX = 2; last_line = '{{main_project_id}}'.split(); project_id = last_line[PROJECT_ID_INDEX]; print(project_id)"
+    register: project_id
+
+  - name: Config Local - replace main project ID
+    lineinfile:
+      dest: /data/git/blender-cloud/config_local.py
+      regexp: MAIN_PROJECT_ID
+      line: "MAIN_PROJECT_ID = '{{ project_id.stdout }}' "
+      state: present
+
+
+  - name: Run Blender Cloud Server
+    shell: poetry run ./manage.py runserver
+    async: 36000
+    poll: 0
+    args:
+      chdir: /data/git/blender-cloud
+
+  - name: Wait a minute for server to start up...
+    pause:
+      minutes: 1
+
+  - name: Curl Cloud Local
+    shell: curl {{ bc_server_name}}:{{ bc_server_port }}/welcome
+
+  - name: Install Py.Test
+    shell: "{{ item }}"
+    with_items:
+      - poetry run pip3 install pytest
+      - poetry run pip3 install pytest-cov
+      - poetry run pip3 install responses
+    args:
+      chdir: /data/git/blender-cloud
+      
+
+...
