@@ -76,7 +76,7 @@ Link to your program’s usage here:
 
 ### Data Processor
 
-The experiment **designers** will provide a program that accepts a list of producer csv files and a list of consumer csv files. It should output 2 CSV’s that contain calculated results.
+The experiment **designers** will provide a program that accepts a list of producer csv files. It should output 2 CSV’s that contain calculated results.
 
 The first csv should contain the following duration:
 * Processing latency - total duration in milliseconds from the time the message is sent to the time the message is received
@@ -91,7 +91,7 @@ Ex:
 
 The above output indicates that message 1 took 15ms to be fully processed. The second line indicates that message 2 took 8ms to be fully processed
 
-The second csv should output the number of messages sent in each second of the experiment and the number of messages received in each second of the experiment. This is the throughput.
+The second csv should output the number of messages sent in each second of the experiment. Because we are only collecting data from the producer, we are not differentiating between send and receive throughput, because they should be the same. The producer cannot move on to another message until it has received an ack from the consumer.
 
 ```
 9
