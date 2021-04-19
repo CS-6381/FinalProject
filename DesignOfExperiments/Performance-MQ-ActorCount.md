@@ -8,7 +8,7 @@ Contact [@jmbeach](https://github.com/jmbeach) or [@laynemoseley](https://github
 
 ### Producer Program
 
-Design a **python** program utilizing your assigned MQ technology that produces as many messages per second as possible (For example: `while true: produce_message()`)
+Design a **python** program utilizing your assigned MQ technology that produces as many messages per second as possible (For example: `while true: produce_message()`). Each producer will produce messages to the same topic.
 
 For MQ’s that run under multiple operating modes, run under the mode that is most reliable.
 An example of this would be RabbitMQ which can use “at most once” and “at least once” delivery by choosing whether or not to use acknowledgements. [Reference](https://www.rabbitmq.com/reliability.html). You should choose “at least once”.
@@ -57,11 +57,13 @@ Example:
 
 Then in the consumer, use an efficient algorithm to read the ID from the message. It doesn't need to read anything past the colon. The ID is only used to route the response back to the producer (either by broker or other means).
 
+One downside to this approach is that all other MQ's will have only one topic, whereas this MQ will have `N + 1` topics (where N is the number of producers).
+
 These extra steps will help us compare all of the technologies with less variance between them.
 
 ### Consumer Program
 
-Design a **python** program utilizing your assigned MQ technology that consumes as many messages per second as possible (For example: `while true: consume_message()`)
+Design a **python** program utilizing your assigned MQ technology that consumes as many messages per second as possible (For example: `while true: consume_message()`). The consumer programs should all subscribe to the same topic.
 
 For MQ’s that run under multiple operating modes, run under the mode that is most reliable.
 An example of this would be RabbitMQ which can use “at most once” and “at least once” delivery by choosing whether or not to use acknowledgements. [Reference](https://www.rabbitmq.com/reliability.html). You should choose “at least once”.
@@ -105,11 +107,11 @@ The above output indicates that the end to end throughput in second 1 was 9 mess
 
 ## Hardware Configuration
 
-Each test should be ran using Ubuntu 18.04 chameleon cloud VM’s with 8 CPU and 32 GB of RAM. If these hardware specs aren’t attainable, use the nearest available and document the configuration.
+Each test should be ran using Ubuntu 20.04 (CC-Ubuntu20.04) chameleon cloud VM’s with 8 CPU and 16 GB of RAM (m1.xlarge). If these hardware specs aren’t attainable, use the nearest available and document the configuration.
 
 # Experiment Configurations
 
-These are the configurations your program should be ran in.
+These are the configurations your program should be ran in. Although it is not shown, there should be a separate machine instance for the broker.
 
 | Producer Machines | Producer Instances | Consumer Machines | Consumer Instances |
 | --- | --- | --- | --- |
@@ -123,7 +125,7 @@ If possible, implement these configurations with redundancy enabled and document
 
 These tests are described in detail below and have placeholders for results.
 
-## Redundancy implementation Details
+## Redundancy Implementation Details
 
 Place the redundancy implementation details here.
 
