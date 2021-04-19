@@ -24,7 +24,7 @@ destination = destination[0]
 class ActiveMQPublisher:
 
     def __init__(self, hostname='localhost', topic='message'):
-        self.conn = stomp.Connection(host_and_ports=[(host, port)])
+        self.conn = stomp.Connection(host_and_ports=[(hostname, port)])
         self.conn.set_listener('', self)
         self.conn.start()
         self.conn.connect(login=user, passcode=password)

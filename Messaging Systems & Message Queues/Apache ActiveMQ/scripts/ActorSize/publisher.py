@@ -17,7 +17,7 @@ messages = [
 
 
 def main():
-    hostname = sys.argv[1] if len(sys.argv) > 1 else 'localhost'
+    hostname = sys.argv[1] if len(sys.argv) > 1 else '10.56.1.95'
 
     loops = 1000
     file = messages[0]
