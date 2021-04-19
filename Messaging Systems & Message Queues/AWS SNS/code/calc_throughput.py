@@ -55,7 +55,7 @@ def extract_lambda_csv(size):
     message_dir = "{}/Messaging Systems & Message Queues/AWS SNS/Results/test_results/".format(str(Path(__file__).parents[3]))
     rows = []
     fields = []
-    if size == 'tiny-1-1':
+    if size == 'tiny':
         with open(message_dir + 'tiny-1-1/lambda-1-1-tiny.csv', 'r') as file:
             csvreader = csv.reader(file)
             fields = next(csvreader)
@@ -136,7 +136,9 @@ def calc_lambda_data():
             lambda_dt.append(_dt)
 
     res_dt_diff = []
-    for i in range(0, len(sns_dt)-1):
+    # import pdb;pdb.set_trace()
+    ind = min([len(lambda_dt), len(sns_dt)])
+    for i in range(0, ind-1):
         _td = abs(lambda_dt[i] - sns_dt[i]).total_seconds() * 1000
         res_dt_diff.append(_td)
 
@@ -165,7 +167,8 @@ def calc_lambda_data():
                     import pdb;pdb.set_trace()
             cur_window += val
         except Exception:
-            del thr_time[key]
+            pass
+    thr_time = {k: v for k, v in thr_time.items() if v}
 
     for grp in thr_time.values():
         win_aves.append(sum(grp)/len(grp))
