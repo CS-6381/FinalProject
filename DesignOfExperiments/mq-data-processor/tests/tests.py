@@ -1,7 +1,9 @@
 from datetime import datetime
+from functools import reduce
 
 from latency_calculator import LatencyCalculator
 from producer_file_parser import ProducerFileParser
+from throughput_calculator import ThroughputCalculator
 
 data_file_1 = """1618796975.9884315,1618796977.9907966
 1618796977.9908154,1618796979.9909422
@@ -51,3 +53,21 @@ def test_data_calculator_calculate_latencies():
     assert len(latencies) == 5
     assert latencies[0] == 2002
     assert latencies[-1] == 5005
+
+
+def test_throughput_calculator_calculate_throughput_1():
+    throughput = ThroughputCalculator.calculate_throughput(data_file_1_send_times)
+    # 10 seconds total
+    assert len(throughput) == 10
+    # throughput at second 1 is 1
+    assert throughput[0] == 1
+    # throughput at second 2 is 0
+    assert throughput[1] == 0
+    # throughput at second 3 is 1
+    assert throughput[2] == 1
+    # second to last throughput is 0
+    assert throughput[-2] == 0
+    # last throughput is 1
+    assert throughput[-1] == 1
+    # the sum of the throughput should be the total number of messages sent
+    assert reduce(lambda a, b: a + b, throughput, 0) == 5
