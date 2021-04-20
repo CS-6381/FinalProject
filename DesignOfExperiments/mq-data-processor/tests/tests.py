@@ -62,6 +62,19 @@ def test_producer_file_parser_parses_file():
     assert receive_times[-1] == datetime.fromtimestamp(1618796990.0014307)
 
 
+def test_producer_file_parser_collect():
+    parser = ProducerFileParser()
+    parser.collect(ProducerFileParser.parse_file_contents(data_file_1))
+    parser.collect(ProducerFileParser.parse_file_contents(data_file_2))
+    parser.collect(ProducerFileParser.parse_file_contents(data_file_3))
+    assert len(parser.send_times) == 15
+    assert len(parser.receive_times) == 15
+    assert parser.send_times[0] == datetime.fromtimestamp(1618796975.9884315)
+    assert parser.send_times[-1] == datetime.fromtimestamp(1618796986.9984486)
+    assert parser.receive_times[0] == datetime.fromtimestamp(1618796976.98973)
+    assert parser.receive_times[-1] == datetime.fromtimestamp(1618796991.0024216)
+
+
 def test_data_calculator_calculate_latencies():
     latencies = LatencyCalculator.calculate_latencies(data_file_1_send_times, data_file_1_receive_times)
     assert len(latencies) == 5
