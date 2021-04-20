@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from latency_calculator import LatencyCalculator
 from producer_file_parser import ProducerFileParser
 
 data_file_1 = """1618796975.9884315,1618796977.9907966
@@ -7,6 +8,22 @@ data_file_1 = """1618796975.9884315,1618796977.9907966
 1618796979.9909608,1618796980.9920914
 1618796980.9921165,1618796984.996257
 1618796984.9962823,1618796990.0014307"""
+data_file_1_send_times = [
+    datetime.fromtimestamp(1618796975.9884315),
+    datetime.fromtimestamp(1618796977.9908154),
+    datetime.fromtimestamp(1618796979.9909608),
+    datetime.fromtimestamp(1618796980.9921165),
+    datetime.fromtimestamp(1618796984.9962823)
+]
+
+data_file_1_receive_times = [
+    datetime.fromtimestamp(1618796977.9907966),
+    datetime.fromtimestamp(1618796979.9909422),
+    datetime.fromtimestamp(1618796980.9920914),
+    datetime.fromtimestamp(1618796984.996257),
+    datetime.fromtimestamp(1618796990.0014307)
+]
+
 data_file_2 = """1618796975.9885576,1618796977.9906356
 1618796977.9906676,1618796980.9938157
 1618796980.9938347,1618796982.9944143
@@ -27,3 +44,10 @@ def test_producer_file_parser_parses_file():
     assert receive_times[0] == datetime.fromtimestamp(1618796977.9907966)
     assert send_times[-1] == datetime.fromtimestamp(1618796984.9962823)
     assert receive_times[-1] == datetime.fromtimestamp(1618796990.0014307)
+
+
+def test_data_calculator_calculate_latencies():
+    latencies = LatencyCalculator.calculate_latencies(data_file_1_send_times, data_file_1_receive_times)
+    assert len(latencies) == 5
+    assert latencies[0] == 2002
+    assert latencies[-1] == 5005
