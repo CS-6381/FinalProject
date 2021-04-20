@@ -1,7 +1,6 @@
 import csv
 import os
 from argparse import ArgumentParser
-from latency_calculator import LatencyCalculator
 from producer_file_parser import ProducerFileParser
 from throughput_calculator import ThroughputCalculator
 
