@@ -17,83 +17,62 @@ Producer script (Ubuntu 20.04) -> AWS SNS topic -> AWX Lambda as Consumer (deplo
 
 | Metric | Value |
 | --- | --- |
-| Processing Latency Min | |
-| Processing Latency Max | |
-| Processing Latency Average | |
-| Processing Latency Standard Deviation | |
-| Send Time Min | |
-| Send Time Max | |
-| Send Time Average | |
-| Send Time Standard Deviation | |
-| Processing Throughput Min | |
-| Processing Throughput Max | |
-| Processing Throughput Average | |
-| Processing Throughput Standard Deviation | |
-| Send Throughput Min | |
-| Send Throughput Max | |
-| Send Throughput Average | |
-| Send Throughput Standard Deviation | |
+| Processing Latency Min | 2247|
+| Processing Latency Max |20753 |
+| Processing Latency Average | 11887|
+| Processing Latency Standard Deviation | 1545|
+| Send Time Min | 26|
+| Send Time Max | 411|
+| Send Time Average |71 |
+| Send Time Standard Deviation |35 |
+| Processing Throughput Min | 1|
+| Processing Throughput Max | 22|
+| Processing Throughput Average | 10|
+| Processing Throughput Standard Deviation | 5|
+| Send Throughput Min | 2247|
+| Send Throughput Max | 20753|
+| Send Throughput Average | 11764|
+| Send Throughput Standard Deviation |2767 |
 
 
 ## 3 Producer VM's - 3 Consumers VM's
 
-Run eight instances of your producer on three different machines (24 instances total).
-
-Ensure you run your programs in such a way that the output is not lost. For example: `python main.py > results.csv`.
-
-Run eight instances of your consumer program on three different machines as well.
-
-Fill this table with the appropriate links:
-
-| File Name | Link |
-| --- | --- |
-| producer1.csv | |
-| producer2.csv | |
-| producer3.csv | |
-| consumer1.csv | |
-| consumer2.csv | |
-| consumer3.csv | |
-| latencies.csv | |
-| throughput.csv| |
-
-Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
-
 | Metric | Value |
 | --- | --- |
-| Processing Latency Min | |
-| Processing Latency Max | |
-| Processing Latency Average | |
-| Processing Latency Standard Deviation | |
-| Send Time Min | |
-| Send Time Max | |
-| Send Time Average | |
-| Send Time Standard Deviation | |
-| Processing Throughput Min | |
-| Processing Throughput Max | |
-| Processing Throughput Average | |
-| Processing Throughput Standard Deviation | |
-| Send Throughput Min | |
-| Send Throughput Max | |
-| Send Throughput Average | |
-| Send Throughput Standard Deviation | |
+| Processing Latency Min | 50243|
+| Processing Latency Max | 131460|
+| Processing Latency Average | 77232|
+| Processing Latency Standard Deviation | 13708|
+| Send Time Min | 22|
+| Send Time Max |529 |
+| Send Time Average | 57|
+| Send Time Standard Deviation | 32|
+| Processing Throughput Min |1 |
+| Processing Throughput Max | 171|
+| Processing Throughput Average | 51|
+| Processing Throughput Standard Deviation | 42|
+| Send Throughput Min | 50348|
+| Send Throughput Max | 130789|
+| Send Throughput Average | 77507|
+| Send Throughput Standard Deviation | 16560|
 
 ## 4 Producer VM's - 4 Consumer VM's
 
 | Metric | Value |
 | --- | --- |
-| Processing Latency Min | |
-| Processing Latency Max | |
-| Processing Latency Average | |
-| Processing Latency Standard Deviation | |
-| Send Time Min | |
-| Send Time Max | |
-| Send Time Average | |
-| Send Time Standard Deviation | |
-| Processing Throughput Min | |
-| Processing Throughput Max | |
-| Processing Throughput Average | |
-| Processing Throughput Standard Deviation | |
-| Send Throughput Min | |
-| Send Throughput Max | |
-| Send Throughput Average | |
-| Send Throughput Standard Deviation | |
+| Processing Latency Min | 18997|
+| Processing Latency Max |79875 |
+| Processing Latency Average |44850 |
+| Processing Latency Standard Deviation | 17638|
+| Send Time Min |20 |
+| Send Time Max | 396|
+| Send Time Average | 53|
+| Send Time Standard Deviation | 31|
+| Processing Throughput Min | 4|
+| Processing Throughput Max | 257|
+| Processing Throughput Average |145 |
+| Processing Throughput Standard Deviation |67 |
+| Send Throughput Min | 19606|
+| Send Throughput Max | 76522|
+| Send Throughput Average | 36625|
+| Send Throughput Standard Deviation |17960 |

@@ -64,10 +64,10 @@ Calculate the following data using Excel or a custom program by analyzing the da
 | Processing Latency Max                   |       |
 | Processing Latency Average               |       |
 | Processing Latency Standard Deviation    |       |
-| Send Time Min                            |       |
-| Send Time Max                            |       |
-| Send Time Average                        |       |
-| Send Time Standard Deviation             |       |
+| Send Time Min                            |   24    |
+| Send Time Max                            |    482   |
+| Send Time Average                        |   64    |
+| Send Time Standard Deviation             |     33  |
 | Processing Throughput Min                |       |
 | Processing Throughput Max                |       |
 | Processing Throughput Average            |       |
@@ -79,22 +79,6 @@ Calculate the following data using Excel or a custom program by analyzing the da
 
 ## 1 Producer VM: 5 Instances - 1 Consumer VM: 1 Instance - Medium Message Size
 
-Run five producer program instances on one VM. Configure the producers to always send the [medium](./messages/medium.txt) message.
-
-Ensure you run your programs in such a way that the output is not lost. For example: `python main.py > results.csv`.
-
-Run one instance of the consumer program on one VM.
-
-Fill this table with the appropriate links:
-
-| File Name      | Link |
-| -------------- | ---- |
-| producer1.csv  |      |
-| consumer1.csv  |      |
-| latencies.csv  |      |
-| throughput.csv |      |
-
-Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
 
 | Metric                                   | Value |
 | ---------------------------------------- | ----- |
@@ -102,10 +86,10 @@ Calculate the following data using Excel or a custom program by analyzing the da
 | Processing Latency Max                   |       |
 | Processing Latency Average               |       |
 | Processing Latency Standard Deviation    |       |
-| Send Time Min                            |       |
-| Send Time Max                            |       |
-| Send Time Average                        |       |
-| Send Time Standard Deviation             |       |
+| Send Time Min                            |     25  |
+| Send Time Max                            |     320  |
+| Send Time Average                        |    65   |
+| Send Time Standard Deviation             |    29   |
 | Processing Throughput Min                |       |
 | Processing Throughput Max                |       |
 | Processing Throughput Average            |       |
@@ -117,37 +101,16 @@ Calculate the following data using Excel or a custom program by analyzing the da
 
 ## 3 Producer VM's: 8 Instances - 3 Consumers VM's: 8 Instances - Large Message Size
 
-Run eight instances of your producer on three different machines (24 instances total). Configure your producers to always send the [large](./messages/large.txt) message.
-
-Ensure you run your programs in such a way that the output is not lost. For example: `python main.py > results.csv`.
-
-Run eight instances of your consumer program on three different machines as well.
-
-Fill this table with the appropriate links:
-
-| File Name      | Link |
-| -------------- | ---- |
-| producer1.csv  |      |
-| producer2.csv  |      |
-| producer3.csv  |      |
-| consumer1.csv  |      |
-| consumer2.csv  |      |
-| consumer3.csv  |      |
-| latencies.csv  |      |
-| throughput.csv |      |
-
-Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
-
 | Metric                                   | Value |
 | ---------------------------------------- | ----- |
 | Processing Latency Min                   |       |
 | Processing Latency Max                   |       |
 | Processing Latency Average               |       |
 | Processing Latency Standard Deviation    |       |
-| Send Time Min                            |       |
-| Send Time Max                            |       |
-| Send Time Average                        |       |
-| Send Time Standard Deviation             |       |
+| Send Time Min                            |  122     |
+| Send Time Max                            |   1826    |
+| Send Time Average                        |    185   |
+| Send Time Standard Deviation             |     52  |
 | Processing Throughput Min                |       |
 | Processing Throughput Max                |       |
 | Processing Throughput Average            |       |
@@ -159,44 +122,4 @@ Calculate the following data using Excel or a custom program by analyzing the da
 
 ## 4 Producer VM's: 25 Threads - 4 Consumer VM's: 25 Threads - X-Large Message Size
 
-Run 25 instances of the producer program on four different VM's (100 instances total). Configure your producers to always send the [x-large](./messages/xlarge.txt) message.
 
-Ensure you run your programs in such a way that the output is not lost. For example: `python main.py > results.csv`.
-
-Run 25 instances of the consumer program on four different VM's (100 instances total).
-
-Fill this table with the appropriate links:
-
-| File Name      | Link |
-| -------------- | ---- |
-| producer1.csv  |      |
-| producer2.csv  |      |
-| producer3.csv  |      |
-| producer4.csv  |      |
-| consumer1.csv  |      |
-| consumer2.csv  |      |
-| consumer3.csv  |      |
-| consumer4.csv  |      |
-| latencies.csv  |      |
-| throughput.csv |      |
-
-Calculate the following data using Excel or a custom program by analyzing the data in latencies.csv and throughput.csv
-
-| Metric                                   | Value |
-| ---------------------------------------- | ----- |
-| Processing Latency Min                   |       |
-| Processing Latency Max                   |       |
-| Processing Latency Average               |       |
-| Processing Latency Standard Deviation    |       |
-| Send Time Min                            |       |
-| Send Time Max                            |       |
-| Send Time Average                        |       |
-| Send Time Standard Deviation             |       |
-| Processing Throughput Min                |       |
-| Processing Throughput Max                |       |
-| Processing Throughput Average            |       |
-| Processing Throughput Standard Deviation |       |
-| Send Throughput Min                      |       |
-| Send Throughput Max                      |       |
-| Send Throughput Average                  |       |
-| Send Throughput Standard Deviation       |       |
