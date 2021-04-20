@@ -13,7 +13,7 @@ JSON Object|Used for storing JSON Formatted Raw data| Json Data
 Key Value/Binary Object|Used for storing raw data not in JSON Format. Good for storing large blob-like data files|Images|
 
 
-Here you can also find a desciption of the features Couchbase to compared with other datastores.
+Here you can also find a desciption of the features of Couchbase to compare with other datastores.
 
 |Feature|Description|
 |--|--|
@@ -21,18 +21,18 @@ NoSQL|Data is stored in key-value object/item format, or JSON Object format. Unl
 N1QL ("nickel")|Declarative query language that extends SQL for JSON data. Combines familiarity of SQL with flexibility of JSON data model
 Distribution|Automatically distributes data across all servers or virtual machines|
 Mem Cached Protocol Capability|Achieve Data Replication, Durability and Zero Application downtime when adding and removing servers
-Durability|Ensures likelyhood of data-writes surviving unexpected events such as node outages
-Memory-First| operations occur in memory, thus avoiding traditional database disk I/O bottlenecks
-Elastic Scalability|ability to separate different data processing workloads in distinct scalable services. This provides flexibility to applications with changing workloads and requirements
+Durability|Ensures likelihood of data-writes surviving unexpected events such as node outages
+Memory-First|Operations occur in memory, thus avoiding traditional database disk I/O bottlenecks
+Elastic Scalability|Ability to separate different data processing workloads in distinct scalable services. This provides flexibility to applications with changing workloads and requirements
 Persistence|Protection against data loss, buckets can be configured for replication to create redundancy, and data is also written to disk so that in the event of a crash, data can be retrieved from the disk for recovery.
-Replication|Provides high avilability for reading and writing data through [Intra-Cluster replication, Index Replication, and Cross Datacenter Replication](https://docs.couchbase.com/server/5.1/architecture/high-availability-replication-architecture.html)
+Replication|Provides high availability for reading and writing data through [Intra-Cluster replication, Index Replication, and Cross Datacenter Replication](https://docs.couchbase.com/server/5.1/architecture/high-availability-replication-architecture.html)
 
 
 
 ### Basic Information
 - How many individual actors can connect to this system at one time? 
 - What license does it operate under?
-    -  Couchbase has an Open Sourced Edition witch operates under the Apache License 2.0. They also have Community edition which operates under the Community Edition License Agreement,  and the Enterprise edition which operates under the Enterprise Subscription License Agreeement 
+    -  Couchbase has an Open Sourced Edition which operates under the Apache License 2.0. They also have Community edition which operates under the Community Edition License Agreement,  and the Enterprise edition which operates under the Enterprise Subscription License Agreeement 
 - How much must be paid to use this technology?
     - One time fee?
     - Monthly?
