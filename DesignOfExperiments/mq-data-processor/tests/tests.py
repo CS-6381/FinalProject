@@ -31,6 +31,20 @@ data_file_2 = """1618796975.9885576,1618796977.9906356
 1618796980.9938347,1618796982.9944143
 1618796982.99444,1618796986.9984226
 1618796986.9984486,1618796991.0024216"""
+
+data_file_1_2_send_times = [
+    datetime.fromtimestamp(1618796975.9884315),
+    datetime.fromtimestamp(1618796975.9885576),
+    datetime.fromtimestamp(1618796977.9906676),
+    datetime.fromtimestamp(1618796977.9908154),
+    datetime.fromtimestamp(1618796979.9909608),
+    datetime.fromtimestamp(1618796980.9921165),
+    datetime.fromtimestamp(1618796980.9938347),
+    datetime.fromtimestamp(1618796982.99444),
+    datetime.fromtimestamp(1618796984.9962823),
+    datetime.fromtimestamp(1618796986.9984486),
+]
+
 data_file_3 = """1618796975.9886746,1618796976.98973
 1618796976.9897416,1618796979.9904249
 1618796979.99045,1618796983.9944057
@@ -71,3 +85,21 @@ def test_throughput_calculator_calculate_throughput_1():
     assert throughput[-1] == 1
     # the sum of the throughput should be the total number of messages sent
     assert reduce(lambda a, b: a + b, throughput, 0) == 5
+
+
+def test_throughput_calculator_calculate_throughput_2():
+    throughput = ThroughputCalculator.calculate_throughput(data_file_1_2_send_times)
+    # 12 seconds total
+    assert len(throughput) == 12
+    # throughput at second 1 is 2
+    assert throughput[0] == 2
+    # throughput at second 2 is 0
+    assert throughput[1] == 0
+    # throughput at second 3 is 2
+    assert throughput[2] == 2
+    # second to last throughput is 0
+    assert throughput[-2] == 0
+    # last throughput is 1
+    assert throughput[-1] == 1
+    # the sum of the throughput should be the total number of messages sent
+    assert reduce(lambda a, b: a + b, throughput, 0) == 10
