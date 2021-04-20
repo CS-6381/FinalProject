@@ -4,10 +4,11 @@
 - 3/26 sign up for either Design of Expiriments OR 2 technologies in excel sheet 
 - 3/31 Have information of the basics of your technologies for the DoE team
 - 4/7 Design of Experiments Due
-- 4/14 Run exp, try and have data back
-- 4/21 Reports due 
+- 4/21 Experimenters present findings to class
+    - At least some experiments should be complete at this point
+    - The qualatative aspects of your technology should be well-understood at this point.
+- 4/28 Reports due 
 	- 1 for messaging, one for datastores 
-- 4/28 Slop week 
 
 ## Contributing
 1) Fork the Repo and PR it back in to add to it
