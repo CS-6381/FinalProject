@@ -2,11 +2,14 @@ import csv
 from datetime import datetime
 from typing import List, Tuple
 
+from latency_calculator import LatencyCalculator
+
 
 class ProducerFileParser:
     def __init__(self):
         self.send_times = []
         self.receive_times = []
+        self.latencies = []
 
     @staticmethod
     def _merge_sorted(a, b):
@@ -44,6 +47,7 @@ class ProducerFileParser:
         the send_times and receive_times fields in sorted order
         :param send_receive_tuple: Tuple[List[datetime], List[datetime]]
         """
+        self.latencies += LatencyCalculator.calculate_latencies(send_receive_tuple[0], send_receive_tuple[1])
         self._collect_send(send_receive_tuple[0])
         self._collect_receive(send_receive_tuple[1])
 
@@ -71,5 +75,5 @@ class ProducerFileParser:
         :type file_path: str
         :return: Tuple of send times and receive times sorted
         """
-        with open(file_path, 'r') as f:
-            return ProducerFileParser.parse_file_contents(f.read(file_path))
+        with open(file_path) as f:
+            return ProducerFileParser.parse_file_contents(f.read())
