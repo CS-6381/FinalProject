@@ -61,14 +61,14 @@ def publish_messages(count):
 def generate_message():
     sns_client.publish(
         TopicArn=topic_arn,
-        Message=message,
+        Message="There are not more than five primary colors (blue, yellow, red, white, and black), yet in combination they produce more hues than can ever been seen.",
         MessageStructure='string'
     )
 
 
 if __name__ == "__main__":
-    message_size = sys.argv[1]
-    execution_count = int(sys.argv[2])
+    # message_size = sys.argv[1]
+    execution_count = int(sys.argv[1])
     establish_topic()
-    extract_mess_text(message_size)
+    # extract_mess_text(message_size)
     publish_messages(execution_count)

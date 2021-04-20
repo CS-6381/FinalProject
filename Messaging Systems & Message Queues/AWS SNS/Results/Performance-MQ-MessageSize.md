@@ -2,7 +2,7 @@
 
 Notes: Given the message size limit for AWS SNS, the only test that couldn't be run on this system without deviating from the test parameters was the xlarge message tests.
 
-Data: The data captured is automatically output by AWS Cloudwatch and provides all necessary Pub/Sub metrics for these experiments. By analyzing the output csv in excel, as well, as custom scripts, the resulting data is calculated using:
+Data: Output stored under '/test_results/size_tests/'. The data captured is automatically output by AWS Cloudwatch and provides all necessary Pub/Sub metrics for these experiments. By analyzing the output csv in excel, as well, as custom scripts, the resulting data is calculated using:
 * AWS SNS Timestamps
 * AWS SNS Dwell Time = the time between the publish timestamp and Amazon SNS endpoint timestamp
 * Timestamps on our 'START' events on the Lambda containers

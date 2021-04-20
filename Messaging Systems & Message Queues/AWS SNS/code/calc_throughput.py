@@ -136,7 +136,6 @@ def calc_lambda_data():
             lambda_dt.append(_dt)
 
     res_dt_diff = []
-    # import pdb;pdb.set_trace()
     ind = min([len(lambda_dt), len(sns_dt)])
     for i in range(0, ind-1):
         _td = abs(lambda_dt[i] - sns_dt[i]).total_seconds() * 1000

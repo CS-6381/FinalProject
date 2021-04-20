@@ -1,5 +1,6 @@
 # AWS SNS
 Author: Rick Tesmond\
+Testers: Rick Tesmond\
 CS 6381
 
 Link: https://aws.amazon.com/sns/
