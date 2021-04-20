@@ -1,0 +1,11 @@
+CREATE TABLE data (
+	id integer,
+	data text,
+	writer_id integer,
+	node_number integer,
+	start_time timestamp without time zone,
+	end_time timestamp without time zone,
+	cum_diff_time interval
+);
+
+#PSQL only does time internally so the best we can do is a cumulative and do post processing to get the difference between rows for each one's write time.
