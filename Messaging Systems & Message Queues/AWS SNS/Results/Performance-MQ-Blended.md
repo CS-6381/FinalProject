@@ -1,9 +1,13 @@
 # Performance Experiment - MQ - Actor Count and Message Size Blend
 
+Notes: Because the subscribers are singular containerized AWS Lambda functions, I did not have the flexibility to have multiple instances on a single VM. The testing was therefore restricted to the VM test cases rather than the instance test cases. The producers still have  the flexibility to match the requirements; however, I decided it would be more consistent to match the producer requirements to what we could make available on the subscriber system. \
+Given the message size limit for AWS SNS, the only test that couldn't be run on this system without deviating from the test parameters was the xlarge message tests.
 
-## Hardware Configuration
 
-Each test should be ran using Ubuntu 18.04 chameleon cloud VM’s with 8 CPU and 32 GB of RAM. If these hardware specs aren’t attainable, use the nearest available and document the configuration.
+Data: Output stored under 'test_results/actor_tests/'. The data captured is automatically output by AWS Cloudwatch and provides all necessary Pub/Sub metrics for these experiments. By analyzing the output csv in excel, as well, as custom scripts, the resulting data is calculated using:
+* AWS SNS Timestamps
+* AWS SNS Dwell Time = the time between the publish timestamp and Amazon SNS endpoint timestamp
+* Timestamps on our 'START' events on the Lambda containers
 
 
 ## 1 Producer - 1 Consumer - Tiny Message Size

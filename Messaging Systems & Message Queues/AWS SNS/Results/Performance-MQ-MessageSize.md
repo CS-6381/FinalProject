@@ -17,7 +17,7 @@ Producer script (Ubuntu 20.04) -> AWS SNS topic -> AWX Lambda as Consumer (deplo
 | ---------------------------------------- | ----- |
 | Processing Latency Min                   |   4965    |
 | Processing Latency Max                   |    21105   |
-| Processing Latency Average               |    1200  |
+| Processing Latency Average               |    12000  |
 | Processing Latency Standard Deviation    |    1594   |
 | Send Time Min                            |    26   |
 | Send Time Max                            |    341   |
