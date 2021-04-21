@@ -92,15 +92,15 @@ Procedure:
 
 2.  cassandraRW.py
 
-    a.  1 VM x 1writerTest
+    a.  1 set x 1writerTest
 
-    b.  1 VM x 1readerTest
+    b.  1 set x 1readerTest
 
-    c.  10 VM x 10writer1readerTest
+    c.  10 sets x 10writer1readerTest
 
-    d.  10 VM x 1writer10readerTest
+    d.  10 sets x 1writer10readerTest
 
-    e.  5 VM x 25writer25readerTest
+    e.  5 sets x 25writer25readerTest
 
 3.  capAnalysis.py - Run test in 1 of the following ways.
 
@@ -108,9 +108,9 @@ Procedure:
 
         i.  Create table, run server, insert, and continuously update.
 
-        ii. On each of 10 VM's: Run readIteration.py with a parameter of
+        ii. On each of 10 sets: Run readIteration.py with a parameter of
             10 for 10 iterations.
 
     b.  Way 2
 
-        i.  10 VM x 1insert1write10readTest
+        i.  10 sets x 1insert1write10readTest
