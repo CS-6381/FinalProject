@@ -9,7 +9,8 @@ BEGIN
 			FROM data
 			ORDER BY id asc
 			LIMIT 1 OFFSET i;
-			INSERT INTO data (reader_id, end_time) VALUES (1, clock_timestamp());
+			UPDATE data SET reader_id = 1, end_time = clock_timestamp()
+			WHERE id = i;
 		end LOOP;
 END;
 $do$;
