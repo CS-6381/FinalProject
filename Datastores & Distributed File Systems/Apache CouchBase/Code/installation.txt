@@ -1,6 +1,5 @@
 
 /**********Install Couchbase************/
-
 curl -O https://packages.couchbase.com/releases/couchbase-release/couchbase-release-1.0-amd64.deb
 sudo dpkg -i ./couchbase-release-1.0-amd64.deb
 sudo apt-get update
@@ -8,17 +7,25 @@ sudo apt-get install couchbase-server-community
 sudo apt-get install nginx
 sudo service nginx start
 
-cd couchbase/bin
-./couchbase-cli - command to execute tasks
+/********** Install C SDK for libcouchbase (3.1)***********/
+sudo wget -O - https://packages.couchbase.com/clients/c/repos/deb/couchbase.key | sudo apt-key add -
+echo "deb https://packages.couchbase.com/clients/c/repos/deb/ubuntu1804 bionic bionic/main" | sudo tee /etc/apt/sources.list.d/couchbase.list
+sudo apt update
+sudo apt upgrade
+sudo apt install libcouchbase3 libcouchbase-dev libcouchbase3-tools libcouchbase-dbg libcouchbase3-libev libcouchbase3-libevent
 
-go to localhost:8091 in browser to access server GUI
-
-
-/********** Install Python SDK for couchbase**********/
+/**************** Install Python SDK*******************/
 sudo apt install python3-pip
 sudo apt-get install git-all python3-dev python3-pip python3-setuptools cmake build-essential
 sudo apt-get install libssl-dev
 python3 -m pip install couchbase
+
+
+/************** Other Notes *****************/
+cd couchbase/bin
+./couchbase-cli - command to execute tasks
+go to localhost:8091 in browser to access server GUI
+
 
 
 

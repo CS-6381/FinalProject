@@ -1,9 +1,6 @@
 import os, sys, datetime, time, string, random, uuid, csv
-
-# resolve no module named couchbase/cluster issu
 import sys
 sys.path.append('/opt/couchbase/lib')
-
 
 # needed for any cluster connection
 from couchbase.cluster import Cluster, ClusterOptions
