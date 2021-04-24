@@ -1,9 +1,11 @@
 # Use this to calculate statistics based on timeDifferences files.
 
 # Imports
-import os, csv, datetime, time, uuid, numpy
+import os, csv, datetime, time, uuid, numpy, ntpath, pathlib
 from pathlib import Path
 from datetime import datetime, timedelta
+import matplotlib.pyplot as plt
+import pandas as pd
 
 # Lists to store write or read time differences
 writeTimes = []
@@ -16,6 +18,11 @@ readSuccessRates = []
 # Establish directories.
 directoryPath = './timeDifferences/'
 directory = Path(directoryPath)
+folderList = []
+saveFile = "./calculations/ac_" + datetime.now().strftime("%m-%d-%Y_%H%M%S") + "_" + str(uuid.uuid4()) + ".csv"
+with open(saveFile, "w") as csvFile:
+    csvWriter = csv.writer(csvFile)
+    csvWriter.writerow(['Condition', 'writeLatencyMin', 'writeLatencyMax', 'writeLatencyAverage', 'writeLatencyStandardDeviation', 'readLatencyMin', 'readLatencyMax', 'readLatencyAverage', 'readLatencyStandardDeviation', 'writeThroughputMin', 'writeThroughputMax', 'writeThroughputAverage', 'writeThroughputStandardDeviation', 'readThroughputMin', 'readThroughputMax', 'readThroughputAverage', 'readThroughputStandardDeviation'])
                                                                                                          
 # Function to list all files in a directory                                                                                                                      
 def listFiles(directory):                                                                                                  
@@ -50,7 +57,7 @@ def readCSV(csvFile):
         # extracting field names through first row
         fields = next(csvReader)
     
-        # extracting each data row one by one
+         # extracting each data row one by one
         successCount = 0
         fileName = str(csvFile)
         for row in csvReader:
@@ -102,32 +109,46 @@ def saveCalculations(folderName):
     readThroughputAverage = getAverage(readSuccessRates)
     readThroughputStandardDeviation = getStandardDeviation(readSuccessRates)
 
-    # Save CSV. Create the folder first.
-    saveFile = "./calculations/sc_" + folderName + "_" + datetime.now().strftime("%m-%d-%Y_%H%M%S") + "_" + str(uuid.uuid4()) + ".csv"
-    with open(saveFile, "w") as csvFile:
+    # Save CSV.
+    with open(saveFile, "a", newline='') as csvFile:
         csvWriter = csv.writer(csvFile)
-        csvWriter.writerow(['Metric', 'Value'])
-        csvWriter.writerow(['writeLatencyMin', writeLatencyMin])
-        csvWriter.writerow(['writeLatencyMax', writeLatencyMax])
-        csvWriter.writerow(['writeLatencyAverage', writeLatencyAverage])
-        csvWriter.writerow(['writeLatencyStandardDeviation', writeLatencyStandardDeviation])
-        csvWriter.writerow(['readLatencyMin', readLatencyMin])
-        csvWriter.writerow(['readLatencyMax', readLatencyMax])
-        csvWriter.writerow(['readLatencyAverage', readLatencyAverage])
-        csvWriter.writerow(['readLatencyStandardDeviation', readLatencyStandardDeviation])
-        csvWriter.writerow(['writeThroughputMin', writeThroughputMin])
-        csvWriter.writerow(['writeThroughputMax', writeThroughputMax])
-        csvWriter.writerow(['writeThroughputAverage', writeThroughputAverage])
-        csvWriter.writerow(['writeThroughputStandardDeviation', writeThroughputStandardDeviation])
-        csvWriter.writerow(['readThroughputMin', readThroughputMin])
-        csvWriter.writerow(['readThroughputMax', readThroughputMax])
-        csvWriter.writerow(['readThroughputAverage', readThroughputAverage])
-        csvWriter.writerow(['readThroughputStandardDeviation', readThroughputStandardDeviation])
+        csvWriter.writerow([folderName, writeLatencyMin, writeLatencyMax, writeLatencyAverage, writeLatencyStandardDeviation, readLatencyMin, readLatencyMax, readLatencyAverage, readLatencyStandardDeviation, writeThroughputMin, writeThroughputMax, writeThroughputAverage, writeThroughputStandardDeviation, readThroughputMin, readThroughputMax, readThroughputAverage, readThroughputStandardDeviation])
     return saveFile
 
-# Loop across all time differences files before saving CSV.
+# Function to generate graphs from Calculations CSV file
+def generateGraphs(statsFile):
+    
+    # Initialize the lists for X and Y
+    fig = plt.figure(figsize=(20, 15))
+    statsDirectory = './calculations/' + statsFile
+    data = pd.read_csv(statsDirectory)
+    df = pd.DataFrame(data)
+    statParams = ['writeLatencyMin', 'writeLatencyMax', 'writeLatencyAverage', 'writeLatencyStandardDeviation', 'readLatencyMin', 'readLatencyMax', 'readLatencyAverage', 'readLatencyStandardDeviation', 'writeThroughputMin', 'writeThroughputMax', 'writeThroughputAverage', 'writeThroughputStandardDeviation', 'readThroughputMin', 'readThroughputMax', 'readThroughputAverage', 'readThroughputStandardDeviation']
+    for col in range(16):
+        X = list(df.iloc[:, 0])
+        Y = list(df.iloc[:, col + 1])
+        
+        # Plot the data using bar() method
+        plt.xticks(
+            rotation=45, 
+            horizontalalignment='right',
+            fontsize='small'  
+        )
+        plt.bar(X, Y, color='g')
+        xAxis = 'Condition'
+        yAxis = statParams[col]
+        plt.title(xAxis + ' vs. ' + yAxis)
+        plt.xlabel(xAxis)
+        plt.ylabel(yAxis)
+        
+        # Show the plot
+        # plt.show()
+        plt.savefig('./graphs/' + statsFile.replace('ac', yAxis).replace('.csv', '.png'))
+    
+    return 'Done'
+
+# Loop across all timeDifferences files before saving CSV.
 saveCount = 0
-folderList = []
 for f in directory.glob('**/*'):
     strF = str(f)
     print("Looping across: " + strF)
@@ -144,7 +165,10 @@ for fold in folderList:
             readCSV(cf)
     saveFile = saveCalculations(fold)
     saveCount = saveCount + 1
-saveDirectory = saveFile.split('sc_')[0]
+saveDirectory = saveFile.split('ac_')[0]
+print("Save file: " + saveFile)
 print(folderList)
 print("Save count: " + str(saveCount))
-print("Results at: " + saveDirectory)
+generateGraphs(ntpath.basename(saveFile))
+print("CSV results at: " + saveDirectory)
+print("Graph results at: " + "./graphs/")

@@ -5,7 +5,7 @@ viable to use.
 
 **Experiment Hardware Configuration**
 
-Each test should be ran using Ubuntu 20.04 chameleon cloud VM’s with 8
+Each test should be ran using Ubuntu 20.04 Chameleon Cloud VM’s with 8
 CPU and 32 GB of RAM. If these hardware specs aren’t attainable, use the
 nearest available and document the configuration. Please also use
 internal IP addresses for all communication to simulate a more

@@ -2,7 +2,7 @@
 The goal of this experiment is to understand when the technology is viable to use. 
 
 # Experiment Hardware Configuration
-Each test should be ran using Ubuntu 20.04 chameleon cloud VM’s with 8 CPU and 32 GB of RAM. If these hardware specs aren’t attainable, use the nearest available and document the configuration. Please also use internal IP addresses for all communication to simulate a more consistent network topology with less traffic.
+Each test should be ran using Ubuntu 20.04 Chameleon Cloud VM’s with 8 CPU and 32 GB of RAM. If these hardware specs aren’t attainable, use the nearest available and document the configuration. Please also use internal IP addresses for all communication to simulate a more consistent network topology with less traffic.
 
 ## Compatibility 
 
@@ -37,7 +37,7 @@ Windows 7|Yes|[Install](https://www.datastax.com/blog/getting-started-apache-cas
 Windows 10|Yes|[Install](https://www.datastax.com/blog/getting-started-apache-cassandra-windows-easy-way), https://www.youtube.com/watch?v=EEXtVn3zAqc|~ 10 min.|
 Mac|Yes|[Install](https://codefoundries.com/developer/cassandra/cassan…), https://www.youtube.com/watch?v=JtpsOFXJUBw|~ 10 min.|
 Docker (Windows)|Yes|[Install](https://cassandra.apache.org/doc/latest/getting_started/installing.html), https://www.datastax.com/learn/apache-cassandra-operations-in-kubernetes/running-a-cassandra-application-in-docker|~ 15 min.|
-Docker (Ububtu 20.04)|Yes|[Install](https://hub.docker.com/_/cassandra)||
+Docker (Ubuntu 20.04)|Yes|[Install](https://hub.docker.com/_/cassandra)||
 Docker (Mac)|Yes|[Install](https://hub.docker.com/_/cassandra)||
 Raspbian|Yes (since Raspbian is Debian-based)|[Install](https://stackoverflow.com/questions/43690299/cassandra-on-raspberry-pi-3), https://docs.datastax.com/en/cassandra-oss/3.x/cassandra/install/installDeb.html||
 Android|No|||
@@ -94,7 +94,7 @@ This experiment is an extension of the [Base experiment](./Base.md) that is spec
 ## Qualitative Data
 
 Fill in with information you discover about the given Data Store.
-Please include any other key characteristics of the data store which amy not be outlined.
+Please include any other key characteristics of the data store which may not be outlined.
 
 | Metric | Value |
 | --- | --- |
