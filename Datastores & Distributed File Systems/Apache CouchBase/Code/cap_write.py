@@ -27,3 +27,9 @@ f.close()
 # insert/update key 1
 cb.mutate_in("document_1", [SD.upsert("1",s1_content)])
 print("updated")
+
+# read key 1
+cb.lookup_in("document_1",
+            [SD.get("1")])
+print("read")
+
