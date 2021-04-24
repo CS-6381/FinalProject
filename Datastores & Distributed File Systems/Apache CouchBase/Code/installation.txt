@@ -1,0 +1,24 @@
+
+/**********Install Couchbase************/
+
+curl -O https://packages.couchbase.com/releases/couchbase-release/couchbase-release-1.0-amd64.deb
+sudo dpkg -i ./couchbase-release-1.0-amd64.deb
+sudo apt-get update
+sudo apt-get install couchbase-server-community
+sudo apt-get install nginx
+sudo service nginx start
+
+cd couchbase/bin
+./couchbase-cli - command to execute tasks
+
+go to localhost:8091 in browser to access server GUI
+
+
+/********** Install Python SDK for couchbase**********/
+sudo apt install python3-pip
+sudo apt-get install git-all python3-dev python3-pip python3-setuptools cmake build-essential
+sudo apt-get install libssl-dev
+python3 -m pip install couchbase
+
+
+
