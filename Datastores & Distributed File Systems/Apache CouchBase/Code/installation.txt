@@ -19,6 +19,7 @@ sudo apt install python3-pip
 sudo apt-get install git-all python3-dev python3-pip python3-setuptools cmake build-essential
 sudo apt-get install libssl-dev
 python3 -m pip install couchbase
+pip3 install pandas
 
 
 /************** Other Notes *****************/

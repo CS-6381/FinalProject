@@ -48,50 +48,100 @@ document2 = {"payload": s2_content}
 document3 = {"payload": s3_content}
 document4 = {"payload": s4_content}
 document5 = {"payload": s5_content}
+doc_list = [document1, document2, document3, document4, document5]
 
 def write_to_txt_file(result):
     with open ('results/test.txt', 'w') as fo:
         fo.write(','.join([str(n) for n in result]))
         fo.write('\n')
 
-def run_performance_write_1():
-    with open ('results/test.txt', 'w') as fo:
-        count = 0
-        while count <= 10000:       
-            #doc = "document" + str(sample)
-            start_time = getDateTime()
-            cb.upsert("1", document1)
-            end_time = getDateTime()
-            delta = end_time - start_time
-            #print(start_time, end_time, delta)
-            list = [0, 1, 1, start_time, end_time, delta]
-            #write_to_txt_file(list)
-            fo.write(','.join([str(n) for n in list]))
-            fo.write('\n')
-            count+=1
-        
-
-def run_performance_read(sample):
-    count = 0
-    while(count <= 10000):       
-        start_time = getDateTime()
-        cb.get(str(sample), quiet=True)
-        end_time = getDateTime()
-        delta = end_time - start_time
-        count= count+1
-        #print(start_time, end_time, delta)
+def run_performance_write_same_key():
+    columns = ['reader_id', 'writer_id', 'key', 'start_time', 'end_time', 'delta_time']
+    with open ('results/performance/1writer/1writer_same_key.csv', 'w') as f:
+        write = csv.writer(f)
+        write.writerow(columns)
+         
+        key = 0
+        for doc in doc_list:
+            count = 0
+            
+            while count <= 10000:
+                start_time = getDateTime()
+                cb.upsert(str(key), doc)
+                end_time = getDateTime()
+                delta = end_time - start_time
+                list = [0, 121, key, start_time, end_time, delta]
+                write.writerow(list)
+                count+=1
+            key+=1
 
 
+def run_performance_read_same_key():
+    columns = ['reader_id', 'writer_id', 'key', 'start_time', 'end_time', 'delta_time']
+    with open ('results/performance/1reader/1reader_same_key.csv', 'w') as f:
+        write = csv.writer(f)
+        write.writerow(columns)
+         
+        key = 1
+        for doc in doc_list:
+            count = 0
+            while count <= 10000:
+                start_time = getDateTime()
+                cb.get(str(key), quiet=True)
+                end_time = getDateTime()
+                delta = end_time - start_time
+                list = [123, 0, key, start_time, end_time, delta]
+                write.writerow(list)
+                count+=1
+            key+=1
 
-run_performance_write_1()
-# def csv(key, reader_id, writer_id, start_time, end_time, delta_time):
-#     with open('persons.csv', 'wb') as csvfile:
-#     filewriter = csv.writer(csvfile, delimiter=',',
-#                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
-#     filewriter.writerow(['Name', 'Profession'])
-#     filewriter.writerow(['Derek', 'Software Developer'])
-#     filewriter.writerow(['Steve', 'Software Developer'])
-#     filewriter.writerow(['Paul', 'Manager'])
+
+
+def run_performance_write_range_keys():
+    columns = ['reader_id', 'writer_id', 'key', 'start_time', 'end_time', 'delta_time']
+    with open ('results/performance/1writer/1writer_range_keys.csv', 'w') as f:
+        write = csv.writer(f)
+        write.writerow(columns)
+         
+        key = 0
+        for doc in doc_list:
+            count = 0
+            
+            while count <= 10000:
+                start_time = getDateTime()
+                cb.upsert(str(key),doc)
+                end_time = getDateTime()
+                delta = end_time - start_time
+                list = [0, 121, key, start_time, end_time, delta]
+                write.writerow(list)
+                count+=1
+                key+=1
+
+def run_performance_read_range_keys():
+    columns = ['reader_id', 'writer_id', 'key', 'start_time', 'end_time', 'delta_time']
+    with open ('results/performance/1reader/1reader_range_keys.csv', 'w') as f:
+        write = csv.writer(f)
+        write.writerow(columns)
+         
+        key = 0
+        for doc in doc_list:
+            count = 0
+            
+            while count <= 10000:
+                start_time = getDateTime()
+                cb.get(str(key), quiet=True)
+                end_time = getDateTime()
+                delta = end_time - start_time
+                list = [123, 0, key, start_time, end_time, delta]
+                write.writerow(list)
+                count+=1
+                key+=1
+
+run_performance_write_range_keys()
+run_performance_read_range_keys()
+run_performance_write_same_key()
+run_performance_read_same_key()
+
 
 
 
