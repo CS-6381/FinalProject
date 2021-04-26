@@ -53,7 +53,9 @@ Collection the time-stamp before and after the Read/Write operation (as close to
 
 Aim to run this experiment under the constraints for the following configurations:
 
-| Reader | Writer |
+## Note: Due to resource constraints, not all configurations were able to be performed
+
+| Reader | Writer | 
 | 0 | 1 |
 | 1 | 0 |
 | 1 | 10 |
@@ -90,22 +92,22 @@ Calculate the following data using Excel or a custom program by analyzing the da
 
 | Metric | Value |
 | --- | --- |
-| Write Latency Min | |
-| Write Latency Max | |
-| Write Latency Average | |
-| Write Latency Standard Deviation | |
-| Read Time Min | |
-| Read Time Max | |
-| Read Time Average | |
-| Read Time Standard Deviation | |
-| Write Throughput Min | |
-| Write Throughput Max | |
-| Write Throughput Average | |
-| Write Throughput Standard Deviation | |
-| Read Throughput Min | |
-| Read Throughput Max | |
-| Read Throughput Average | |
-| Read Throughput Standard Deviation | |
+| Write Latency Min | 0.00012900000001536682 |
+| Write Latency Max | 0.020194000000628876 |
+| Write Latency Average | 0.00038261707829200827 |
+| Write Latency Standard Deviation | 0.00019444520645036262 |
+| Read Time Min | 0.00011199999971722718 |
+| Read Time Max | 0.02798099999927217 |
+| Read Time Average | 0.0003283330167009585 |
+| Read Time Standard Deviation | 0.0001786437405995981 |
+| Write Throughput Min | 0 |
+| Write Throughput Max | 20 |
+| Write Throughput Average | 0.004939506049395061 |
+| Write Throughput Standard Deviation | 0.14551183184788546 |
+| Read Throughput Min | 0 |
+| Read Throughput Max | 0 |
+| Read Throughput Average | 0.0 |
+| Read Throughput Standard Deviation | 0.0 |
 | Availability | |
 | Concurrency | |
 | Successful Transactions | |
