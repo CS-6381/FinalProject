@@ -40,14 +40,14 @@ def run_cap_reader1():
       write = csv.writer(f)
       write.writerow(columns)
       count = 0
-      while count <= 1: 
+      while count <= 1000: 
         cb.get("1", quiet=True)
-        before_time = getDateTime()
+        before_time = get_reg_hms()
         writer_timestamp = cb.mutate_in(
                 "1", [SD.get("timestamp")])
-        after_time = getDateTime()
+        after_time = get_reg_hms()
         ts = writer_timestamp.content_as[str](0)
-        convert_gethms(ts)
+        ts = convert_gethms(ts)
         list = ["reader1",ts, before_time, after_time]
         write.writerow(list)
         count+=1
