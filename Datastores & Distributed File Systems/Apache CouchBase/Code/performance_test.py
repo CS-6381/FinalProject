@@ -12,20 +12,6 @@ import couchbase.subdocument as SD
 
 from timestamp import *
 
-import os, sys, datetime, time, string, random, uuid, csv
-import sys
-sys.path.append('/opt/couchbase/lib')
-
-# needed for any cluster connection
-from couchbase.cluster import Cluster, ClusterOptions
-from couchbase_core.cluster import PasswordAuthenticator
-
-# needed to support SQL++ (N1QL) query
-from couchbase.cluster import QueryOptions
-import couchbase.subdocument as SD
-
-from timestamp import *
-
 # get a reference to our cluster
 cluster = Cluster('couchbase://172.31.2.240', ClusterOptions(
   PasswordAuthenticator('Administrator', 'password')))
@@ -63,21 +49,27 @@ document3 = {"payload": s3_content}
 document4 = {"payload": s4_content}
 document5 = {"payload": s5_content}
 
+def write_to_txt_file(result):
+    with open ('results/test.txt', 'w') as fo:
+        fo.write(','.join([str(n) for n in result]))
+        fo.write('\n')
 
-def run_performance_write(sample):
-    count = 0
-    while(count <= 10000):       
-        doc = "document" + str(sample)
-        start_time = getDateTime()
-        cb.upsert(str(sample), doc)
-        end_time = getDateTime()
-        delta = end_time - start_time
-        count = count+1
-        print(start_time, end_time, delta)
-        list = [0, 1, 1, start_time, end_time, delta]
-        return list
+def run_performance_write_1():
+    with open ('results/test.txt', 'w') as fo:
+        count = 0
+        while count <= 10000:       
+            #doc = "document" + str(sample)
+            start_time = getDateTime()
+            cb.upsert("1", document1)
+            end_time = getDateTime()
+            delta = end_time - start_time
+            #print(start_time, end_time, delta)
+            list = [0, 1, 1, start_time, end_time, delta]
+            #write_to_txt_file(list)
+            fo.write(','.join([str(n) for n in list]))
+            fo.write('\n')
+            count+=1
         
-
 
 def run_performance_read(sample):
     count = 0
@@ -87,14 +79,11 @@ def run_performance_read(sample):
         end_time = getDateTime()
         delta = end_time - start_time
         count= count+1
-        print(start_time, end_time, delta)
+        #print(start_time, end_time, delta)
 
 
-f = open("results/test.txt", "w")
-result = run_performance_write(1)
-with open ('test.txt', 'w') as fo:
-    fo.write(','.join([str(n) for n in result]))
 
+run_performance_write_1()
 # def csv(key, reader_id, writer_id, start_time, end_time, delta_time):
 #     with open('persons.csv', 'wb') as csvfile:
 #     filewriter = csv.writer(csvfile, delimiter=',',
