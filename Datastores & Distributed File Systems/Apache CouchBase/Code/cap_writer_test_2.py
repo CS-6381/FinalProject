@@ -34,7 +34,7 @@ document1 = {"payload": s1_content, "timestamp": ctime}
 def cap_writer_1():
   count = 0
   while count <= 50000:
-    currTime = getDateTime()
+    currTime = gethms()
     #cb.mutate_in("1", [SD.upsert("timestamp", currTime)])
     document1 = {"payload": s1_content, "timestamp": currTime}
     cb.upsert("2", document1)

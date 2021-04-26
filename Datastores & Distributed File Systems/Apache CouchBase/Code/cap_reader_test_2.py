@@ -46,7 +46,8 @@ def run_cap_reader2():
         writer_timestamp = cb.mutate_in(
                 "1", [SD.get("timestamp")])
         after_time = getDateTime()
-        ts = writer_timestamp.content_as[int](0)
+        ts = writer_timestamp.content_as[str](0)
+        convert_gethms(ts)
         list = ["reader2",ts, before_time, after_time]
         write.writerow(list)
         count+=1

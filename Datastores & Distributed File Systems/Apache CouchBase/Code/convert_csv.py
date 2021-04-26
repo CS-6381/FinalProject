@@ -11,10 +11,5 @@ def convert_to_csv(textFilePath, csvFilePath):
     read_file.to_csv(csvFile, index=None)
     print("done converting")
 
-# def convert_list_csv(list):
-#     header = ['reader_id', 'writer_id', 'key', 'start_time', 'end_time', 'delta_time']
 
 
-
-
-convert_to_csv("results/test.txt", "results/test.csv")
