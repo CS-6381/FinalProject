@@ -1,0 +1,17 @@
+Metric,value
+Write Latency Min,0.00012900000001536682
+Write Latency Max,0.020194000000628876
+Write Latency Average,0.00038261707829200827
+Write Latency Standard Deviation,0.00019444520645036262
+Read Latency Min,0.00011199999971722718
+Read Latency Max,0.02798099999927217
+Read Latency Average,0.0003283330167009585
+Read Latency Standard Deviation,0.0001786437405995981
+Write Throughput Min,0
+Write Throughput Max,20
+Write Throughput Average,0.004939506049395061
+Write Throughput Standard Deviation,0.14551183184788546
+Read Throughput Min,0
+Read Throughput Max,0
+Read Throughput Average,0.0
+Read Throughput Standard Deviation,0.0

@@ -29,3 +29,11 @@ def convert_gethms(time_string):
     res = datetime.strptime(time_string, '%H:%M:%S.%f')
     return res.time()
 
+def convert_seconds(time_string):
+    time = time_string.split(':')
+    totalSeconds = float(time[0]) * 3600 + float(time[1]) * 60 + float(time[2])
+    return totalSeconds
+
+def convert_from_t_dt(time):  
+    return datetime.fromtimestamp(time).strftime('%H:%M:%S.%f')
+
