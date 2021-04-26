@@ -26,30 +26,19 @@ f = open('data/sample1.txt', 'r')
 s1_content = f.read()
 f.close()
 
-f = open('data/sample2.txt', 'r')
-s2_content = f.read()
-f.close()
-
-f = open('data/sample3.txt', 'r')
-s3_content = f.read()
-f.close()
-
 # create documents for sample data
-document1 = {"payload": s1_content}
-document2 = {"payload": s2_content}
-document3 = {"payload": s3_content}
+ctime = getDateTime()
+document1 = {"payload": s1_content, "timestamp": ctime}
 
-#insert/update document
-cb.upsert("1", document1)
-print(getDateTime())
 
-#create counter
+def cap_writer_1():
+  count = 0
+  while count <= 50000:
+    currTime = getDateTime()
+    #cb.mutate_in("1", [SD.upsert("timestamp", currTime)])
+    document1 = {"payload": s1_content, "timestamp": currTime}
+    cb.upsert("1", document1)
+    count+=1
 
-# insert/update key 1
-#cb.mutate_in("document_1", [SD.upsert("1",s1_content)])
-#print("updated")
 
-# read key 1
-#cb.lookup_in("document_1",
-#            [SD.get("1")])
-#print("read")
+cap_writer_1()
