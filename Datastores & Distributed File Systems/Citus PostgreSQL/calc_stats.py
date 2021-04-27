@@ -23,7 +23,10 @@ def getStandardDeviation(data):
     return res
 
 def mktimestamp(timestr):
-    supertime = dateutil.parser.parse(timestr)
+    try:
+        supertime = dateutil.parser.parse(timestr)
+    except Exception as e:
+        print(timestr, e)
     theTS = supertime.timestamp()
     # time.mktime(datetime.datetime.strptime(timestr,"%YYYY-%mm-%dd %H:%M:%S").timetuple())
     return theTS
@@ -58,10 +61,9 @@ def removeNeg(list):
 
 def saveCalculations(df, f):
         # Calculate statistics.
-    start_times = list(map(mktimestamp,df['start_time'].tolist()))
-    writeOutList(start_times,'start_times')
-    end_times =  list(map(mktimestamp,df['end_time'].tolist()))
-    writeOutList(end_times,'end_times')
+    start_times = df['start_times'].tolist()
+    end_times =  df['end_time'].tolist()
+    time_diff =  df['time_diff'].tolist()
     newWriteTimes = removeNeg(listDiff(start_times))
     print('newWriteTimes',newWriteTimes[0],type(newWriteTimes[0]),len(newWriteTimes))
     newWriteTimes.sort()
@@ -95,26 +97,29 @@ def saveCalculations(df, f):
     print('readLatencyStandardDeviation = getStandardDeviation(newReadTimes)',readLatencyStandardDeviation)
     print('writeThroughput',writeThroughput)
 
-    
-    with open(saveFile, "+a") as csvFile:
-        csvWriter = csv.writer(csvFile)
-        csvWriter.writerow(['file name','writeLatencyMin', 'writeLatencyMax',writeLatencyMin])
-        csvWriter.writerow([f,writeLatencyMin, writeLatencyMax,writeLatencyMin])
+    return [writeLatencyMin, writeLatencyMax,writeLatencyMin]
+
+        
 
 
 
 # Loop across all timeDifferences files before saving CSV.
 folder = 'Results'
 print(os.listdir(folder))
-for f in os.listdir(folder):        
-    f = os.path.join(folder, f)
-    if '25r.csv' in str(f):
-        df = pd.read_csv(f)
 
-        df['diff_time'] = pd.to_datetime(df['end_time']) - pd.to_datetime(df['start_time'])
-        saveCalculations(df,f)
-        print(f)
-        print(df.head(10))
+with open(saveFile, "+a") as csvFile:
+    csvWriter = csv.writer(csvFile)
+    csvWriter.writerow(['file name','writeLatencyMin', 'writeLatencyMax','writeLatencyMin'])
+    for f in os.listdir(folder):        
+        f = os.path.join(folder, f)
+        if '_min_sec.csv' in str(f):
+            df = pd.read_csv(f)
+            print(f)            
+            print(df.head(1))
+
+            csvWriter.writerow([f] + saveCalculations(df,f))
+
+
 
 thistestlist = [0,.25,.5, 2 ]
 print(listDiff(thistestlist))

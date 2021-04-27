@@ -66,18 +66,7 @@ def readCSV(csvFile):
             readSuccessRates.append(successCount/int(fileName.split('_r_')[1].split('_')[0]))
     return 'done'
 
-# Function to calculate average
-def getAverage(data):
-    total = sum(tuple(data))
-    average = total / len(data)
-    return average 
 
-# Function to calculate standard deviation
-def getStandardDeviation(data):
-    mean = sum(data) / len(data)
-    variance = sum([((x - mean) ** 2) for x in data]) / len(data)
-    res = variance ** 0.5
-    return res
 
 # Function to save calculations to a CSV file
 def saveCalculations():
