@@ -5,6 +5,10 @@ from pathlib import Path
 import dateutil.parser
 # from datetime import datetime, timedelta
 
+
+saveFile = "./calculations/Calculations_" + datetime.datetime.now().strftime("%m-%d-%Y_%H%M%S") + "_" + str(uuid.uuid4()) + ".csv"
+
+
 # Function to calculate average
 def getAverage(data):
     total = sum(tuple(data))
@@ -52,7 +56,7 @@ def removeNeg(list):
     
 
 
-def saveCalculations(df):
+def saveCalculations(df, f):
         # Calculate statistics.
     start_times = list(map(mktimestamp,df['start_time'].tolist()))
     writeOutList(start_times,'start_times')
@@ -72,7 +76,7 @@ def saveCalculations(df):
     readLatencyMax = max(newReadTimes)
     readLatencyAverage = getAverage(newReadTimes)
     readLatencyStandardDeviation = getStandardDeviation(newReadTimes)
-    writeThroughputMin = (max(start_times)-min(start_times))/len(start_times)
+    writeThroughput = (max(start_times)-min(start_times))/len(start_times)
     # writeThroughputMax = max(writeSuccessRates)
     # writeThroughputAverage = getAverage(writeSuccessRates)
     # writeThroughputStandardDeviation = getStandardDeviation(writeSuccessRates)
@@ -89,7 +93,15 @@ def saveCalculations(df):
     print('readLatencyMax = max(newReadTimes)',readLatencyMax)
     print('readLatencyAverage = getAverage(newReadTimes)',readLatencyAverage)
     print('readLatencyStandardDeviation = getStandardDeviation(newReadTimes)',readLatencyStandardDeviation)
-    print('writeThroughputMin',writeThroughputMin)
+    print('writeThroughput',writeThroughput)
+
+    
+    with open(saveFile, "+a") as csvFile:
+        csvWriter = csv.writer(csvFile)
+        csvWriter.writerow(['file name','writeLatencyMin', 'writeLatencyMax',writeLatencyMin])
+        csvWriter.writerow([f,writeLatencyMin, writeLatencyMax,writeLatencyMin])
+
+
 
 # Loop across all timeDifferences files before saving CSV.
 folder = 'Results'
@@ -100,7 +112,7 @@ for f in os.listdir(folder):
         df = pd.read_csv(f)
 
         df['diff_time'] = pd.to_datetime(df['end_time']) - pd.to_datetime(df['start_time'])
-        saveCalculations(df)
+        saveCalculations(df,f)
         print(f)
         print(df.head(10))
 
