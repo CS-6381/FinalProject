@@ -1,13 +1,10 @@
 import pandas as pd
-
 import os, csv, datetime, time, uuid, numpy
 from pathlib import Path
 import dateutil.parser
 # from datetime import datetime, timedelta
 
-
 saveFile = "./calculations/Calculations_" + datetime.datetime.now().strftime("%m-%d-%Y_%H%M%S") + "_" + str(uuid.uuid4()) + ".csv"
-
 
 # Function to calculate average
 def getAverage(data):
@@ -55,21 +52,23 @@ def writeOutList(listyMcList,fname):
 def removeNeg(list):
     # Remove Negative Elements in List
     # Using list comprehension
-    return [ele for ele in list if ele > 0]
+    list_for_short_time = [ele for ele in list if ele > 0]
+    if len(list_for_short_time) == 0:
+        list_for_short_time = list
+    print('len(list_for_short_time)',len(list_for_short_time))
+    return list_for_short_time
     
-
-
-def saveCalculations(df, f):
+def calculize(df, f):
         # Calculate statistics.
     start_times = df['start_times'].tolist()
     end_times =  df['end_time'].tolist()
     time_diff =  df['time_diff'].tolist()
+    print('start_times',len(start_times))
     newWriteTimes = removeNeg(listDiff(start_times))
-    print('newWriteTimes',newWriteTimes[0],type(newWriteTimes[0]),len(newWriteTimes))
+    print('newWriteTimes',type(newWriteTimes),len(newWriteTimes))
     newWriteTimes.sort()
     writeOutList(newWriteTimes,'sortedNewWriteTimes')
     newReadTimes =  removeNeg(listDiff(end_times))
-    
     writeLatencyMin = min(newWriteTimes)
     writeLatencyMax = max(newWriteTimes)
     writeLatencyAverage = getAverage(newWriteTimes)
@@ -86,7 +85,6 @@ def saveCalculations(df, f):
     # readThroughputMax = max(readSuccessRates)
     # readThroughputAverage = getAverage(readSuccessRates)
     # readThroughputStandardDeviation = getStandardDeviation(readSuccessRates)
-
     print('writeLatencyMin = min(newWriteTimes)', writeLatencyMin)
     print('writeLatencyMax = max(newWriteTimes)', writeLatencyMax)
     print('writeLatencyAverage = getAverage(newWriteTimes)',writeLatencyAverage)
@@ -96,30 +94,19 @@ def saveCalculations(df, f):
     print('readLatencyAverage = getAverage(newReadTimes)',readLatencyAverage)
     print('readLatencyStandardDeviation = getStandardDeviation(newReadTimes)',readLatencyStandardDeviation)
     print('writeThroughput',writeThroughput)
-
-    return [writeLatencyMin, writeLatencyMax,writeLatencyMin]
-
-        
-
-
+    return [writeLatencyMin, writeLatencyMax,writeLatencyMin,writeThroughput,readLatencyMin,readLatencyMax,readLatencyAverage,readLatencyStandardDeviation]
 
 # Loop across all timeDifferences files before saving CSV.
 folder = 'Results'
 print(os.listdir(folder))
 
-with open(saveFile, "+a") as csvFile:
+with open(saveFile, "+a",newline='') as csvFile:
     csvWriter = csv.writer(csvFile)
-    csvWriter.writerow(['file name','writeLatencyMin', 'writeLatencyMax','writeLatencyMin'])
+    csvWriter.writerow(['file name','writeLatencyMin', 'writeLatencyMax','writeLatencyMin','writeThroughput','readLatencyMin','readLatencyMax','readLatencyAverage','readLatencyStandardDeviation'])
     for f in os.listdir(folder):        
         f = os.path.join(folder, f)
         if '_min_sec.csv' in str(f):
             df = pd.read_csv(f)
             print(f)            
-            print(df.head(1))
-
-            csvWriter.writerow([f] + saveCalculations(df,f))
-
-
-
-thistestlist = [0,.25,.5, 2 ]
-print(listDiff(thistestlist))
+            print(df['start_times'].head(10).to_list())
+            csvWriter.writerow([f] + calculize(df,f))
