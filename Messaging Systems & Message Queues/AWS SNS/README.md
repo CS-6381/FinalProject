@@ -1,5 +1,6 @@
 # AWS SNS
 Author: Rick Tesmond\
+Testers: Rick Tesmond\
 CS 6381
 
 Link: https://aws.amazon.com/sns/
@@ -21,3 +22,22 @@ Features:
     
 
 Other notes - the first 1M messages are free, but the subsequent messages do come with a cost... though it's a small cost per million.
+
+## Qualitative Data
+
+| Metric | Value |
+| --- | --- |
+| Centricity (data-centric or message-centric) | |
+| Connection (machine-to-machine or point-to-point) | |
+| Underlying Architecture (decentralized or hub-and-spoke) | |
+| Protocol | |
+| Transport(s) | |
+| Data Serialization | |
+| Supports Queuing | |
+| Data Type Representation | |
+| QoS Parameters | |
+| Supports Dynamic Discovery | |
+| Communication Patterns | |
+| Abstraction Layer | |
+| Up-front Complexity | |
+| Large Implementations | |
