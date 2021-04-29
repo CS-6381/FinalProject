@@ -95,3 +95,6 @@ Go|Yes|https://github.com/ceph/go-ceph
 Ruby||
 Powershell||
 Perl||
+
+# Issues
+We were unable to successfully deploy Ceph after trying several methods. Unfortunately, this means that we were unable to run any experiments against it, but the difficulty deploying it should be taken into account when comparing with other technologies.
