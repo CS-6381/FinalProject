@@ -73,8 +73,8 @@ General:
         i.  Navigate to Code folder and run python3 cassandraRW.py
             accordingly to run writers/readers.
 
-        ii. Run python3 calculateStatistics.py to calculate statistics
-            of time differences.
+        ii. Run python3 calculateStatistics.py or calculateStatisticsAll.py to calculate statistics
+            of time differences and for the latter, also generate graphs.
 
         iii. Run python3 capAnalysis.py to get CAP-related times.
 

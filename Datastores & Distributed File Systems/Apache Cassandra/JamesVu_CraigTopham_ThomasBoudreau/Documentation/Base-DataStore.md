@@ -7,7 +7,7 @@ is specific to Datastore technologies.
 **Qualitative Data**
 
 Fill in with information you discover about the given Data Store. Please
-include any other key characteristics of the data store which amy not be
+include any other key characteristics of the data store which may not be
 outlined.
 
 <table>

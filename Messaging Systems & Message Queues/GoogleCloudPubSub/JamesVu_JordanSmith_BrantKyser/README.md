@@ -5,7 +5,7 @@ viable to use.
 
 **Experiment Hardware Configuration**
 
-Each test should be ran using Ubuntu 20.04 chameleon cloud VM’s with 8
+Each test should be ran using Ubuntu 20.04 Chameleon Cloud VM’s with 8
 CPU and 32 GB of RAM. If these hardware specs aren’t attainable, use the
 nearest available and document the configuration. Please also use
 internal IP addresses for all communication to simulate a more
@@ -163,10 +163,10 @@ Create this table for all OS and CPU combinations tested
 |                               | **CPU**             | **RAM**            | **Hard Disk Memory** |
 |-------------------------------|---------------------|--------------------|----------------------|
 | Idle                          | 0.13999999999999999 | 92.6               | 10382614528.0        |
-| Max Observed Under Load A     | 77.2                | 98.7               | 10388865024          |
-| Average Observed Under Load A | 17.043999999999997  | 90.60399999999998  | 10382843412.48       |
-| Max Observed Under Load B     | 88.8                | 67.2               | 10389282816          |
-| Average Observed Under Load B | 38.15               | 44.731249999999996 | 10388794624.0        |
+| Max Observed Under Load A (25producer25consumerTest.sh)    | 93.2                | 97.9               | 10663178240          |
+| Average Observed Under Load A (25producer25consumerTest.sh)| 57.515172413793124  | 94.61310344827581  | 10654722401.103449   |
+| Max Observed Under Load B (25producer25consumerTest.sh)    | 95.0                | 98.6               | 10685952000          |
+| Average Observed Under Load B (25producer25consumerTest.sh)| 82.80066225165567   | 97.08874172185432  | 10679713032.476822   |
 
 **Language Support**
 

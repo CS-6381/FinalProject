@@ -1,0 +1,17 @@
+Metric,Value
+writeLatencyMin,10.241999999999999
+writeLatencyMax,75.657
+writeLatencyAverage,21.531947582938347
+writeLatencyStandardDeviation,14.36856546662617
+readLatencyMin,10.929
+readLatencyMax,55.721
+readLatencyAverage,17.722297630331727
+readLatencyStandardDeviation,7.79242988528632
+writeThroughputMin,1.0
+writeThroughputMax,1.0
+writeThroughputAverage,1.0
+writeThroughputStandardDeviation,0.0
+readThroughputMin,1.0
+readThroughputMax,1.0
+readThroughputAverage,1.0
+readThroughputStandardDeviation,0.0

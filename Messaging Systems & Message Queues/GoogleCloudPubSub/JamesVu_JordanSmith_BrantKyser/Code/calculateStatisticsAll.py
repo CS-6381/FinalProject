@@ -1,9 +1,11 @@
 # Use this to calculate statistics based on timeMeasurements files.
 
 # Imports
-import os, csv, datetime, time, uuid, numpy
+import os, csv, datetime, time, uuid, numpy, ntpath, pathlib
 from pathlib import Path
 from datetime import datetime, timedelta
+import matplotlib.pyplot as plt
+import pandas as pd
 
 # Lists to store times
 publisherToBrokerTimes = []
@@ -16,6 +18,11 @@ brokerToSubscriberSuccessRates = []
 # Establish directories.
 directoryPath = './timeMeasurements/'
 directory = Path(directoryPath)
+folderList = []
+saveFile = "./calculations/ac_" + datetime.now().strftime("%m-%d-%Y_%H%M%S") + "_" + str(uuid.uuid4()) + ".csv"
+with open(saveFile, "w") as csvFile:
+    csvWriter = csv.writer(csvFile)
+    csvWriter.writerow(['Condition', 'publisherToBrokerTimesMin', 'publisherToBrokerTimesMax', 'publisherToBrokerTimesAverage', 'publisherToBrokerTimesStandardDeviation', 'brokerToSubscriberTimesMin', 'brokerToSubscriberTimesMax', 'brokerToSubscriberTimesAverage', 'brokerToSubscriberTimesStandardDeviation', 'publisherToBrokerSuccessRatesMin', 'publisherToBrokerSuccessRatesMax', 'publisherToBrokerSuccessRatesAverage', 'publisherToBrokerSuccessRatesStandardDeviation', 'brokerToSubscriberSuccessRatesMin', 'brokerToSubscriberSuccessRatesMax', 'brokerToSubscriberSuccessRatesAverage', 'brokerToSubscriberSuccessRatesStandardDeviation'])
                                                                                                          
 # Function to list all files in a directory                                                                                                                      
 def listFiles(directory):                                                                                                  
@@ -88,32 +95,46 @@ def saveCalculations(folderName):
     brokerToSubscriberSuccessRatesAverage = getAverage(brokerToSubscriberSuccessRates)
     brokerToSubscriberSuccessRatesStandardDeviation = getStandardDeviation(brokerToSubscriberSuccessRates)
 
-    # Save CSV. Create the folder first.
-    saveFile = "./calculations/sc_" + folderName + "_" + datetime.now().strftime("%m-%d-%Y_%H%M%S") + "_" + str(uuid.uuid4()) + ".csv"
-    with open(saveFile, "w") as csvFile:
+    # Save CSV.
+    with open(saveFile, "a", newline='') as csvFile:
         csvWriter = csv.writer(csvFile)
-        csvWriter.writerow(['Metric', 'Value'])
-        csvWriter.writerow(['publisherToBrokerTimesMin', publisherToBrokerTimesMin])
-        csvWriter.writerow(['publisherToBrokerTimesMax', publisherToBrokerTimesMax])
-        csvWriter.writerow(['publisherToBrokerTimesAverage', publisherToBrokerTimesAverage])
-        csvWriter.writerow(['publisherToBrokerTimesStandardDeviation', publisherToBrokerTimesStandardDeviation])
-        csvWriter.writerow(['brokerToSubscriberTimesMin', brokerToSubscriberTimesMin])
-        csvWriter.writerow(['brokerToSubscriberTimesMax', brokerToSubscriberTimesMax])
-        csvWriter.writerow(['brokerToSubscriberTimesAverage', brokerToSubscriberTimesAverage])
-        csvWriter.writerow(['brokerToSubscriberTimesStandardDeviation', brokerToSubscriberTimesStandardDeviation])
-        csvWriter.writerow(['publisherToBrokerSuccessRatesMin', publisherToBrokerSuccessRatesMin])
-        csvWriter.writerow(['publisherToBrokerSuccessRatesMax', publisherToBrokerSuccessRatesMax])
-        csvWriter.writerow(['publisherToBrokerSuccessRatesAverage', publisherToBrokerSuccessRatesAverage])
-        csvWriter.writerow(['publisherToBrokerSuccessRatesStandardDeviation', publisherToBrokerSuccessRatesStandardDeviation])
-        csvWriter.writerow(['brokerToSubscriberSuccessRatesMin', brokerToSubscriberSuccessRatesMin])
-        csvWriter.writerow(['brokerToSubscriberSuccessRatesMax', brokerToSubscriberSuccessRatesMax])
-        csvWriter.writerow(['brokerToSubscriberSuccessRatesAverage', brokerToSubscriberSuccessRatesAverage])
-        csvWriter.writerow(['brokerToSubscriberSuccessRatesStandardDeviation', brokerToSubscriberSuccessRatesStandardDeviation])
+        csvWriter.writerow([folderName, publisherToBrokerTimesMin, publisherToBrokerTimesMax, publisherToBrokerTimesAverage, publisherToBrokerTimesStandardDeviation, brokerToSubscriberTimesMin, brokerToSubscriberTimesMax, brokerToSubscriberTimesAverage, brokerToSubscriberTimesStandardDeviation, publisherToBrokerSuccessRatesMin, publisherToBrokerSuccessRatesMax, publisherToBrokerSuccessRatesAverage, publisherToBrokerSuccessRatesStandardDeviation, brokerToSubscriberSuccessRatesMin, brokerToSubscriberSuccessRatesMax, brokerToSubscriberSuccessRatesAverage, brokerToSubscriberSuccessRatesStandardDeviation])
     return saveFile
 
-# Loop across all time measurements files before saving CSV.
+# Function to generate graphs from Calculations CSV file
+def generateGraphs(statsFile):
+    
+    # Initialize the lists for X and Y
+    fig = plt.figure(figsize=(20, 15))
+    statsDirectory = './calculations/' + statsFile
+    data = pd.read_csv(statsDirectory)
+    df = pd.DataFrame(data)
+    statParams = ['publisherToBrokerTimesMin', 'publisherToBrokerTimesMax', 'publisherToBrokerTimesAverage', 'publisherToBrokerTimesStandardDeviation', 'brokerToSubscriberTimesMin', 'brokerToSubscriberTimesMax', 'brokerToSubscriberTimesAverage', 'brokerToSubscriberTimesStandardDeviation', 'publisherToBrokerSuccessRatesMin', 'publisherToBrokerSuccessRatesMax', 'publisherToBrokerSuccessRatesAverage', 'publisherToBrokerSuccessRatesStandardDeviation', 'brokerToSubscriberSuccessRatesMin', 'brokerToSubscriberSuccessRatesMax', 'brokerToSubscriberSuccessRatesAverage', 'brokerToSubscriberSuccessRatesStandardDeviation']
+    for col in range(16):
+        X = list(df.iloc[:, 0])
+        Y = list(df.iloc[:, col + 1])
+        
+        # Plot the data using bar() method
+        plt.xticks(
+            rotation=45, 
+            horizontalalignment='right',
+            fontsize='small'  
+        )
+        plt.bar(X, Y, color='g')
+        xAxis = 'Condition'
+        yAxis = statParams[col]
+        plt.title(xAxis + ' vs. ' + yAxis)
+        plt.xlabel(xAxis)
+        plt.ylabel(yAxis)
+        
+        # Show the plot
+        # plt.show()
+        plt.savefig('./graphs/' + statsFile.replace('ac', yAxis).replace('.csv', '.png'))
+    
+    return 'Done'
+
+# Loop across all timeDifferences files before saving CSV.
 saveCount = 0
-folderList = []
 for f in directory.glob('**/*'):
     strF = str(f)
     print("Looping across: " + strF)
@@ -130,7 +151,10 @@ for fold in folderList:
             readCSV(cf)
     saveFile = saveCalculations(fold)
     saveCount = saveCount + 1
-saveDirectory = saveFile.split('sc_')[0]
+saveDirectory = saveFile.split('ac_')[0]
+print("Save file: " + saveFile)
 print(folderList)
 print("Save count: " + str(saveCount))
-print("Results at: " + saveDirectory)
+generateGraphs(ntpath.basename(saveFile))
+print("CSV results at: " + saveDirectory)
+print("Graph results at: " + "./graphs/")

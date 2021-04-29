@@ -82,8 +82,8 @@ Procedure:
                     emptied out and then stop it before running the code
                     again.
 
-3.  Run calculateStatistics.py to calculate statistics of time
-    measurements.
+3.  Run python3 calculateStatistics.py or calculateStatisticsAll.py to calculate statistics
+            of time measurements and for the latter, also generate graphs.
 
 4.  You can measure hardware performance continuously by running
     hardwareMeasure.py, which will print the latest information.

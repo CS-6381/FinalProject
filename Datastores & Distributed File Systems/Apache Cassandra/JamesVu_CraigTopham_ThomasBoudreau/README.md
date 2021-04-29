@@ -2,7 +2,7 @@
 The goal of this experiment is to understand when the technology is viable to use. 
 
 # Experiment Hardware Configuration
-Each test should be ran using Ubuntu 20.04 chameleon cloud VM’s with 8 CPU and 32 GB of RAM. If these hardware specs aren’t attainable, use the nearest available and document the configuration. Please also use internal IP addresses for all communication to simulate a more consistent network topology with less traffic.
+Each test should be ran using Ubuntu 20.04 Chameleon Cloud VM’s with 8 CPU and 32 GB of RAM. If these hardware specs aren’t attainable, use the nearest available and document the configuration. Please also use internal IP addresses for all communication to simulate a more consistent network topology with less traffic.
 
 ## Compatibility 
 
@@ -37,7 +37,7 @@ Windows 7|Yes|[Install](https://www.datastax.com/blog/getting-started-apache-cas
 Windows 10|Yes|[Install](https://www.datastax.com/blog/getting-started-apache-cassandra-windows-easy-way), https://www.youtube.com/watch?v=EEXtVn3zAqc|~ 10 min.|
 Mac|Yes|[Install](https://codefoundries.com/developer/cassandra/cassan…), https://www.youtube.com/watch?v=JtpsOFXJUBw|~ 10 min.|
 Docker (Windows)|Yes|[Install](https://cassandra.apache.org/doc/latest/getting_started/installing.html), https://www.datastax.com/learn/apache-cassandra-operations-in-kubernetes/running-a-cassandra-application-in-docker|~ 15 min.|
-Docker (Ububtu 20.04)|Yes|[Install](https://hub.docker.com/_/cassandra)||
+Docker (Ubuntu 20.04)|Yes|[Install](https://hub.docker.com/_/cassandra)||
 Docker (Mac)|Yes|[Install](https://hub.docker.com/_/cassandra)||
 Raspbian|Yes (since Raspbian is Debian-based)|[Install](https://stackoverflow.com/questions/43690299/cassandra-on-raspberry-pi-3), https://docs.datastax.com/en/cassandra-oss/3.x/cassandra/install/installDeb.html||
 Android|No|||
@@ -61,10 +61,10 @@ Create this table for all OS and CPU combinations tested
 ||CPU|RAM|Hard Disk Memory|
 |--|--|--|--|
 |Idle|0.17142857142857143|93.39999999999999|10374848512.0|
-|Max Observed Under Load A|21.3|96.3|10375655424|
-|Average Observed Under Load A|7.466666666666666|94.08749999999999|10368999594.666666|
-|Max Observed Under Load B|19.0|95.7|10379653120|
-|Average Observed Under Load B|11.285714285714286|95.10000000000001|10376818688.0|
+|Max Observed Under Load A (readIteration.py Test)|52.3|94.0|10655780864|
+|Average Observed Under Load A (readIteration.py Test)|21.97457627118644|92.9694915254237|10641377037.016949|
+|Max Observed Under Load B (readIteration.py Test)|58.1|91.7|10653622272|
+|Average Observed Under Load B (readIteration.py Test)|51.05384615384616|91.55384615384615|10651603889.23077|
 
 ### Language Support 
 Are there commercially available libraries for the following languages?
@@ -94,7 +94,7 @@ This experiment is an extension of the [Base experiment](./Base.md) that is spec
 ## Qualitative Data
 
 Fill in with information you discover about the given Data Store.
-Please include any other key characteristics of the data store which amy not be outlined.
+Please include any other key characteristics of the data store which may not be outlined.
 
 | Metric | Value |
 | --- | --- |
