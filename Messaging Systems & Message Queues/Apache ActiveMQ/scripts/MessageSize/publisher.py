@@ -16,7 +16,7 @@ messages = [ "tiny", "small", "medium", "large", "xlarge" ]
 def main():
     hostname = sys.argv[1] if len(sys.argv) > 1 else 'localhost'
     file = sys.argv[2] if len(sys.argv) > 2 else 'small'
-    loops = 1000 
+    loops = 1000
         
     publisher = ActiveMQPublisher(hostname=hostname)
 
