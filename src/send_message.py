@@ -1,7 +1,7 @@
 import psycopg2, time
 
 # Connect to an existing database
-conn = psycopg2.connect("dbname=postgres user=postgres password=example host=127.0.0.1 port=8080")
+conn = psycopg2.connect("dbname=postgres user=postgres password=password host=129.114.27.48 port=5431")
 print('connection establiched')
 time.sleep(2)
 # Open a cursor to perform database operations

@@ -94,7 +94,7 @@ def calculize(df, f):
     print('readLatencyAverage = getAverage(newReadTimes)',readLatencyAverage)
     print('readLatencyStandardDeviation = getStandardDeviation(newReadTimes)',readLatencyStandardDeviation)
     print('writeThroughput',writeThroughput)
-    return [writeLatencyMin, writeLatencyMax,writeLatencyMin,writeThroughput,readLatencyMin,readLatencyMax,readLatencyAverage,readLatencyStandardDeviation]
+    return [writeLatencyMin, writeLatencyMax,writeLatencyAverage,writeThroughput,readLatencyMin,readLatencyMax,readLatencyAverage,readLatencyStandardDeviation]
 
 # Loop across all timeDifferences files before saving CSV.
 folder = 'Results'
@@ -102,7 +102,7 @@ print(os.listdir(folder))
 
 with open(saveFile, "+a",newline='') as csvFile:
     csvWriter = csv.writer(csvFile)
-    csvWriter.writerow(['file name','writeLatencyMin', 'writeLatencyMax','writeLatencyMin','writeThroughput','readLatencyMin','readLatencyMax','readLatencyAverage','readLatencyStandardDeviation'])
+    csvWriter.writerow(['file name','writeLatencyMin', 'writeLatencyMax','writeLatencyAverage','writeThroughput','readLatencyMin','readLatencyMax','readLatencyAverage','readLatencyStandardDeviation'])
     for f in os.listdir(folder):        
         f = os.path.join(folder, f)
         if '_min_sec.csv' in str(f):
