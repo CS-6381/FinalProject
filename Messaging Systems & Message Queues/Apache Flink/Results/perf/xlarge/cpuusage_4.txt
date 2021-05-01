@@ -1,0 +1,184 @@
+Linux 5.8.0-41-generic (tito-VirtualBox) 	04/30/2021 	_x86_64_	(6 CPU)
+
+04:57:23 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:24 PM  1000      3899    7.00    0.00    0.00    0.00    7.00     5  python3
+04:57:24 PM  1000      3901   44.00    9.00    0.00    0.00   53.00     0  java
+
+04:57:24 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:25 PM  1000      3899    1.00    0.00    0.00    0.00    1.00     3  python3
+04:57:25 PM  1000      3901  203.00   18.00    0.00    0.00  221.00     0  java
+
+04:57:25 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:26 PM  1000      3901  289.00   13.00    0.00    0.00  302.00     0  java
+
+04:57:26 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:27 PM  1000      3901  104.00   45.00    0.00    0.00  149.00     0  java
+
+04:57:27 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:28 PM  1000      3901   57.00   49.00    0.00    0.00  106.00     0  java
+
+04:57:28 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:29 PM  1000      3901   55.00   49.00    0.00    0.00  104.00     0  java
+
+04:57:29 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:30 PM  1000      3901   52.00   51.00    0.00    0.00  103.00     0  java
+
+04:57:30 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:31 PM  1000      3901   62.00   43.00    0.00    0.00  105.00     0  java
+
+04:57:31 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:32 PM  1000      3901   48.00   56.00    0.00    0.00  104.00     0  java
+
+04:57:32 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:33 PM  1000      3901   44.55   56.44    0.00    0.00  100.99     0  java
+
+04:57:33 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:34 PM  1000      3901   48.00   54.00    0.00    0.00  102.00     0  java
+
+04:57:34 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:35 PM  1000      3901   55.00   47.00    0.00    0.00  102.00     0  java
+
+04:57:35 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:36 PM  1000      3901   60.00   48.00    0.00    0.00  108.00     0  java
+
+04:57:36 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:37 PM  1000      3901   53.00   49.00    0.00    0.00  102.00     0  java
+
+04:57:37 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:38 PM  1000      3901   46.00   56.00    0.00    0.00  102.00     0  java
+
+04:57:38 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:39 PM  1000      3901   57.00   45.00    0.00    0.00  102.00     0  java
+
+04:57:39 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:40 PM  1000      3901   51.49   49.50    0.00    0.00  100.99     0  java
+
+04:57:40 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:41 PM  1000      3901   53.00   50.00    0.00    0.00  103.00     0  java
+
+04:57:41 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:42 PM  1000      3901   52.00   49.00    0.00    0.00  101.00     0  java
+
+04:57:42 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:43 PM  1000      3901   49.00   53.00    0.00    0.00  102.00     0  java
+
+04:57:43 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:44 PM  1000      3901   59.00   43.00    0.00    0.00  102.00     0  java
+
+04:57:44 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:45 PM  1000      3901   57.00   44.00    0.00    0.00  101.00     0  java
+
+04:57:45 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:46 PM  1000      3901   72.00   48.00    0.00    0.00  120.00     0  java
+
+04:57:46 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:47 PM  1000      3901   54.00   47.00    0.00    0.00  101.00     0  java
+
+04:57:47 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:48 PM  1000      3901   57.00   45.00    0.00    0.00  102.00     0  java
+
+04:57:48 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:49 PM  1000      3901   49.00   52.00    0.00    0.00  101.00     0  java
+
+04:57:49 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:50 PM  1000      3901   53.00   49.00    0.00    0.00  102.00     0  java
+
+04:57:50 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:51 PM  1000      3901   60.00   41.00    0.00    0.00  101.00     0  java
+
+04:57:51 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:52 PM  1000      3901   56.00   47.00    0.00    0.00  103.00     0  java
+
+04:57:52 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:53 PM  1000      3901   50.00   51.00    0.00    0.00  101.00     0  java
+
+04:57:53 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:54 PM  1000      3901   54.00   47.00    0.00    0.00  101.00     0  java
+
+04:57:54 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:55 PM  1000      3901   53.47   47.52    0.00    0.00  100.99     0  java
+
+04:57:55 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:56 PM  1000      3901   66.00   43.00    0.00    0.00  109.00     0  java
+
+04:57:56 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:57 PM  1000      3901   52.00   50.00    0.00    0.00  102.00     0  java
+
+04:57:57 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:58 PM  1000      3901   47.00   54.00    0.00    0.00  101.00     0  java
+
+04:57:58 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:57:59 PM  1000      3901   54.00   47.00    0.00    0.00  101.00     0  java
+
+04:57:59 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:00 PM  1000      3901   50.00   51.00    0.00    0.00  101.00     0  java
+
+04:58:00 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:01 PM  1000      3901   52.00   51.00    0.00    0.00  103.00     0  java
+
+04:58:01 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:02 PM  1000      3901   49.00   53.00    0.00    0.00  102.00     0  java
+
+04:58:02 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:03 PM  1000      3901   53.00   47.00    0.00    0.00  100.00     0  java
+
+04:58:03 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:04 PM  1000      3901   50.50   50.50    0.00    0.00  100.99     0  java
+
+04:58:04 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:05 PM  1000      3901   51.00   50.00    0.00    0.00  101.00     0  java
+
+04:58:05 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:06 PM  1000      3901   56.00   49.00    0.00    0.00  105.00     0  java
+
+04:58:06 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:07 PM  1000      3901   56.00   46.00    0.00    0.00  102.00     0  java
+
+04:58:07 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:08 PM  1000      3901   49.00   52.00    0.00    0.00  101.00     0  java
+
+04:58:08 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:09 PM  1000      3901   52.00   50.00    0.00    0.00  102.00     0  java
+
+04:58:09 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:10 PM  1000      3901   52.00   49.00    0.00    0.00  101.00     0  java
+
+04:58:10 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:11 PM  1000      3901   52.00   50.00    0.00    0.00  102.00     0  java
+
+04:58:11 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:12 PM  1000      3901   48.00   53.00    0.00    0.00  101.00     0  java
+
+04:58:12 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:13 PM  1000      3901   53.00   48.00    0.00    0.00  101.00     0  java
+
+04:58:13 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:14 PM  1000      3901   53.00   49.00    0.00    0.00  102.00     0  java
+
+04:58:14 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:15 PM  1000      3901   50.00   52.00    0.00    0.00  102.00     0  java
+
+04:58:15 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:16 PM  1000      3901   51.00   53.00    0.00    0.00  104.00     0  java
+
+04:58:16 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:17 PM  1000      3901   54.00   47.00    0.00    0.00  101.00     0  java
+
+04:58:17 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:18 PM  1000      3901   55.00   48.00    0.00    0.00  103.00     0  java
+
+04:58:18 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:19 PM  1000      3901   47.00   54.00    0.00    0.00  101.00     0  java
+
+04:58:19 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:20 PM  1000      3901   47.00   54.00    0.00    0.00  101.00     0  java
+
+04:58:20 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:21 PM  1000      3901   56.00   46.00    0.00    0.00  102.00     0  java
+
+04:58:21 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:22 PM  1000      3901   49.00   53.00    0.00    0.00  102.00     0  java
+
+04:58:22 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+04:58:23 PM  1000      3901   53.00   53.00    0.00    0.00  106.00     0  java
+
