@@ -65,18 +65,20 @@ Can it run on these CPUs?
 | Embedded (Eiger, Aruix, etc.) | no |  |
 
 ### Hardware Needs
-Create this table for all OS and CPU combinations tested
+Estimate of CPU & RAM requirements
 
-#### EX: OS_A on CPU_B
-<--MAP THIS TO THE EXPERIMENTS COMPLETED FOR YOUR TECHNOLOGY-->
-
-|  | CPU | RAM | Hard Disk Memory |
-| --- | --- | --- | --- |
-| Idle |  |  |  |
-| Max Observed Under Load A |  |  |  |
-| Average Observed Under Load A |  |  |  |
-| Max Observed Under Load B |  |  |  |
-| Average Observed Under Load B |  |  |  |
+|               Metric                | CPU ( 1 core = 100%)  | RAM (MiB) | 
+|                ---                  |          ---          |    ---    | 
+| Max Observed for tiny message       |          290%         |   22.51   | 
+| Max Observed for small message      |          305%         |   22.41   | 
+| Max Observed for medium message     |          309%         |   22.52   | 
+| Max Observed for large message      |          322%         |   22.52   | 
+| Max Observed for xlarge message     |          308%         |   22.45   | 
+| Average Observed for tiny message   |          132%         |   21.46   | 
+| Average Observed for small message  |          129%         |   22.41   | 
+| Average Observed for medium message |          145%         |   21.52   | 
+| Average Observed for large message  |          113%         |   22.16   | 
+| Average Observed for xlarge message |          105%         |   22.25   | 
 
 ### Language Support
 Are there commercially available libraries for the following languages?

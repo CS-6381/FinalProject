@@ -1,13 +1,6 @@
-Linux 5.8.0-41-generic (tito-VirtualBox) 	04/29/2021 	_x86_64_	(6 CPU)
-
 02:37:57 AM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
 02:37:58 AM  1000     56896    9.00    0.00    0.00    0.00    9.00     3  python3
 02:37:58 AM  1000     56898  104.00   13.00    0.00    0.00  117.00     4  java
-
-02:37:58 AM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
 02:37:59 AM  1000     56896    1.00    0.00    0.00    0.00    1.00     3  python3
 02:37:59 AM  1000     56898  211.00   18.00    0.00    0.00  229.00     4  java
-
-02:37:59 AM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
 02:38:00 AM  1000     56898  278.00   18.00    0.00    0.00  296.00     4  java
-

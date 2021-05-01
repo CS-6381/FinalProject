@@ -1,7 +1,7 @@
 ## Instructions for running `flink_actor.py`
 
 - to run [`flink_actor.py`](./flink_actor.py) you will need to set up a directory on an Ubuntu 20.04 machine
- - example directory structure example:
+ - example directory structure:
     ```
    .
    ├── flink_actor.py
@@ -36,7 +36,7 @@
     ```
     mprof run flink_actor.py {input_file_name} {size} {test_number}
     ```
-- followed by `mprof plot` in the same directory as running the command to see a visualization
+- followed by `mprof plot` in the same directory as `flink_actor.py` to see a visualization
 
 
 #### CPU Usage
