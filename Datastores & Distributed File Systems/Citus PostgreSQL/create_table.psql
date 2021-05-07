@@ -1,0 +1,9 @@
+CREATE TABLE data (
+	id integer,
+	data text,
+	writer_id integer,
+	node_number integer,
+	start_time timestamp without time zone,
+	end_time timestamp without time zone,
+	cum_diff_time interval
+);

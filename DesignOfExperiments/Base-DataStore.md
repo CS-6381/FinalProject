@@ -9,9 +9,9 @@ Please include any other key characteristics of the data store which amy not be 
 
 | Metric | Value |
 | --- | --- |
-| Use Case | | 
+| Use Case | Use case 1: OLTP, analytics, and business intelligence. <br>Use case 2: Government GIS data.PostGIS for spatial data. <br>Use case 3: Automatic failover and zero downtime upgrades. <br>Use case 4: Web technology and NoSQL workloads.<br>https://www.cybertec-postgresql.com/en/postgresql-overview/solutions-who-uses-postgresql/| 
 | CAP Theorem Evaluation | Prioritizes Availability over Consitency, etc |  
-| Database/Structure Hierarchy | (ex: Table, Column,Value, Records, ex2:  Collection, Key, Value, Document) | 
-| Replication / Clustering Availability | | 
-| Syntax/Query Language Support | | 
+| Database/Structure Hierarchy | Table | 
+| Replication / Clustering Availability | Failover replication available. Clusterable.| 
+| Syntax/Query Language Support | Similar to TSQL by default. Other languages can be used.| 
 

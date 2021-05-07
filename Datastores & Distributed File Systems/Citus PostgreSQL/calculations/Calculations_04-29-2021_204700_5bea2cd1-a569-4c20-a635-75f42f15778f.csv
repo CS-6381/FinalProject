@@ -1,0 +1,7 @@
+file name,Writers,Readers,writeLatencyMin,writeLatencyMax,writeLatencyAverage,writeThroughput,readLatencyMin,readLatencyMax,readLatencyAverage,readLatencyStandardDeviation
+Results\cap_perf.csv_min_sec.csv,,,1.48E-05,0.488581896,0.000262505,0.000262374,1.48E-05,0.488581896,0.000262421,0.010927357
+Results\db_perf_10r.csv_min_sec.csv,,10,8.82E-06,0.095588684,0.000235977,1.14E-05,0.000135183,1.305491924,0.010487818,0.022859645
+Results\db_perf_10w.csv_min_sec.csv,10,,1.10E-05,0.06187582,7.23E-05,7.57E-06,0.000731945,17.72925115,0.010112162,0.316942511
+Results\db_perf_1r.csv_min_sec.csv,,1,0.00155282,0.007616997,0.002299332,0.002299102,0.000883102,0.007616997,0.002298762,0.000501791
+Results\db_perf_1w.csv_min_sec.csv,1,,0,0,0,0,1.10E-05,0.001548,2.85E-05,5.89E-05
+Results\db_perf_25w_25r.csv_min_sec.csv,25,25,0.023772955,0.025664091,0.024687826,1.22E-05,8.42E-05,0.007243872,0.001065013,0.001523331
