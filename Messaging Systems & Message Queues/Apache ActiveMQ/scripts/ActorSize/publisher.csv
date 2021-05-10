@@ -1,0 +1,24 @@
+[?1h=[1;48r[m[m[0m[H[J[48;1H"publisher.py" 43L, 779C[1;1H[1m#!/usr/bin/python3[0m
+
+[4mimport[m sys
+[4mimport[m time
+
+[4mfrom[m activemqapi.activemqpublisher [4mimport[m ActiveMQPublisher[10;1HMESSAGE_DIR=[4m"/home/cc/official/FinalProject/DesignOfExperiments/messages/"[m
+MESSAGE_SUFFIX = [4m".txt"[m
+
+messages = [
+    [4m"small"[m,
+][19;1H[1mdef[0m [4mmain[m():
+    hostname = sys.argv[[4m1[m] [1mif[0m [4mlen[m(sys.argv) > [4m1[m [1melse[0m [4m'10.56.1.95'[m[22;5Hloops = [4m1000
+[m    [4mfile[m = messages[[4m0[m][25;5Hpublisher = ActiveMQPublisher(hostname=hostname)[27;5Hfilename = MESSAGE_DIR + [4mfile[m + MESSAGE_SUFFIX[29;5H[1mwith[0m [4mopen[m(filename, [4m"r"[m) [1mas[0m f:[30;9Hdata = f.read()[32;5Hrun(publisher, data, loops)
+
+[1mdef[0m [4mrun[m(publisher, data, loops):
+    count = [4m0[m
+    [1mfor[0m i [1min[0m [4mrange[m(loops):[37;9Hpublisher.publish(data)[38;9H[1m#time.sleep(1)[0m[40;5Hpublisher.done()
+
+[1mif[0m __name__ == [4m'__main__'[m:
+    main()
+[1m~
+~
+~
+~[0m[48;111H20,64[9CAll[20;64H[48;101H^[[20;64H[48;101H  [20;64H[48;101H^[[20;64H[48;101H  [20;64H[48;101H:[20;64H[48;1H[K[48;1H:q[?1l>[48;1H[K[48;1H

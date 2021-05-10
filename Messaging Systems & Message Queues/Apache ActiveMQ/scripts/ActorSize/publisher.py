@@ -1,26 +1,28 @@
 #!/usr/bin/python3
 
 import sys
+import time
 
-from redisapi.redisclients import RedisPublisher
+from activemqapi.activemqpublisher import ActiveMQPublisher
 
 
 
 MESSAGE_DIR="/home/cc/official/FinalProject/DesignOfExperiments/messages/"
 MESSAGE_SUFFIX = ".txt"
 
-messages = [ "tiny", "small", "medium", "large", "xlarge" ]
+messages = [
+    "small",
+]
 
 
 
 def main():
-    print("Starting...")
-    hostname = sys.argv[1] if len(sys.argv) > 1 else 'localhost'
-    file = sys.argv[2] if len(sys.argv) > 2 else 'small'
-    loops = 1000 
-    print("File:\t{}".format(file))
+    hostname = sys.argv[1] if len(sys.argv) > 1 else '10.56.1.95'
+
+    loops = 1000
+    file = messages[0]
         
-    publisher = RedisPublisher(hostname=hostname)
+    publisher = ActiveMQPublisher(hostname=hostname)
 
     filename = MESSAGE_DIR + file + MESSAGE_SUFFIX
     
@@ -33,7 +35,8 @@ def run(publisher, data, loops):
     count = 0
     for i in range(loops):
         publisher.publish(data)
-
+        #time.sleep(1)
+        
     publisher.done()
 
 if __name__ == '__main__':

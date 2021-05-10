@@ -2,7 +2,7 @@
 
 import sys
 
-from redisapi.redisclients import RedisPublisher
+from activemqapi.activemqpublisher import ActiveMQPublisher
 
 
 
@@ -14,13 +14,11 @@ messages = [ "tiny", "small", "medium", "large", "xlarge" ]
 
 
 def main():
-    print("Starting...")
     hostname = sys.argv[1] if len(sys.argv) > 1 else 'localhost'
     file = sys.argv[2] if len(sys.argv) > 2 else 'small'
-    loops = 1000 
-    print("File:\t{}".format(file))
+    loops = 1000
         
-    publisher = RedisPublisher(hostname=hostname)
+    publisher = ActiveMQPublisher(hostname=hostname)
 
     filename = MESSAGE_DIR + file + MESSAGE_SUFFIX
     
